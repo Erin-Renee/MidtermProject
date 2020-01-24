@@ -43,6 +43,10 @@ public class Location {
 	private Boolean active;
 
 
+	@Column(name = "zip_code")
+	private String zipCode;
+
+
 	@OneToMany(mappedBy="location")
 	private List<Event> events;
 
@@ -103,6 +107,13 @@ public class Location {
 		this.active = active;
 	}
 
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -126,8 +137,19 @@ public class Location {
 		}
 		if (!events.contains(event)) {
 			events.add(event);
-			event.setLocation(this);
+			if(event.getLocation() != null){
+				event.getLocation().getEvents().remove(event);
+			}
 		}
+			event.setLocation(this);
+	}
+	
+	public void removeEvent(Event event){
+		event.setLocation(null);
+		if(events != null){
+			events.remove(event);
+		}
+	
 	}
 	
 	public void addUser (User user) {
@@ -136,8 +158,19 @@ public class Location {
 		}
 		if (!users.contains(user)) {
 			users.add(user);
-			user.setLocation(this);
+			if(user.getLocation() != null){
+				user.getLocation().getUsers().remove(user);
+			}
 		}
+			user.setLocation(this);
+	}
+	
+	public void removeUser(User user){
+		user.setLocation(null);
+		if(users != null){
+			users.remove(user);
+		}
+	
 	}
 	
 

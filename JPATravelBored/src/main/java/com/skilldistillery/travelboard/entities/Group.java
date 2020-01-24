@@ -118,8 +118,19 @@ public class Group {
 		}
 		if (!groupComments.contains(groupComment)) {
 			groupComments.add(groupComment);
-			groupComment.setGroup(this);
+			if(groupComment.getGroup() != null){
+				groupComment.getGroup().getGroupComments().remove(groupComment);
+			}
 		}
+			groupComment.setGroup(this);
+	}
+	
+	public void removeGroupComment(GroupComment groupComment){
+		groupComment.setGroup(null);
+		if(groupComments != null){
+			groupComments.remove(groupComment);
+		}
+	
 	}
 	
 

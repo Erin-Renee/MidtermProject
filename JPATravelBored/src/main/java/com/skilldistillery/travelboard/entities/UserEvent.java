@@ -1,14 +1,12 @@
 package com.skilldistillery.travelboard.entities;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 
 @Entity
@@ -16,17 +14,18 @@ import javax.persistence.ManyToOne;
 public class UserEvent {
 
 	// F I E L D S
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EmbeddedId
+	private UserEventId id;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@MapsId(value = "userId")
 	private User user;
 
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ManyToOne
 	@JoinColumn(name = "event_id")
+	@MapsId(value = "eventId")
 	private Event event;
 
 
@@ -52,6 +51,13 @@ public class UserEvent {
 
 
 	// G E T T E R S _ A N D _ S E T T E R S
+	public UserEventId getId() {
+		return id;
+	}
+	public void setId(UserEventId id) {
+		this.id = id;
+	}
+
 	public User getUser() {
 		return user;
 	}
