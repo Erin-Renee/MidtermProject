@@ -279,6 +279,7 @@ COMMIT;
 START TRANSACTION;
 USE `travelboreddb`;
 INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (1, 'testuser', 'testuser', 1, 'user', 'Test', 'User', 'testuser@test.com', 1, '2020-01-24', 'https://skilldistillery.com/wp-content/uploads/2017/01/RobRPicSDWEB-250x250.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (2, 'admin', 'admin', 1, 'admin', 'admin first', 'admin last', 'admin@travelbored.com', 1, '2020-01-24', 'https://images.app.goo.gl/9GB2u5SozoJ1RX1A6');
 
 COMMIT;
 
