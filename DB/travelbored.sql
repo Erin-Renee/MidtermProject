@@ -211,11 +211,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_details`
+-- Table `user_detail`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_details` ;
+DROP TABLE IF EXISTS `user_detail` ;
 
-CREATE TABLE IF NOT EXISTS `user_details` (
+CREATE TABLE IF NOT EXISTS `user_detail` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_detail_name` VARCHAR(45) NULL,
   `user_detail_description` VARCHAR(500) NULL,
@@ -346,11 +346,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `user_details`
+-- Data for table `user_detail`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `user_details` (`id`, `user_detail_name`, `user_detail_description`, `user_detail_url`, `user_id`) VALUES (1, 'middle name', 'sd test middle', NULL, 1);
+INSERT INTO `user_detail` (`id`, `user_detail_name`, `user_detail_description`, `user_detail_url`, `user_id`) VALUES (1, 'middle name', 'sd test middle', NULL, 1);
 
 COMMIT;
 
