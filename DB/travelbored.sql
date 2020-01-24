@@ -87,11 +87,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `event_details`
+-- Table `event_detail`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `event_details` ;
+DROP TABLE IF EXISTS `event_detail` ;
 
-CREATE TABLE IF NOT EXISTS `event_details` (
+CREATE TABLE IF NOT EXISTS `event_detail` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `detail_name` VARCHAR(45) NULL,
   `detail_type` VARCHAR(45) NULL,
@@ -261,3 +261,104 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'travelboreduser'@'l
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`) VALUES (1, 'United States', 'Colorado', 'Denver', '123  denver test', 1);
+INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`) VALUES (2, 'United States', 'Colorado', 'Greenwood Village', '1234 greenwood test', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (1, 'testuser', 'testuser', 1, 'user', 'Test', 'User', 'testuser@test.com', 1, '2020-01-24', 'https://skilldistillery.com/wp-content/uploads/2017/01/RobRPicSDWEB-250x250.jpg');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (1, 'Skill Distillery', 'Skill Distillery is an intensive, 16-week Java bootcamp in Denver, Colorado. The course is arranged into three units – Java Programming, Server-side Java, and Front-end Development.', 'The curriculum focuses on the fundamentals of programming, Java (and its libraries), unit testing, Spring, Spring MVC, and using a source code repository. Students will also gain experience deploying web content to a web server and navigating the server file system from the command line. Skill Distillery graduates will be prepared to take the Oracle Certified Associate – Java Programmer exam and will be on track for a career as a web interface designer or a full stack application developer.', '08:30', '2020-01-25', 'https://images.app.goo.gl/AfH6qe6nLTRBhNZg8', 'https://images.app.goo.gl/TMzENCuQf9DNJBxPA', 1, 1, '2020-01-24');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_detail`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `event_detail` (`id`, `detail_name`, `detail_type`, `active`, `event_id`) VALUES (1, 'dress code', 'black tie optional', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (1, 'Best coding school in the country!', '2020-01-24', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `group` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (1, 'SD Group', 'test hook', 1, '2020-01-24', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `group_comment` (`id`, `content`, `create_date`, `group_id`, `user_id`) VALUES (1, 'content test', '2020-01-24', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 1, NULL, 1, '2020-01-24');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_details`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `user_details` (`id`, `user_detail_name`, `user_detail_description`, `user_detail_url`, `user_id`) VALUES (1, 'middle name', 'sd test middle', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_img`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `travelboreddb`;
+INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (1, 'https://images.app.goo.gl/TMzENCuQf9DNJBxPA', 'skill distillery pic', 1, '2020-01-24');
+
+COMMIT;
+
