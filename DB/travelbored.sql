@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `active` TINYINT NULL DEFAULT 1,
-  `role` VARCHAR(45) NULL,
+  `role` ENUM("admin", "moderator", "user") NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `email` VARCHAR(100) NOT NULL,
