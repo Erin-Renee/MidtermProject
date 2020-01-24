@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import javax.persistence.JoinColumn;
 import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import javax.persistence.OneToMany;
@@ -37,8 +39,9 @@ public class User {
 	private Boolean active;
 
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
-	private String role;
+	private UserRole role;
 
 
 	@Column(name = "first_name")
@@ -67,7 +70,7 @@ public class User {
 
 
 	@OneToMany(mappedBy="user")
-	private List<UserDetails> userDetailss;
+	private List<UserDetail> userDetails;
 
 
 	@OneToMany(mappedBy="user")
@@ -124,10 +127,10 @@ public class User {
 		this.active = active;
 	}
 
-	public String getRole() {
+	public UserRole getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(UserRole role) {
 		this.role = role;
 	}
 
@@ -173,11 +176,11 @@ public class User {
 		this.userImgUrl = userImgUrl;
 	}
 
-	public List<UserDetails> getUserDetailss() {
-		return userDetailss;
+	public List<UserDetail> getUserDetails() {
+		return userDetails;
 	}
-	public void setUserDetailss(List<UserDetails> userDetailss) {
-		this.userDetailss = userDetailss;
+	public void setUserDetails(List<UserDetail> userDetails) {
+		this.userDetails = userDetails;
 	}
 
 	public List<UserEvent> getUserEvents() {
@@ -211,14 +214,25 @@ public class User {
 
 
 	// A D D E R S
-	public void addUserDetails (UserDetails userDetails) {
-		if (userDetailss == null) {
-			userDetailss = new ArrayList<>();
+	public void addUserDetail (UserDetail userDetail) {
+		if (userDetails == null) {
+			userDetails = new ArrayList<>();
 		}
-		if (!userDetailss.contains(userDetails)) {
-			userDetailss.add(userDetails);
-			userDetails.setUser(this);
+		if (!userDetails.contains(userDetail)) {
+			userDetails.add(userDetail);
+			if(userDetail.getUser() != null){
+				userDetail.getUser().getUserDetails().remove(userDetail);
+			}
 		}
+			userDetail.setUser(this);
+	}
+	
+	public void removeUserDetail(UserDetail userDetail){
+		userDetail.setUser(null);
+		if(userDetails != null){
+			userDetails.remove(userDetail);
+		}
+	
 	}
 	
 	public void addUserEvent (UserEvent userEvent) {
@@ -227,8 +241,19 @@ public class User {
 		}
 		if (!userEvents.contains(userEvent)) {
 			userEvents.add(userEvent);
-			userEvent.setUser(this);
+			if(userEvent.getUser() != null){
+				userEvent.getUser().getUserEvents().remove(userEvent);
+			}
 		}
+			userEvent.setUser(this);
+	}
+	
+	public void removeUserEvent(UserEvent userEvent){
+		userEvent.setUser(null);
+		if(userEvents != null){
+			userEvents.remove(userEvent);
+		}
+	
 	}
 	
 	public void addGroupComment (GroupComment groupComment) {
@@ -237,8 +262,19 @@ public class User {
 		}
 		if (!groupComments.contains(groupComment)) {
 			groupComments.add(groupComment);
-			groupComment.setUser(this);
+			if(groupComment.getUser() != null){
+				groupComment.getUser().getGroupComments().remove(groupComment);
+			}
 		}
+			groupComment.setUser(this);
+	}
+	
+	public void removeGroupComment(GroupComment groupComment){
+		groupComment.setUser(null);
+		if(groupComments != null){
+			groupComments.remove(groupComment);
+		}
+	
 	}
 	
 	public void addEventComment (EventComment eventComment) {
@@ -247,8 +283,19 @@ public class User {
 		}
 		if (!eventComments.contains(eventComment)) {
 			eventComments.add(eventComment);
-			eventComment.setUser(this);
+			if(eventComment.getUser() != null){
+				eventComment.getUser().getEventComments().remove(eventComment);
+			}
 		}
+			eventComment.setUser(this);
+	}
+	
+	public void removeEventComment(EventComment eventComment){
+		eventComment.setUser(null);
+		if(eventComments != null){
+			eventComments.remove(eventComment);
+		}
+	
 	}
 	
 	public void addGroup (Group group) {
@@ -257,8 +304,19 @@ public class User {
 		}
 		if (!groups.contains(group)) {
 			groups.add(group);
-			group.setUser(this);
+			if(group.getUser() != null){
+				group.getUser().getGroups().remove(group);
+			}
 		}
+			group.setUser(this);
+	}
+	
+	public void removeGroup(Group group){
+		group.setUser(null);
+		if(groups != null){
+			groups.remove(group);
+		}
+	
 	}
 	
 

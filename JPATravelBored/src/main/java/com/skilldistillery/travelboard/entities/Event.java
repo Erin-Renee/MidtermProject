@@ -67,11 +67,11 @@ public class Event {
 
 
 	@OneToMany(mappedBy="event")
-	private List<UserEvent> userEvents;
+	private List<EventDetail> eventDetails;
 
 
 	@OneToMany(mappedBy="event")
-	private List<EventDetails> eventDetailss;
+	private List<UserEvent> userEvents;
 
 
 	@OneToMany(mappedBy="event")
@@ -169,18 +169,18 @@ public class Event {
 		this.createDate = createDate;
 	}
 
+	public List<EventDetail> getEventDetails() {
+		return eventDetails;
+	}
+	public void setEventDetails(List<EventDetail> eventDetails) {
+		this.eventDetails = eventDetails;
+	}
+
 	public List<UserEvent> getUserEvents() {
 		return userEvents;
 	}
 	public void setUserEvents(List<UserEvent> userEvents) {
 		this.userEvents = userEvents;
-	}
-
-	public List<EventDetails> getEventDetailss() {
-		return eventDetailss;
-	}
-	public void setEventDetailss(List<EventDetails> eventDetailss) {
-		this.eventDetailss = eventDetailss;
 	}
 
 	public List<EventImg> getEventImgs() {
@@ -200,24 +200,46 @@ public class Event {
 
 
 	// A D D E R S
+	public void addEventDetail (EventDetail eventDetail) {
+		if (eventDetails == null) {
+			eventDetails = new ArrayList<>();
+		}
+		if (!eventDetails.contains(eventDetail)) {
+			eventDetails.add(eventDetail);
+			if(eventDetail.getEvent() != null){
+				eventDetail.getEvent().getEventDetails().remove(eventDetail);
+			}
+		}
+			eventDetail.setEvent(this);
+	}
+	
+	public void removeEventDetail(EventDetail eventDetail){
+		eventDetail.setEvent(null);
+		if(eventDetails != null){
+			eventDetails.remove(eventDetail);
+		}
+	
+	}
+	
 	public void addUserEvent (UserEvent userEvent) {
 		if (userEvents == null) {
 			userEvents = new ArrayList<>();
 		}
 		if (!userEvents.contains(userEvent)) {
 			userEvents.add(userEvent);
-			userEvent.setEvent(this);
+			if(userEvent.getEvent() != null){
+				userEvent.getEvent().getUserEvents().remove(userEvent);
+			}
 		}
+			userEvent.setEvent(this);
 	}
 	
-	public void addEventDetails (EventDetails eventDetails) {
-		if (eventDetailss == null) {
-			eventDetailss = new ArrayList<>();
+	public void removeUserEvent(UserEvent userEvent){
+		userEvent.setEvent(null);
+		if(userEvents != null){
+			userEvents.remove(userEvent);
 		}
-		if (!eventDetailss.contains(eventDetails)) {
-			eventDetailss.add(eventDetails);
-			eventDetails.setEvent(this);
-		}
+	
 	}
 	
 	public void addEventImg (EventImg eventImg) {
@@ -226,8 +248,19 @@ public class Event {
 		}
 		if (!eventImgs.contains(eventImg)) {
 			eventImgs.add(eventImg);
-			eventImg.setEvent(this);
+			if(eventImg.getEvent() != null){
+				eventImg.getEvent().getEventImgs().remove(eventImg);
+			}
 		}
+			eventImg.setEvent(this);
+	}
+	
+	public void removeEventImg(EventImg eventImg){
+		eventImg.setEvent(null);
+		if(eventImgs != null){
+			eventImgs.remove(eventImg);
+		}
+	
 	}
 	
 	public void addEventComment (EventComment eventComment) {
@@ -236,8 +269,19 @@ public class Event {
 		}
 		if (!eventComments.contains(eventComment)) {
 			eventComments.add(eventComment);
-			eventComment.setEvent(this);
+			if(eventComment.getEvent() != null){
+				eventComment.getEvent().getEventComments().remove(eventComment);
+			}
 		}
+			eventComment.setEvent(this);
+	}
+	
+	public void removeEventComment(EventComment eventComment){
+		eventComment.setEvent(null);
+		if(eventComments != null){
+			eventComments.remove(eventComment);
+		}
+	
 	}
 	
 
