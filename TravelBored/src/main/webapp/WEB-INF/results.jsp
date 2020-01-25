@@ -40,5 +40,9 @@ crossorigin="anonymous">
 <header>
 	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
+
+<c:forEach var="event" items="${eventList}">
+	<p>${event.title}</p>
+</c:forEach>
 </body>
 </html>

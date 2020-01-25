@@ -46,19 +46,19 @@ public class DAOSearchIMPL implements DAOSearch {
 
 		if (locationId > 0) {
 			Location location = em.find(Location.class, locationId);
-
+			System.out.println(location);
 			String cName = location.getCity();
 
 			String query = "SELECT event FROM Event event WHERE (event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc) ORDER BY CASE event.location.city WHEN :cName THEN 1 ELSE 2 END, zip_code";
 
-			events = em.createQuery(query, Event.class).setParameter("eTitle", keyword).setParameter("eHook", keyword)
-					.setParameter("eDesc", keyword).setParameter(":cName", cName).getResultList();
+			events = em.createQuery(query, Event.class).setParameter("eTitle", "%" + keyword + "%").setParameter("eHook", "%" + keyword + "%")
+					.setParameter("eDesc", "%" + keyword + "%").setParameter("cName", cName).getResultList();
 
 		} else {
 			String query = "SELECT event FROM Event event WHERE event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc ORDER BY event.location.city";
 
-			events = em.createQuery(query, Event.class).setParameter("eTitle", keyword).setParameter("eHook", keyword)
-					.setParameter("eDesc", keyword).getResultList();
+			events = em.createQuery(query, Event.class).setParameter("eTitle", "%" + keyword + "%").setParameter("eHook", "%" + keyword + "%")
+					.setParameter("eDesc", "%" + keyword + "%").getResultList();
 		}
 
 		return events;

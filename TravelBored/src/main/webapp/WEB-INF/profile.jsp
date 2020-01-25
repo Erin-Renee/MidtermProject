@@ -40,6 +40,7 @@ crossorigin="anonymous">
 <header>
 	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
+	
 
 </body>
 </html>
