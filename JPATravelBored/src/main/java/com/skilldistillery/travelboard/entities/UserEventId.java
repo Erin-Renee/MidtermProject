@@ -15,4 +15,26 @@ public class UserEventId implements Serializable{
 		@Column(name = "event_id")
 		private int eventId;
 
+		public int getUserId() {
+			return userId;
+		}
+
+		public void setUserId(int userId) {
+			this.userId = userId;
+		}
+
+		public int getEventId() {
+			return eventId;
+		}
+
+		public void setEventId(int eventId) {
+			this.eventId = eventId;
+		}
+
+		public UserEventId(int userId, int eventId) {
+			super();
+			this.userId = userId;
+			this.eventId = eventId;
+		}
+
 }

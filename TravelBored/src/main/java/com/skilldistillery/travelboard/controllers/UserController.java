@@ -35,15 +35,16 @@ public class UserController {
 
 	@RequestMapping(path = "disableProfile.do", method = RequestMethod.GET)
 	public String disable(HttpSession session) {
-
 		User user = (User) session.getAttribute("loggedInUser");
 		user.setActive(false);
 		return "adminsettings";
 
 	}
+
 	@RequestMapping(path = "updateProfile.do", method = RequestMethod.POST)
-	public String update(User user, int userId) {
-		user = daoUser.updateBasicUserInfo(user, userId);
+	public String update(User user, HttpSession session) {
+		User iduser = (User) session.getAttribute("loggedInUser");
+		user = daoUser.updateBasicUserInfo(user, iduser.getId());
 		return "profile";
 	}
 }
