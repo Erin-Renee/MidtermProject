@@ -75,11 +75,7 @@ public class RedirectController {
 		}
 	}
 	
-	@RequestMapping(path = "gotoEvent.do", method = RequestMethod.GET)
-	private String goToEvent() {
-		return "event";
-		
-	}
+
 	
 	@RequestMapping(path = "gotoCrUpdateEvent.do", method = RequestMethod.GET)
 	private String goToCrUpdateEvent(HttpSession session) {

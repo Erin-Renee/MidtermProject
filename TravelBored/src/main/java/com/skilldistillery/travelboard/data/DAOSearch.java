@@ -14,4 +14,6 @@ public interface DAOSearch {
 	
 	public List<Event> searchEvent(String keyword, int locationId);
 	
+	public Event findEventById(int eventid);
+	
 }

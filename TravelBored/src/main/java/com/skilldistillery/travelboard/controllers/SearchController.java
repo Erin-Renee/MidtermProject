@@ -25,21 +25,21 @@ public class SearchController {
 		User user = (User) session.getAttribute("loggedInUser");
 
 		if (location == null && user != null) {
-			
+
 			int locId = user.getLocation().getId();
 			List<User> userList = daoSearch.searchUsername(keyword);
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
 			model.addAttribute("userList", userList);
 			model.addAttribute("eventList", eventList);
-			
+
 		} else if (location == null && user == null) {
-			
+
 			int locId = 0;
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
 			model.addAttribute("eventList", eventList);
 
 		} else if (location != null && user == null) {
-			
+
 			Location loc = daoSearch.searchLocation(location);
 			int locId = loc.getId();
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
@@ -58,6 +58,14 @@ public class SearchController {
 
 		return "results";
 
+	}
+
+	@RequestMapping(path = "gotoEvent.do", method = RequestMethod.GET)
+	private String goToEvent(Integer eventId, Model model) {
+
+		Event event = daoSearch.findEventById(eventId);
+		model.addAttribute("event", event);
+		return "event";
 	}
 
 }
