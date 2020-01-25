@@ -1,7 +1,12 @@
 package com.skilldistillery.travelboard.controllers;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.skilldistillery.travelboard.entities.User;
 
 public class RedirectController {
 	
@@ -13,9 +18,20 @@ public class RedirectController {
 	}
 
 	@RequestMapping(path = "home.do", method= RequestMethod.GET)
-	private String homePage() {
+	public String home(Model model, HttpSession session, User user) {
+		if (user == null) {
+			return "WEB-INF/landing.jsp";
+		} else {
+			
+			session.setAttribute("loggedInUser", user);
+			return "WEB-INF/home.jsp";
+		}
 		
-		return "WEB-INF/home.jsp";
+	}
+	@RequestMapping(path = "login.do", method= RequestMethod.GET)
+	public String login() {
+		return "WEB-INF/landing.jsp";
+		
 	}
 	
 	@RequestMapping(path = "register.do", method = RequestMethod.GET)
