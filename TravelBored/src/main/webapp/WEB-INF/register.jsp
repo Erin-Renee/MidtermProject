@@ -42,8 +42,8 @@ crossorigin="anonymous">
 </header>
   <div>
     <form action="register.do" method="post">
-      <label for="userName">Screen Name:</label>
-      <input type="text" name="userName"> <br>
+      <label for="username">Screen Name:</label>
+      <input type="text" name="username"> <br>
       <label for="firstName">First Name:</label>
       <input type="text" name="firstName"> <br>
       <label for="lastName">Last Name:</label>
@@ -54,9 +54,10 @@ crossorigin="anonymous">
       
       <label for="password">Password:</label>
       <input type="password" name="password"><br>
-      <label for="passwordConfimation">Confirm Password:</label>
-      <input type="password" name="passwordConfimation"><br>
+   <!--    <label for="passwordConfimation">Confirm Password:</label>
+      <input type="password" name="password"><br> -->
       
+      <input type="hidden" name="user" value="${user}"/>
       <button type="submit" name="submit">Sign Up</button>
     </form>
   </div>
