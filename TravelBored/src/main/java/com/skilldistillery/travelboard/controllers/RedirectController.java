@@ -2,24 +2,32 @@ package com.skilldistillery.travelboard.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.User;
 
 @Controller
 public class RedirectController {
 	
+	@Autowired
+	private DAOUser daoUser;
 	
-	@RequestMapping(path = {"/", "gotolanding.do"}, method= RequestMethod.GET)
+	@RequestMapping(path = {"/", "gotoLanding.do"}, method= RequestMethod.GET)
 	private String landingPage() {
 		return "landing";
 	}
 
-	@RequestMapping(path = "gotohome.do", method= RequestMethod.GET)
-	public String home(Model model, HttpSession session, User user) {
+	@RequestMapping(path = "login.do", method= RequestMethod.POST)
+	public String home( HttpSession session, String email, String password) {
+		
+		User user = daoUser.login(email, password);
+		
+		
 		if (user == null) {
 			return "landing";
 		} else {
@@ -29,31 +37,60 @@ public class RedirectController {
 		}
 		
 	}
-	@RequestMapping(path = "login.do", method= RequestMethod.GET)
-	public String login() {
-		return "landing";
+	@RequestMapping(path = "gotoHome.do", method= RequestMethod.GET)
+	public String login(HttpSession session) {
+	User user =	(User) session.getAttribute("loggedInUser");
+		
+		if (user == null) {
+			return "landing";
+		} else {
+			
+			return "home";
+		}
 		
 	}
 	
-	@RequestMapping(path = "gotoregister.do", method = RequestMethod.GET)
-	private String goToRegister() {
-		return "register";
+	@RequestMapping(path = "gotoRegister.do", method = RequestMethod.GET)
+	private String goToRegister(HttpSession session) {
+		User user =	(User) session.getAttribute("loggedInUser");
+
+		
+		if (user == null) {
+			return "register";
+		} else {
+			
+			return "home";
+		}
+		
+		
 	}
 	
-	@RequestMapping(path = "gotoprofile.do", method = RequestMethod.GET)
-	private String goToProfile() {
-		return "profile";
+	@RequestMapping(path = "gotoProfile.do", method = RequestMethod.GET)
+	private String goToProfile(HttpSession session) {
+		User user =	(User) session.getAttribute("loggedInUser");
+
+		if (user == null) {
+			return "landing";
+		}else {
+			return "profile";
+		}
 	}
 	
-	@RequestMapping(path = "gotoevent.do", method = RequestMethod.GET)
+	@RequestMapping(path = "gotoEvent.do", method = RequestMethod.GET)
 	private String goToEvent() {
 		return "event";
 		
 	}
 	
-	@RequestMapping(path = "gotocrUpdateEvent.do", method = RequestMethod.GET)
-	private String goToCrUpdateEvent() {
-		return "crUpdateEvent";
+	@RequestMapping(path = "gotoCrUpdateEvent.do", method = RequestMethod.GET)
+	private String goToCrUpdateEvent(HttpSession session) {
+		User user =	(User) session.getAttribute("loggedInUser");
+
+		if (user == null) {
+			return "event";
+		}else {
+		return "crupdateevent";
+		}
 		
 	}
 	

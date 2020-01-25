@@ -14,7 +14,6 @@ public class UserController {
 	
 	@RequestMapping(path="logout.do", method = RequestMethod.GET)
 	public String userLogout() {
-		System.out.println(0);
 		return "landing";
 		
 	}
