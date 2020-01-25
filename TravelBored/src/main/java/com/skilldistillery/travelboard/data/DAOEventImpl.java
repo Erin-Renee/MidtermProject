@@ -1,7 +1,5 @@
 package com.skilldistillery.travelboard.data;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -9,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.travelboard.entities.Event;
-import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.User;
+import com.skilldistillery.travelboard.entities.UserEvent;
+import com.skilldistillery.travelboard.entities.UserEventId;
 
 @Service
 @Transactional
@@ -40,10 +40,10 @@ public class DAOEventImpl implements DAOEvent {
 
 		return false;
 	}
-	
+
 	public Event update(Event event, int eventId) {
 		Event oldEvent = em.find(Event.class, eventId);
-		
+
 		oldEvent.setTitle(event.getTitle());
 		oldEvent.setHook(event.getHook());
 		oldEvent.setDescription(event.getDescription());
@@ -57,10 +57,43 @@ public class DAOEventImpl implements DAOEvent {
 		oldEvent.setUserEvents(event.getUserEvents());
 		oldEvent.setEventImgs(event.getEventImgs());
 		oldEvent.setEventComments(event.getEventComments());
-		
+
 		em.flush();
-		
+
 		return oldEvent;
+	}
+
+	public UserEvent findUserEvent(int eventId, int userId) {
+		UserEventId usereventid = new UserEventId(userId, eventId);
+		UserEvent userevent = em.find(UserEvent.class, usereventid);
+		return userevent;
+	}
+
+	@Override
+	public UserEvent createUserEvent(Event event, User user) {
+		UserEventId usereventid = new UserEventId(user.getId(), event.getId());
+		UserEvent userevent = new UserEvent();
+		userevent.setId(usereventid);
+		userevent.setUser(user);
+		userevent.setEvent(event);
+		em.persist(userevent);
+		em.flush();
+		return userevent;
+	}
+
+	@Override
+	public boolean deleteUserEvent(Event event, User user) {
+		UserEventId usereventid = new UserEventId(user.getId(), event.getId());
+		UserEvent userevent = em.find(UserEvent.class, usereventid);
+		em.remove(userevent);
+		em.flush();
+		boolean result = true;
+		if (em.find(UserEvent.class, usereventid) == null) {
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
 	}
 
 }
