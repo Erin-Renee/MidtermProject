@@ -1,0 +1,15 @@
+ul {
+  list-style-type:none;
+  margin:0;
+  padding: 0;
+}
+.main-container{
+  background-color: #DDD5;
+  border-radius: 0px 0px 20px 20px;
+  box-shadow: 10px 10px 20px #ffc2e4;
+
+}
+.main-container :hover{
+  box-shadow: 10px 10px 20px #000;
+
+}
