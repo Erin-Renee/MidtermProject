@@ -38,7 +38,7 @@ crossorigin="anonymous">
   </head>
 <body>
 <header>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
 
 </body>
