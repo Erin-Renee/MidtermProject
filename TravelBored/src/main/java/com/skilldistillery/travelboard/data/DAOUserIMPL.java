@@ -37,9 +37,12 @@ public class DAOUserIMPL implements DAOUser {
 		em.remove(user);
 		em.flush();
 		
-		boolean status = !em.contains(user);
+		if (user == null) {
+			return true;
+		} 
 		
-		return status;
+		
+		return false;
 	}
 
 	@Override
@@ -67,14 +70,7 @@ public class DAOUserIMPL implements DAOUser {
 		return oldUser;
 	}
 
-	@Override
-	public List<User> read(String name) {
-		String query = "SELECT user FROM User user WHERE user.FirstName = :fName OR user.LastName = :lName OR user.Username = :uName";
-		
-		List<User> users = em.createQuery(query, User.class).setParameter("fName", name).setParameter("lName", name).setParameter("uName", name).getResultList();
-		
-		return users;
-	}
+	
 	@Override
 	public User login(String userName, String password) {
 		String query = "SELECT user FROM User user WHERE user.Username = :uName AND user.Password = :pWord";

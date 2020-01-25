@@ -6,5 +6,6 @@ public interface DAOEvent {
 
 	public Event create(Event event);
 	public boolean delete(int eventId);
+	public Event update(Event event, int eventId);
 	
 }
