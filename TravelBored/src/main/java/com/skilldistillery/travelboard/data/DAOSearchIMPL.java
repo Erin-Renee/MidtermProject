@@ -64,4 +64,12 @@ public class DAOSearchIMPL implements DAOSearch {
 		return events;
 	}
 
+	@Override
+	public Event findEventById(int eventid) {
+		Event event =em.find(Event.class, eventid);
+		return event;
+		
+		
+	}
+	
 }
