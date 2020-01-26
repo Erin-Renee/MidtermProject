@@ -318,6 +318,19 @@ public class User {
 		}
 	
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", active=" + active + ", role=" + role
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", location=" + location
+				+ ", createDate=" + createDate + ", userImgUrl=" + userImgUrl + ", userDetails=" + userDetails
+				+ ", userEvents=" + userEvents + ", groupComments=" + groupComments + ", eventComments=" + eventComments
+				+ ", groups=" + groups + "]";
+	}
+	
+	
 	
 
 	

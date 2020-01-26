@@ -9,6 +9,9 @@ import com.skilldistillery.travelboard.entities.User;
 public interface DAOSearch {
 	
 	public Location searchLocation(String keyword);
+	public Location getLocation(int locationId);
+	
+	public List<Location> findAllLocations();
 
 	public List<User> searchUsername(String keyword);
 	

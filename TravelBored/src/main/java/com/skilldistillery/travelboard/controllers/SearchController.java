@@ -67,5 +67,7 @@ public class SearchController {
 		model.addAttribute("event", event);
 		return "event";
 	}
+	
+	
 
 }
