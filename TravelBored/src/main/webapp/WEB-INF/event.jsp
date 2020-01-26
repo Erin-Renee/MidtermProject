@@ -40,5 +40,6 @@ crossorigin="anonymous">
 <header>
 	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
+<h1>${event.title}</h1>
 </body>
 </html>
