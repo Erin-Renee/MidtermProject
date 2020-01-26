@@ -56,8 +56,8 @@ crossorigin="anonymous">
       <label for="password">Password:</label>
       <input type="text" name="password" value="${sessionScope.loggedInUser.password}"><br>
       
-      <label for="password">location Id:</label>
-      <input type="text" name="password" value="${sessionScope.loggedInUser.locationId}"><br>
+      <label for="location">location Id:</label>
+      <input type="text" name="location" value="${sessionScope.loggedInUser.location}"><br>
       
       <button type="submit" name="submit">edit Profile</button>
     </form>
