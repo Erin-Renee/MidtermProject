@@ -13,6 +13,7 @@
       min-height: 100vh;
       width: 100%;
       background-size: cover;
+      
   }
   #cover {
       text-align: center;

@@ -56,8 +56,13 @@ crossorigin="anonymous">
       <label for="password">Password:</label>
       <input type="text" name="password" value="${sessionScope.loggedInUser.password}"><br>
       
+<<<<<<< HEAD
+      <label for="location">location Id:</label>
+      <input type="text" name="location" value="${sessionScope.loggedInUser.location}"><br>
+=======
       <label for="keyword">location:</label>
       <jsp:include page="subPages/locationDropDown.jsp"></jsp:include><br>
+>>>>>>> 54c46afe3d1b971408d3e226c29deefe8a23cb00
       
       <button type="submit" name="submit">edit Profile</button>
     </form>
