@@ -14,6 +14,11 @@ public class UserEventId implements Serializable{
 		
 		@Column(name = "event_id")
 		private int eventId;
+		
+
+		public UserEventId() {
+			super();
+		}
 
 		public int getUserId() {
 			return userId;
