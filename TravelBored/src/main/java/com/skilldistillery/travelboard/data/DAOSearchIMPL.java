@@ -24,7 +24,7 @@ public class DAOSearchIMPL implements DAOSearch {
 	public Location searchLocation(String keyword) {
 		String query = "SELECT loc FROM Location loc where loc.city = :lCity";
 
-		List<Location> locations = em.createQuery(query, Location.class).setParameter(":lCity", keyword)
+		List<Location> locations = em.createQuery(query, Location.class).setParameter("lCity", keyword)
 				.getResultList();
 
 		return locations.size() > 0 ? locations.get(0) : null;

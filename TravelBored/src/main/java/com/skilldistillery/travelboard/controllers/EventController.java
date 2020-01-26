@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.travelboard.data.DAOEvent;
+import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
 
@@ -20,11 +22,20 @@ public class EventController {
 
 	@Autowired
 	private DAOEvent daoEvent;
+	
+	@Autowired
+	private DAOSearch daoSearch;
 
 	@RequestMapping(path = "createEvent.do", method = RequestMethod.POST)
-	public String createEvent(Event event, Model model) {
+	public String createEvent(Event event, String keyword, Model model) {
+		System.out.println("before " + event);
+		Location location =daoSearch.searchLocation(keyword);
+		
+		event.setLocation(location);
 		event = daoEvent.create(event);
 		model.addAttribute("event", event);
+		System.out.println("after " + event);
+		
 		return "event";
 	}
 
