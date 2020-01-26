@@ -27,6 +27,7 @@ public class SearchController {
 		if (location == null && user != null) {
 
 			int locId = user.getLocation().getId();
+			System.out.println(user.getLocation()); 
 			List<User> userList = daoSearch.searchUsername(keyword);
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
 			model.addAttribute("userList", userList);
@@ -67,5 +68,7 @@ public class SearchController {
 		model.addAttribute("event", event);
 		return "event";
 	}
+	
+	
 
 }

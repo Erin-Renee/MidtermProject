@@ -71,5 +71,20 @@ public class DAOSearchIMPL implements DAOSearch {
 		
 		
 	}
+	@Override
+	public List<Location> findAllLocations() {
+		String query = "SELECT location FROM Location location";
+		
+		List<Location> locations = em.createQuery(query, Location.class).getResultList();
+		
+		return locations;
+		
+	}
+
+	@Override
+	public Location getLocation(int locationId) {
+		Location location = em.find(Location.class, locationId);
+		return location;
+	}
 	
 }

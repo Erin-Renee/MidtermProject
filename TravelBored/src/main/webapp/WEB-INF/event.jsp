@@ -28,7 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Tavel Bored</title>
+    <title>Travel Bored</title>
 
 
 <link rel="stylesheet"
@@ -40,6 +40,14 @@ crossorigin="anonymous">
 <header>
 	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
-<h1>${event.title}</h1>
+<h1> Title: ${event.title}</h1>
+<h5>Hook: ${event.hook}</h5>
+<h5>Desc: ${event.description}</h5>
+<h5>Time: ${event.eventTime}</h5>
+<h5>Date: ${event.eventDate}</h5>
+<h5>Picture: ${event.imgUrl}</h5>
+<img alt="" src="${event.imgUrl }" style="width: 450px; height: 300px;">
+<h5>City: ${event.location.city}</h5>
+<h5>Create Date/Time: ${event.createDate}</h5>
 </body>
 </html>
