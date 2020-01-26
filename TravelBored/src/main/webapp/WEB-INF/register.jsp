@@ -8,7 +8,7 @@
 <style>
   body {
   background: #222
-          url('imgs/switzerland.jpg')
+          url('imgs/switzerland.JPG')
           center center no-repeat;
       min-height: 100vh;
       width: 100%;
@@ -57,7 +57,6 @@ crossorigin="anonymous">
    <!--    <label for="passwordConfimation">Confirm Password:</label>
       <input type="password" name="password"><br> -->
       
-      <input type="hidden" name="user" value="${user}"/>
       <button type="submit" name="submit">Sign Up</button>
     </form>
   </div>

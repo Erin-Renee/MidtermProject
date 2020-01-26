@@ -40,6 +40,28 @@ crossorigin="anonymous">
 <header>
 	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
+	<div>
+    <form action="updateProfile.do" method="post">
+        <input type="hidden" name="userId" value="${sessionScope.loggedInUser.id}">
+      <label for="username">Screen Name:</label>
+      <input type="text" name="username" value="${sessionScope.loggedInUser.username}"> <br>
+      <label for="firstName">First Name:</label>
+      <input type="text" name="firstName" value="${sessionScope.loggedInUser.firstName}"> <br>
+      <label for="lastName">Last Name:</label>
+      <input type="text" name="lastName" value="${sessionScope.loggedInUser.lastName}"> <br>
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" value="${sessionScope.loggedInUser.email}"> <br>
+      
+      <label for="password">Password:</label>
+      <input type="text" name="password" value="${sessionScope.loggedInUser.password}"><br>
+      
+      <label for="password">location Id:</label>
+      <input type="text" name="password" value="${sessionScope.loggedInUser.locationId}"><br>
+      
+      <button type="submit" name="submit">edit Profile</button>
+    </form>
+  </div>
 	
 
 </body>
