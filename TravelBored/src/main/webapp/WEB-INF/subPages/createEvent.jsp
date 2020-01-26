@@ -28,10 +28,6 @@
     <!-- <label for="city">City:</label>
     <input type="city" name="city"><br> -->
     
-   <!--  <label for="createDate">Create Date:</label> 
-    <input type="hidden" name="createDate"><br> -->
-    
-    
     <!-- <label for="state">State:</label>
     <input type="state" name="state"><br>
     
@@ -39,6 +35,9 @@
     <input type="zipCode" name="zipCode"><br> -->
     <label for="keyword">City:</label>
     <input type="text" name="keyword"><br>
+    
+   <!--  <label for="zipCode">Zip Code:</label>
+    <input type="text" name="zipCode"><br> -->
     
     <button type="submit" name="submit">Create Event</button>
   </form>

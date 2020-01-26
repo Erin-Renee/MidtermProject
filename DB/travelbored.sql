@@ -22,10 +22,7 @@ DROP TABLE IF EXISTS `location` ;
 
 CREATE TABLE IF NOT EXISTS `location` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `country` VARCHAR(100) NULL,
-  `state` VARCHAR(45) NULL,
   `city` VARCHAR(45) NULL,
-  `address` VARCHAR(200) NULL,
   `active` TINYINT NULL DEFAULT 1,
   `zip_code` VARCHAR(5) NULL,
   PRIMARY KEY (`id`))
@@ -74,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `event_date` DATE NULL,
   `img_url` VARCHAR(10000) NULL,
   `event_url` VARCHAR(10000) NULL,
-  `active` TINYINT NULL DEFAULT 1,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `location_id` INT NOT NULL,
   `create_date` DATETIME NULL,
   PRIMARY KEY (`id`),
@@ -268,13 +265,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (1, 'United States', 'Colorado', 'Denver', '123  denver test', 1, '80237');
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (2, 'United States', 'Colorado', 'Greenwood Village', '7400 E Orchard Rd', 1, '80111');
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (3, 'United States', 'Colorado', 'Denver', '144 W Colfax Ave', 1, '80204');
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (4, 'United States', 'Colorado', 'Denver', '2027 W Colfax Ave', 1, '80204');
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (5, 'United States', 'Colorado', 'Denver', '2001 Colorado Blvd', 1, '80205');
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (6, 'United States', 'Colorado', 'Denver', '2001 Blake St', 1, '80205');
-INSERT INTO `location` (`id`, `country`, `state`, `city`, `address`, `active`, `zip_code`) VALUES (7, 'United States', 'Colorado', 'Denver', '1000 Chopper Cir', 1, '80204');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (1, 'Denver', 1, '80237');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (2, 'Greenwood Village', 1, '80111');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (3, 'Denver', 1, '80204');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (4, 'Denver', 1, '80204');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (5, 'Denver', 1, '80205');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (6, 'Denver', 1, '80205');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (7, 'Denver', 1, '80204');
 
 COMMIT;
 
@@ -296,7 +293,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (1, 'Skill Distillery', 'Skill Distillery is an intensive, 16-week Java bootcamp in Denver, Colorado. The course is arranged into three units – Java Programming, Server-side Java, and Front-end Development.', 'The curriculum focuses on the fundamentals of programming, Java (and its libraries), unit testing, Spring, Spring MVC, and using a source code repository. Students will also gain experience deploying web content to a web server and navigating the server file system from the command line. Skill Distillery graduates will be prepared to take the Oracle Certified Associate – Java Programmer exam and will be on track for a career as a web interface designer or a full stack application developer.', '08:30', '2020-01-25', 'https://images.app.goo.gl/AfH6qe6nLTRBhNZg8', 'https://skilldistillery.com/', 1, 1, '2020-01-24');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (1, 'Skill Distillery', 'Skill Distillery is an intensive, 16-week Java bootcamp in Denver, Colorado. The course is arranged into three units – Java Programming, Server-side Java, and Front-end Development.', 'The curriculum focuses on the fundamentals of programming, Java (and its libraries), unit testing, Spring, Spring MVC, and using a source code repository. Students will also gain experience deploying web content to a web server and navigating the server file system from the command line. Skill Distillery graduates will be prepared to take the Oracle Certified Associate – Java Programmer exam and will be on track for a career as a web interface designer or a full stack application developer.', '08:30', '2020-01-25', 'https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4216/s300/sd-logo.jpg', 'https://skilldistillery.com/', 1, 1, '2020-01-24');
 INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (2, 'BOURBON & BACON FEST DENVER 2020', 'Taste your way through a dizzying array of specialty bourbons and unique whiskies from distilleries both large and artisanal, while you munch on a bevy of smoky, porky treats.', 'The event will host samples from the area’s best restaurants. Imagine tasting sweet-savory bacon from local and regional producers paired with premium whiskeys such as Buffalo Trace Bourbon, Fireball and 1792 in a lively and intimate setting.\n\nThe Bourbon & Bacon Fest is presented by Buffalo Trace Bourbon and sponsored by Argonaut Wine & Liquor and the Colorado Pork Producers Council. A portion of the proceeds will support the Colorado Restaurant Association Education Foundation.', '14:00', '2020-01-25', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/B-B_CoDenver_posting_4556c6ee-9a31-c3aa-9e3959e3b670539d.jpg', 'https://eventsplus.radio.com/denver/kqmt/e/bourbon-bacon-denver-2020/tickets', 1, 3, '2020-01-24');
 INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (3, 'WINTER BREW FEST', 'Warm up this winter with unlimited tastings of some of the best brews available – souvenir glass included!', 'description', '19:00', '2020-01-25', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/WBF0_01ae5a5a-a977-1229-b92ba9ffdd1c49fd.jpg', 'https://www.denver.org/event/winter-brew-fest/70781/', 1, 4, '2020-01-24');
 INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (4, 'Space Tours Live', 'Blast off from your Planetarium seat into the depths of space as you learn about your place in the cosmos.', 'A live host will accompany you on your journey as together you determine your path and navigate a three-dimensional atlas of the known universe. You will return home with a new appreciation for the immensity, complexity, and beauty of our solar system and beyond.', '11:15', '2020-01-27', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/spacetourslive-745x4950_66e1d020-975a-5b47-dc5e46273711a348.jpg', 'https://secure1.dmns.org/space-tours-live-requires-museum-admission', 1, 5, '2020-01-24');

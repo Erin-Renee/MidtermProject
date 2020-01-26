@@ -1,5 +1,6 @@
 package com.skilldistillery.travelboard.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,11 @@ public class EventController {
 		System.out.println("before " + event);
 		Location location =daoSearch.searchLocation(keyword);
 		
+		String createDate = LocalDateTime.now().toString();
+		
+		event.setActive(true);
+		
+		event.setCreateDate(createDate);
 		event.setLocation(location);
 		event = daoEvent.create(event);
 		model.addAttribute("event", event);
