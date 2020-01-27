@@ -80,6 +80,12 @@ public class DAOUserIMPL implements DAOUser {
 		
 		return users.size() > 0 ? users.get(0) : null; 
 	}
-
 	
+	@Override
+	public User findUserById(int userId) {
+		User user = em.find(User.class, userId);
+		return user;
+	}
+	
+
 }
