@@ -1,4 +1,4 @@
-  <div class="w3-bar w3-blue">
+  <div class="w3-bar w3-blue" style="position: fixed; z-index: 3; top: 0">
       <form action="gotoLanding.do" method="get">
       <button class="w3-bar-item w3-button"type="submit">Home</button>
       </form>
@@ -10,8 +10,9 @@
       <button class="w3-bar-item w3-button w3-right"type="submit">login</button>
       </form>
   </div>
+  
 <!-- user -->
-  <div class="w3-bar w3-red">
+  <div class="w3-bar w3-red" style="position: fixed; z-index: 3; top: 0">
       <form action="gotoHome.do" method="get">
       <button class="w3-bar-item w3-button"type="submit">Home</button>
       </form>
