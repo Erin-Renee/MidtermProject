@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import java.util.List;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import javax.persistence.OneToMany;
@@ -73,7 +74,7 @@ public class User {
 	private List<UserDetail> userDetails;
 
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	private List<UserEvent> userEvents;
 
 

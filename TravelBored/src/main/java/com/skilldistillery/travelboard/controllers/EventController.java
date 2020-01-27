@@ -1,6 +1,8 @@
 package com.skilldistillery.travelboard.controllers;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.travelboard.data.DAOEvent;
 import com.skilldistillery.travelboard.data.DAOSearch;
+import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
+import com.skilldistillery.travelboard.entities.UserEventId;
 
 @Controller
 public class EventController {
@@ -25,22 +29,48 @@ public class EventController {
 	private DAOEvent daoEvent;
 	
 	@Autowired
+	private DAOUser daoUser;
+	
+	@Autowired
 	private DAOSearch daoSearch;
 
 	@RequestMapping(path = "createEvent.do", method = RequestMethod.POST)
-	public String createEvent(Event event, String keyword, Model model) {
+	public String createEvent(Event event, String keyword, Model model, HttpSession session) {
 		System.out.println("before " + event);
+		User user = (User) session.getAttribute("loggedInUser");
+		user = daoUser.findUserById(user.getId());
+		
 		Location location =daoSearch.searchLocation(keyword);
 		
 		String createDate = LocalDateTime.now().toString();
 		
 		event.setActive(true);
-		
 		event.setCreateDate(createDate);
 		event.setLocation(location);
 		event = daoEvent.create(event);
+		
+		UserEventId uEId = new UserEventId(user.getId(), event.getId());	
+		UserEvent uEvent = new UserEvent();
+		uEvent.setUser(user);
+		uEvent.setEvent(event);
+		uEvent.setCreateDate(createDate);
+		uEvent.setCreator(true);
+		uEvent.setActive(true);
+		uEvent.setId(uEId);
+		
+		
+		uEvent = daoEvent.setUserEvent(uEvent);
+		
+		event.addUserEvent(uEvent);
+		user.addUserEvent(uEvent);
+		user = daoUser.findUserById(user.getId());
+
+		session.removeAttribute("loggedInUser");
+		session.setAttribute("loggedInUser", user);
+		
 		model.addAttribute("event", event);
 		System.out.println("after " + event);
+		
 		
 		return "event";
 	}
@@ -79,7 +109,7 @@ public class EventController {
 	@RequestMapping(path = "unattend.do", method = RequestMethod.POST)
 	public String unattentEvent(Event event, HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
-		daoEvent.createUserEvent(event, user);
+		daoEvent.deleteUserEvent(event, user);
 		return "event";
 	}
 }
