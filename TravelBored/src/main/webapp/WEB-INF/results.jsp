@@ -7,12 +7,16 @@
 
 <style>
   body {
-  background: #222
-          url('imgs/switzerland.JPG')
-          center center no-repeat;
-      min-height: 100vh;
+  background-image:
+  linear-gradient(to bottom,rgba(245,246,252,0.52),rgba(30,19,30,0.73)),
+          url('imgs/switzerland.JPG');
+      min-height: 100%;
       width: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
       background-size: cover;
+}
       
   }
   #cover {
@@ -47,7 +51,7 @@ crossorigin="anonymous">
 	
 	
 	<a class="event-item" href="gotoEvent.do?eventId=${event.id}">
-      <img class="event-img" src="${event.imgUrl}" alt="" width="600" height="400">
+      <img class="event-img" src="${event.imgUrl}" alt="">
       <h3 class="event-title">${event.title}</h3>
       <p class="event-hook">${event.hook}</p>
 	</a>
