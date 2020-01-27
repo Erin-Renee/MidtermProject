@@ -88,12 +88,14 @@ public class RedirectController {
 
 	
 	@RequestMapping(path = "gotoCrUpdateEvent.do", method = RequestMethod.GET)
-	private String goToCrUpdateEvent(HttpSession session) {
+	private String goToCrUpdateEvent(HttpSession session, Model model) {
 		User user =	(User) session.getAttribute("loggedInUser");
 
 		if (user == null) {
 			return "event";
 		}else {
+			List<Location> locations = daoSearch.findAllLocations();
+			model.addAttribute("locations", locations);
 		return "crupdateevent";
 		}
 		
