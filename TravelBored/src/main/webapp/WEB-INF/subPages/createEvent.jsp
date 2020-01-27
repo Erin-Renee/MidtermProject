@@ -36,8 +36,9 @@
     <label for="keyword">City:</label>
     <input type="text" name="keyword"><br>
     
-   <!--  <label for="zipCode">Zip Code:</label>
-    <input type="text" name="zipCode"><br> -->
+    <label for="location">location:</label>
+      <jsp:include page="locationDropDown.jsp"></jsp:include><br>
+    
     
     <button type="submit" name="submit">Create Event</button>
   </form>
