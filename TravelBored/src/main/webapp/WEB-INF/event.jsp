@@ -8,7 +8,7 @@
 <style>
   body {
   background: #222
-          url('imgs/switzerland.jpg')
+          url('imgs/switzerland.jsp')
           center center no-repeat;
       min-height: 100vh;
       width: 100%;
