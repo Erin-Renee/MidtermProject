@@ -7,13 +7,16 @@
 
 <style>
   body {
-  background: #222
-          url('imgs/switzerland.jpg')
-          center center no-repeat;
-      min-height: 100vh;
+  background-image:
+  linear-gradient(to bottom,rgba(245,246,252,0.52),rgba(30,19,30,0.73)),
+          url('imgs/switzerland.JPG');
+      min-height: 100%;
       width: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
       background-size: cover;
-  }
+}
   #cover {
       text-align: center;
       display: flex;
@@ -28,7 +31,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Tavel Bored</title>
+    <title>Travel Bored</title>
 
 
 <link rel="stylesheet"
