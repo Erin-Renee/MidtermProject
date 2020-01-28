@@ -80,6 +80,12 @@ public class DAOEventImpl implements DAOEvent {
 		em.flush();
 		return userevent;
 	}
+	@Override
+	public UserEvent setUserEvent(UserEvent userEvent) {
+		em.persist(userEvent);
+		em.flush();
+		return userEvent;
+	}
 
 	@Override
 	public boolean deleteUserEvent(Event event, User user) {
@@ -95,5 +101,6 @@ public class DAOEventImpl implements DAOEvent {
 		}
 		return result;
 	}
+	
 
 }

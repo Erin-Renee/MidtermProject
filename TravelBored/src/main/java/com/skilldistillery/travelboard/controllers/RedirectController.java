@@ -1,5 +1,6 @@
 package com.skilldistillery.travelboard.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
+import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
+import com.skilldistillery.travelboard.entities.UserEvent;
 
 @Controller
 public class RedirectController {
@@ -75,12 +78,32 @@ public class RedirectController {
 	@RequestMapping(path = "gotoProfile.do", method = RequestMethod.GET)
 	private String goToProfile(HttpSession session, Model model) {
 		User user =	(User) session.getAttribute("loggedInUser");
+		user = daoUser.findUserById(user.getId());
+		session.setAttribute("loggedInUser", user);
 
 		if (user == null) {
 			return "landing";
 		}else {
 			List<Location> locations = daoSearch.findAllLocations();
+			
 			model.addAttribute("locations", locations);
+			List<Event> events = new ArrayList<>();
+			for (UserEvent uEvent: user.getUserEvents()) {
+				if(uEvent.getCreator() == false) {
+					events.add(uEvent.getEvent());	
+				}
+			}
+			
+			model.addAttribute("eventList", events);
+			
+			List<Event> creatorEvents = new ArrayList<>();
+			for (UserEvent uEvent: user.getUserEvents()) {
+				if(uEvent.getCreator() == true) {
+					creatorEvents.add(uEvent.getEvent());	
+				}
+			}
+			
+			model.addAttribute("creatorEvents", creatorEvents);
 			return "profile";
 		}
 	}

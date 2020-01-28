@@ -17,5 +17,7 @@ public interface DAOEvent {
 	public UserEvent createUserEvent(Event event, User user);
 
 	public boolean deleteUserEvent(Event event, User user);
+	
+	public UserEvent setUserEvent(UserEvent userEvent);
 
 }

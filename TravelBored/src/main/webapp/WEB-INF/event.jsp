@@ -6,11 +6,13 @@
   <head>
 
 <style>
-  body {
+body {
+
   background-image:
   linear-gradient(to bottom,rgba(245,246,252,0.52),rgba(30,19,30,0.73)),
           url('imgs/switzerland.JPG');
       min-height: 100%;
+
       width: 100%;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -30,7 +32,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/eventStyle.css">
     <title>Travel Bored</title>
 
 
@@ -43,14 +45,43 @@ crossorigin="anonymous">
 <header>
 	<jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
-<h1> Title: ${event.title}</h1>
-<h5>Hook: ${event.hook}</h5>
-<h5>Desc: ${event.description}</h5>
-<h5>Time: ${event.eventTime}</h5>
-<h5>Date: ${event.eventDate}</h5>
-<h5>Picture: ${event.imgUrl}</h5>
-<img alt="" src="${event.imgUrl }" style="width: 450px; height: 300px;">
-<h5>City: ${event.location.city}</h5>
-<h5>Create Date/Time: ${event.createDate}</h5>
+<div class="body">
+<br>
+
+<div class="event-title">
+<h1> ${event.title}</h1>
+</div>
+<br>
+
+<div class="upperContent">
+<p>City: ${event.location.city}</p>
+<br>
+<p>Date: ${event.eventDate}</p>
+<br>
+<p>Time: ${event.eventTime}</p>
+<br>
+</div>
+
+
+<div class="event-img">
+<img src="${event.imgUrl }"  style="width: 450px; height: 300px;">
+</div>
+<br>
+
+
+<div class="description">
+<p class="hook">${event.hook}</p>
+<br>
+<br>
+<p>Description: ${event.description}</p>
+<br>
+<br>
+<br>
+<p>Create Date/Time: ${event.createDate}</p>
+</div>
+
+
+
+</div>
 </body>
 </html>
