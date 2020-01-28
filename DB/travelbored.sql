@@ -133,11 +133,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `group`
+-- Table `community`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `group` ;
+DROP TABLE IF EXISTS `community` ;
 
-CREATE TABLE IF NOT EXISTS `group` (
+CREATE TABLE IF NOT EXISTS `community` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NULL,
   `hook` VARCHAR(200) NULL,
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `group_comment` (
   INDEX `fk_group_comment_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_group_comment_group1`
     FOREIGN KEY (`group_id`)
-    REFERENCES `group` (`id`)
+    REFERENCES `community` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_group_comment_user1`
@@ -325,12 +325,12 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `group`
+-- Data for table `community`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `group` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (1, 'SD Group', 'test hook', 1, '2020-01-24', 1);
-INSERT INTO `group` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (2, 'SD group test 2', 'test 2 hook', 1, '2020-01-24', 1);
+INSERT INTO `community` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (1, 'SD Group', 'test hook', 1, '2020-01-24', 1);
+INSERT INTO `community` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (2, 'SD group test 2', 'test 2 hook', 1, '2020-01-24', 1);
 
 COMMIT;
 

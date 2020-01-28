@@ -11,6 +11,21 @@ function showHome() {
 	 groups.style.display = "none";
 	 photos.style.display = "none";
   }
+
+
+function showOverlay() {
+	  var Overlay = document.getElementById("overlay");
+	 Overlay.style.display = "block";
+}
+
+function hideOverlay() {
+	  var hideOverlay = document.getElementById("overlay");
+	 hideOverlay.style.display = "none";
+}
+
+
+
+
   function showSettings() {
 	  var home = document.getElementById("section1");
 	  var profileSettings = document.getElementById("section2");
