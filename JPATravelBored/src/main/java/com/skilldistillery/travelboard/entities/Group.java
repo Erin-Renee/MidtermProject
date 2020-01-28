@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-@Table(name="group")
+@Table(name="community")
 public class Group {
 
 	// F I E L D S
