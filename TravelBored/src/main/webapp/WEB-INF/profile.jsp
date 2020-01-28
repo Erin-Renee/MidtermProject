@@ -28,6 +28,11 @@
       top: 10vh;
       left: 0;
     }
+    .sidenav button {
+      background-color: #fff;
+      display-type: block;
+      margin: 10px;
+    }
 
     /* Set black background color, white text and some padding */
     footer {
@@ -89,7 +94,7 @@
       border-radius: 10px 10px 0px 0px;
       padding: 5px;
     }
-    #rsvpTable {
+    .eventTable {
       background-color: #ffffff77;
       border-radius: 20px;
       padding: 20px;
@@ -98,7 +103,7 @@
       table-layout: auto;
       width: 90%;  
     }
-    #rsvpTable tr:hover {
+    .eventTable tr:hover {
       border-radius: 20px;
     }
     #section2 {
@@ -112,6 +117,10 @@
     }
     #section5 {
     display: none;
+    }
+    .w3-2019-eden {
+    color: #fff;
+    background-color: #535d52c7;
     }
   </style>
   <script>
@@ -190,7 +199,7 @@
 
   <div class="container-fluid">
     <div class="row content">
-      <div class="col-sm-2" style="background-color: #111; height: 100%; z-index: 1">
+      <div class="col-sm-2" style="background-color: #535d52c7; height: 100%; z-index: 1">
       
       </div>
       <div class="col-sm-2 sidenav">
@@ -207,7 +216,7 @@
       <div  id="section1">
         <h4><small>RECENT EVENTS</small></h4>
                 <h2>Event Page</h2>
-        <table class="table table-hover" id="rsvpTable">
+        <table class="table table-hover eventTable">
           <thead>
             <tr>
               <th>Event</th>
@@ -217,10 +226,10 @@
           </thead>
           <tbody>
 
-            <c:forEach var="uEvent" items="${sessionScope.loggedInUser.userEvents}">
+            <c:forEach var="event" items="${eventList}">
               <tr>
-                <td>${uEvent.event.title}</td>
-                <td><span class="glyphicon glyphicon-time"></span> ${uEvent.event.createDate }</td>
+                <td>${event.title}</td>
+                <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
                 <td>Button</td>
               </tr>
             </c:forEach>
@@ -234,34 +243,45 @@
           <div class="w3-container w3-2019-eden">
             <h2>Update Account Information</h2>
           </div>
-          <form action="/action_page.php" class="needs-validation" novalidate>
+          <form action="updateProfile.do" class="needs-validation" novalidate method="POST">
             <div class="form-group">
-              <label for="screenName">Screen Name:</label>
-              <input type="text" class="w3-input form-control" id="screenName" placeholder="Enter screen name" name="screenName" required>
+              <label for="username">Screen Name:</label>
+              <input type="text" class="w3-input form-control" id="username" placeholder="Enter screen name" value="${sessionScope.loggedInUser.username }"  name="username" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
               <label for="firstName">First Name:</label>
-              <input type="text" class="w3-input form-control" id="firstName" placeholder="Enter first name" name="firstName" required>
+              <input type="text" class="w3-input form-control" id="firstName" placeholder="Enter first name" value="${sessionScope.loggedInUser.firstName }" name="firstName" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-              <label for="lastName">First Name:</label>
-              <input type="text" class="w3-input form-control" id="lastName" placeholder="Enter last name" name="lastName" required>
+              <label for="lastName">Last Name:</label>
+              <input type="text" class="w3-input form-control" id="lastName" placeholder="Enter last name" value="${sessionScope.loggedInUser.lastName }" name="lastName" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+            	<label for="location">Location:</label>
+           	 	<select name="locationId" required>
+					<option selected value="${sessionScope.loggedInUser.location.id}" >${sessionScope.loggedInUser.location.city} ${sessionScope.loggedInUser.location.zipCode }</option>
+					<c:forEach var="location" items="${locations}">
+						<c:if test="${location.id !=  sessionScope.loggedInUser.location.id}">
+							<option value="${location.id}" >${location.city} ${location.zipCode }</option>
+						</c:if>
+					</c:forEach>
+				</select>
             </div>
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="text" class="w3-input form-control" id="email" placeholder="Enter email" name="email" required>
+              <input type="text" class="w3-input form-control" id="email" placeholder="Enter email" value="${sessionScope.loggedInUser.email }" name="email" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input type="password" class="w3-input form-control" id="password" placeholder="Enter password" name="passwordd" required>
+              <input type="password" class="w3-input form-control" id="password" placeholder="Enter password" name="password" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
@@ -292,7 +312,27 @@
         </script>
       </div>
       <div id="section3">
+       <h4><small>MY EVENTS</small></h4>
+                <h2>Creator</h2>
+        <table class="table table-hover eventTable">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Date</th>
+              <th>RSVP</th>
+            </tr>
+          </thead>
+          <tbody>
 
+            <c:forEach var="event" items="${creatorEvents}">
+              <tr>
+                <td>${event.title}</td>
+                <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
+                <td>Button</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
       </div>
       <div id="section4">
         <p>hello</p>
