@@ -32,21 +32,7 @@ public class RedirectController {
 		return "landing";
 	}
 
-	@RequestMapping(path = "login.do", method= RequestMethod.POST)
-	public String home( HttpSession session, String email, String password) {
-		
-		User user = daoUser.login(email, password);
-		
-		
-		if (user == null) {
-			return "landing";
-		} else {
-			
-			session.setAttribute("loggedInUser", user);
-			return "home";
-		}
-		
-	}
+
 	@RequestMapping(path = "gotoHome.do", method= RequestMethod.GET)
 	public String login(HttpSession session) {
 	User user =	(User) session.getAttribute("loggedInUser");
@@ -75,38 +61,7 @@ public class RedirectController {
 		
 	}
 	
-	@RequestMapping(path = "gotoProfile.do", method = RequestMethod.GET)
-	private String goToProfile(HttpSession session, Model model) {
-		User user =	(User) session.getAttribute("loggedInUser");
-		user = daoUser.findUserById(user.getId());
-		session.setAttribute("loggedInUser", user);
-
-		if (user == null) {
-			return "landing";
-		}else {
-			List<Location> locations = daoSearch.findAllLocations();
-			
-			model.addAttribute("locations", locations);
-			List<Event> events = new ArrayList<>();
-			for (UserEvent uEvent: user.getUserEvents()) {
-				if(uEvent.getCreator() == false) {
-					events.add(uEvent.getEvent());	
-				}
-			}
-			
-			model.addAttribute("eventList", events);
-			
-			List<Event> creatorEvents = new ArrayList<>();
-			for (UserEvent uEvent: user.getUserEvents()) {
-				if(uEvent.getCreator() == true) {
-					creatorEvents.add(uEvent.getEvent());	
-				}
-			}
-			
-			model.addAttribute("creatorEvents", creatorEvents);
-			return "profile";
-		}
-	}
+	
 	
 
 	

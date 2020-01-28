@@ -1,6 +1,7 @@
 package com.skilldistillery.travelboard.data;
 
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.EventComment;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
 
@@ -19,5 +20,9 @@ public interface DAOEvent {
 	public boolean deleteUserEvent(Event event, User user);
 	
 	public UserEvent setUserEvent(UserEvent userEvent);
+	
+	public EventComment submitComment(EventComment eComment);
+	
+	public boolean deleteComment(int eId);
 
 }
