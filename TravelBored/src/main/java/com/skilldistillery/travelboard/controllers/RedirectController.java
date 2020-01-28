@@ -88,13 +88,22 @@ public class RedirectController {
 			
 			model.addAttribute("locations", locations);
 			List<Event> events = new ArrayList<>();
-			System.out.println("Some shit");
 			for (UserEvent uEvent: user.getUserEvents()) {
-				events.add(uEvent.getEvent());
-				System.out.println(uEvent.getEvent().getId());
+				if(uEvent.getCreator() == false) {
+					events.add(uEvent.getEvent());	
+				}
 			}
 			
-			model.addAttribute("userEvents", events);
+			model.addAttribute("eventList", events);
+			
+			List<Event> creatorEvents = new ArrayList<>();
+			for (UserEvent uEvent: user.getUserEvents()) {
+				if(uEvent.getCreator() == true) {
+					creatorEvents.add(uEvent.getEvent());	
+				}
+			}
+			
+			model.addAttribute("creatorEvents", creatorEvents);
 			return "profile";
 		}
 	}
