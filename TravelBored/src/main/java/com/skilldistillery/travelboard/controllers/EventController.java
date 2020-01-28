@@ -17,6 +17,7 @@ import com.skilldistillery.travelboard.data.DAOEvent;
 import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.EventComment;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
@@ -36,7 +37,6 @@ public class EventController {
 
 	@RequestMapping(path = "createEvent.do", method = RequestMethod.POST)
 	public String createEvent(Event event, String keyword, Model model, HttpSession session) {
-		System.out.println("before " + event);
 		User user = (User) session.getAttribute("loggedInUser");
 		user = daoUser.findUserById(user.getId());
 		
@@ -69,7 +69,6 @@ public class EventController {
 		session.setAttribute("loggedInUser", user);
 		
 		model.addAttribute("event", event);
-		System.out.println("after " + event);
 		
 		
 		return "event";
@@ -110,6 +109,27 @@ public class EventController {
 	public String unattentEvent(Event event, HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
 		daoEvent.deleteUserEvent(event, user);
+		return "event";
+	}
+	
+	@RequestMapping(path = "createEventComment.do", method = RequestMethod.POST)
+	public String createEventComment(Event event, String comment, HttpSession session, Model model) {
+		EventComment eComment = new EventComment();
+		eComment.setContent(comment);
+		eComment.setCreateDate(LocalDateTime.now().toString());
+		eComment.setEvent(event);
+		eComment.setUser((User) session.getAttribute("loggedInUser"));
+		
+		eComment = daoEvent.submitComment(eComment);
+		model.addAttribute("comment", eComment);
+		
+		return "event";
+	}
+	@RequestMapping(path = "deleteEventComment.do", method = RequestMethod.POST)
+	public String deleteEventComment(EventComment eComment, HttpSession session, Model model) {
+		
+		daoEvent.deleteComment(eComment.getId());
+		
 		return "event";
 	}
 }

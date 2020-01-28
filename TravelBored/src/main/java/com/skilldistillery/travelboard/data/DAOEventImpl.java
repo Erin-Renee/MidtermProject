@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.EventComment;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
 import com.skilldistillery.travelboard.entities.UserEventId;
@@ -100,6 +101,30 @@ public class DAOEventImpl implements DAOEvent {
 			result = false;
 		}
 		return result;
+	}
+	
+	@Override
+	public EventComment submitComment(EventComment eComment) {
+		em.persist(eComment);
+		em.flush();
+		
+		return eComment;
+		
+	}
+	@Override
+	public boolean deleteComment(int eId) {
+		EventComment eComment = em.find(EventComment.class, eId);
+
+		em.remove(eComment);
+		em.flush();
+
+		if (eComment == null) {
+			return true;
+		}
+
+		return false;
+		
+		
 	}
 	
 
