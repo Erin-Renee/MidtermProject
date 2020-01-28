@@ -1,4 +1,4 @@
-  <div class="w3-bar w3-blue" style="position: fixed; z-index: 3; top: 0">
+  <div class="logged-out-nav w3-bar w3-blue">
       <form action="gotoLanding.do" method="get">
       <button class="w3-bar-item w3-button"type="submit">Home</button>
       </form>
@@ -12,7 +12,7 @@
   </div>
   
 <!-- user -->
-  <div class="w3-bar w3-red" style="position: fixed; z-index: 3; top: 0">
+  <div class="logged-in-nav w3-bar w3-red">
       <form action="gotoHome.do" method="get">
       <button class="w3-bar-item w3-button"type="submit">Home</button>
       </form>
