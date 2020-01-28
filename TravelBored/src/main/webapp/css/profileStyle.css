@@ -69,6 +69,9 @@
     .eventTable tr:hover {
       border-radius: 20px;
     }
+    .eventTable thead tr th{
+    border: none;
+    }
     #section2 {
     display: none;
     }
