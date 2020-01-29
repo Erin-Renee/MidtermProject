@@ -37,11 +37,18 @@
       }
     }
     .w3-card-4 {
-      background-color: #ffffff77;
+      background-color: #ffffffcc;
       border-radius: 20px;
       padding: 20px;
       margin: 250px;
       margin-top: 0px;
+      font-size: 15px;
+    }
+    .w3-card-4 input{
+      font-size: 15px;
+    }
+    .w3-card-4 button{
+      font-size: 15px;
     }
 
     .w3-input {
