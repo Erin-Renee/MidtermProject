@@ -127,6 +127,7 @@
   </div>
   <div class="card-shadow"></div>
 </div>
+</div>
       <div id="section2" class="w3-card-4">
         <div>
           <div class="w3-container w3-2019-eden">
