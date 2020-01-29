@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 
@@ -37,6 +38,14 @@ public class DAOSearchIMPL implements DAOSearch {
 		List<User> users = em.createQuery(query, User.class).setParameter("uName", "%" + keyword + "%").getResultList();
 
 		return users;
+	}
+	@Override
+	public List<Group> searchGroup(String keyword) {
+		String query = "SELECT group FROM Group group WHERE group.title LIKE :gTitle OR group.hook LIKE :gHook AND group.active = 1";
+		
+		List<Group> groups = em.createQuery(query, Group.class).setParameter("gTitle", "%" + keyword + "%").setParameter("gHook", "%" + keyword + "%").getResultList();
+		
+		return groups;
 	}
 
 	@Override
