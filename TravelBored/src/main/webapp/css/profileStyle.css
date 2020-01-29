@@ -42,6 +42,13 @@
       padding: 20px;
       margin: 250px;
       margin-top: 0px;
+      font-size: 15px;
+    }
+    .w3-card-4 input{
+      font-size: 15px;
+    }
+    .w3-card-4 button{
+      font-size: 15px;
     }
 
     .w3-input {
@@ -109,9 +116,26 @@ display: none; /* Hidden by default */
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  background-color: rgba(0,0,0,0.9); /* Black background with opacity */
   z-index: 10; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
+}
+
+.update-event-class {
+	margin-top: 150px;
+}
+#close-button {
+	position: fixed;
+    top: 10px;
+    right: 50px;
+    background-color: #000000c9;
+    color: #6d0f0f;
+    font-size: 50px;
+    border: none;
+}
+
+.table td, .table th {
+    font-size: 15px;
 }
     
     
