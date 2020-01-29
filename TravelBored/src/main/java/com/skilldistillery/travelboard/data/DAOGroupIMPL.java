@@ -57,14 +57,7 @@ public class DAOGroupIMPL implements DAOGroup {
 		return oldGroup;
 	}
 
-	@Override
-	public List<Group> read(String keyword) {
-		String query = "SELECT group FROM Group group WHERE group.title LIKE :gTitle OR group.hook LIKE :gHook AND group.active = 1";
-		
-		List<Group> groups = em.createQuery(query, Group.class).setParameter("gTitle", "%" + keyword + "%").setParameter("gHook", "%" + keyword + "%").getResultList();
-		
-		return groups;
-	}
+	
 	@Override
 	public GroupComment submitComment(GroupComment gComment) {
 		em.persist(gComment);
