@@ -75,7 +75,9 @@ a {
 
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
-
+body {
+	margin-top: 20px;
+}
 
 .card {
   position: absolute;

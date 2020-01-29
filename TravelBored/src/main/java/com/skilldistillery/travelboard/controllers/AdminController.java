@@ -34,8 +34,27 @@ public class AdminController {
 	}
 	
 	@RequestMapping(path = "adminSettings.do", method = RequestMethod.GET)
-	public String adminSettings(HttpSession session) {
+	public String adminSettings(HttpSession session, Model model) {
 		if (checkIfAdmin(session) == true) {
+			
+			List<User> activeUsers = daoAdmin.getActiveUsers();
+			model.addAttribute("activeUsers", activeUsers);
+			
+			List<User> deactivatedUsers = daoAdmin.getDeactivatedUsers();
+			model.addAttribute("deactivatedUsers", deactivatedUsers);
+			
+			List<Event> activeEvents = daoAdmin.getActiveEvents();
+			model.addAttribute("activeEvents", activeEvents);
+			
+			List<Event> deactivatedEvents = daoAdmin.getDeactivatedEvents();
+			model.addAttribute("deactivatedEvents", deactivatedEvents);
+			
+			List<Group> activeGroups = daoAdmin.getActiveGroups();
+			model.addAttribute("activeGroups", activeGroups);
+			
+			List<Group> deactivatedGroups = daoAdmin.getDeactivatedGroups();
+			model.addAttribute("deactivatedGroups", deactivatedGroups);
+			
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
@@ -79,77 +98,11 @@ public class AdminController {
 		}
 	}
 
-	@RequestMapping(path = "deactivatedUsers.do", method = RequestMethod.POST)
-	public String deactivatedUsers(HttpSession session, Model model) {
-		if (checkIfAdmin(session) == true) {
-			List<User> deactivatedUsers = daoAdmin.getDeactivatedUsers();
-			model.addAttribute("deactivatedUsers", deactivatedUsers);
-			return null;
-		} else {
-			session.removeAttribute("loggedInUser");
-			return "landing";
-		}
-	}
+	
 
-	@RequestMapping(path = "deactivatedGroups.do", method = RequestMethod.POST)
-	public String deactivatedGroups(HttpSession session, Model model) {
-		if (checkIfAdmin(session) == true) {
-			List<Group> deactivatedGroups = daoAdmin.getDeactivatedGroups();
-			model.addAttribute("deactivatedGroups", deactivatedGroups);
-			return null;
-		} else {
-			session.removeAttribute("loggedInUser");
-			return "landing";
-		}
-	}
+	
 
-	@RequestMapping(path = "deactivatedEvents.do", method = RequestMethod.POST)
-	public String deactivatedEvents(HttpSession session, Model model) {
-		if (checkIfAdmin(session) == true) {
-			List<Event> deactivatedEvents = daoAdmin.getDeactivatedEvents();
-			model.addAttribute("deactivatedEvents", deactivatedEvents);
-			return null;
-		} else {
-			session.removeAttribute("loggedInUser");
-			return "landing";
-		}
-	}
-
-	@RequestMapping(path = "activatedUsers.do", method = RequestMethod.POST)
-	public String activatedUsers(HttpSession session, Model model) {
-		if (checkIfAdmin(session) == true) {
-			List<User> activeUsers = daoAdmin.getActiveUsers();
-			model.addAttribute("activeUsers", activeUsers);
-			return null;
-		} else {
-			session.removeAttribute("loggedInUser");
-			return "landing";
-		}
-	}
-
-	@RequestMapping(path = "activatedEvents.do", method = RequestMethod.POST)
-	public String activatedEvents(HttpSession session, Model model) {
-		if (checkIfAdmin(session) == true) {
-			List<Event> activeEvents = daoAdmin.getActiveEvents();
-			model.addAttribute("activeEvents", activeEvents);
-			return null;
-		} else {
-			session.removeAttribute("loggedInUser");
-			return "landing";
-		}
-	}
-
-	@RequestMapping(path = "activatedGroups.do", method = RequestMethod.POST)
-	public String activatedGroups(HttpSession session, Model model) {
-		if (checkIfAdmin(session) == true) {
-			List<Group> activeGroups = daoAdmin.getActiveGroups();
-			model.addAttribute("activeGroups", activeGroups);
-			return null;
-		} else {
-			session.removeAttribute("loggedInUser");
-			return "landing";
-		}
-	}
+	
 	@RequestMapping(path = "deleteGroupComments.do", method = RequestMethod.POST)
 	public String deleteGroupComments(HttpSession session,GroupComment gComment, Model model) {
 		if (checkIfAdmin(session) == true) {
