@@ -19,31 +19,44 @@
 <button onclick="hideOverlay()">Update</button>
 <div>
   <form action="updateEvent.do" method="post">
+    <input id="updateId" type="hidden" name="id" value="${event.id }"><br>
+    
     <label for="title">Title:</label>
-    <input type="text" name="title" value="${event.title }"><br>
+    <input id="updateTitle" type="text" name="title" value="${event.title }"><br>
     
     <label for="hook">Hook:</label>
-    <input type="text" name="hook" value="${event.hook }"><br>
+    <input id="updateHook" type="text" name="hook" value="${event.hook }"><br>
     
     <label for="description">Description:</label>
-    <input type="text" name="description" value="${event.description }" ><br>
+    <input id="updateDescription" type="text" name="description" value="${event.description }" ><br>
     
     <label for="eventDate">Event Date:</label>
-    <input type="date" name="eventDate" value="${event.eventDate }"><br>
+    <input id="updateDate" type="date" name="eventDate" value="${event.eventDate }"><br>
     
     <label for="eventTime">Time:</label>
-    <input type="time" name="eventTime" value="${event.eventTime }"><br>
+    <input id="updateTime" type="time" name="eventTime" value="${event.eventTime }"><br>
     
     <label for="imgUrl">Event Photo URL:</label>
-    <input type="url" name="imgUrl" value="${event.imgUrl }"><br>
+    <input id="updateImgUrl" type="url" name="imgUrl" value="${event.imgUrl }"><br>
     
     <label for="eventUrl">Event URL:</label>
-    <input type="url" name="eventUrl" value="${event.eventUrl }"><br>
+    <input id="updateEventUrl" type="url" name="eventUrl" value="${event.eventUrl }"><br>
     
-    <input type="hidden" name="id" value="${event.id }"><br>
+    <label for="locationId">Location:</label>
+    <select name="locationId" >
+	<option id="locId" selected value="${sessionScope.loggedInUser.location.id}" ></option>
+
+	<c:forEach var="location" items="${locations}">
+
+	<option value="${location.id}" >${location.city} ${location.zipCode }</option>
+
+	
+</c:forEach>
+</select>
     
     
-    <button type="submit" name="submit">Update Event</button>
+    
+    <button type="submit" name="overlay">Update Event</button>
   </form>
 </div>
 
@@ -85,7 +98,7 @@
               <tr>
                 <td>${event.title}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
-                <td>Button</td>
+                <td >Button</td>
               </tr>
             </c:forEach>
           </tbody>
@@ -156,13 +169,14 @@
               <th>Update</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="event-update-table">
 
             <c:forEach var="event" items="${creatorEvents}">
-              <tr>
+              <tr class="event-row">
                 <td>${event.title}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <%-- <input type="hidden" value="${event }" name = "event"> --%>
+                <td><button onclick="showOverlay('${event.id}','${event.title }', '${event.hook }', '${event.description}', '${event.eventDate}', '${event.eventTime}', '${event.imgUrl}', '${event.eventUrl}', '${event.location.id}', '${event.location.city}', '${event.location.zipCode}')">Update</button></td>
               </tr>
             </c:forEach>
           </tbody>

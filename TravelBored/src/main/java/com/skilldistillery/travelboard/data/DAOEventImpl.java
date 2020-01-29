@@ -43,6 +43,7 @@ public class DAOEventImpl implements DAOEvent {
 	}
 
 	public Event update(Event event, int eventId) {
+		System.out.println(event.getLocation().getId());
 		Event oldEvent = em.find(Event.class, eventId);
 
 		oldEvent.setTitle(event.getTitle());
@@ -58,6 +59,7 @@ public class DAOEventImpl implements DAOEvent {
 		oldEvent.setUserEvents(event.getUserEvents());
 		oldEvent.setEventImgs(event.getEventImgs());
 		oldEvent.setEventComments(event.getEventComments());
+		System.out.println(event.getLocation().getId());
 
 		em.flush();
 
