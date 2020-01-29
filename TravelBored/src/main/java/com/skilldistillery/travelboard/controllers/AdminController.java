@@ -23,6 +23,28 @@ public class AdminController {
 
 	@Autowired
 	private DAOAdmin daoAdmin;
+	
+	public Model refresh(Model model) {
+		List<User> activeUsers = daoAdmin.getActiveUsers();
+		model.addAttribute("activeUsers", activeUsers);
+		
+		List<User> deactivatedUsers = daoAdmin.getDeactivatedUsers();
+		model.addAttribute("deactivatedUsers", deactivatedUsers);
+		
+		List<Event> activeEvents = daoAdmin.getActiveEvents();
+		model.addAttribute("activeEvents", activeEvents);
+		
+		List<Event> deactivatedEvents = daoAdmin.getDeactivatedEvents();
+		model.addAttribute("deactivatedEvents", deactivatedEvents);
+		
+		List<Group> activeGroups = daoAdmin.getActiveGroups();
+		model.addAttribute("activeGroups", activeGroups);
+		
+		List<Group> deactivatedGroups = daoAdmin.getDeactivatedGroups();
+		model.addAttribute("deactivatedGroups", deactivatedGroups);
+		
+		return model;
+	}
 
 	public boolean checkIfAdmin(HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -37,23 +59,7 @@ public class AdminController {
 	public String adminSettings(HttpSession session, Model model) {
 		if (checkIfAdmin(session) == true) {
 			
-			List<User> activeUsers = daoAdmin.getActiveUsers();
-			model.addAttribute("activeUsers", activeUsers);
-			
-			List<User> deactivatedUsers = daoAdmin.getDeactivatedUsers();
-			model.addAttribute("deactivatedUsers", deactivatedUsers);
-			
-			List<Event> activeEvents = daoAdmin.getActiveEvents();
-			model.addAttribute("activeEvents", activeEvents);
-			
-			List<Event> deactivatedEvents = daoAdmin.getDeactivatedEvents();
-			model.addAttribute("deactivatedEvents", deactivatedEvents);
-			
-			List<Group> activeGroups = daoAdmin.getActiveGroups();
-			model.addAttribute("activeGroups", activeGroups);
-			
-			List<Group> deactivatedGroups = daoAdmin.getDeactivatedGroups();
-			model.addAttribute("deactivatedGroups", deactivatedGroups);
+			model = refresh(model);
 			
 			return "admin";
 		} else {
@@ -63,11 +69,22 @@ public class AdminController {
 	}
 
 	@RequestMapping(path = "deactivateUser.do", method = RequestMethod.POST)
-	public String deactivateUser(HttpSession session, User user, Model model) {
+	public String deactivateUser(HttpSession session, Integer userId, Model model) {
 		if (checkIfAdmin(session) == true) {
-			user = daoAdmin.deactivateUser(user.getId());
-			model.addAttribute("user", user);
-			return null;
+			User user = daoAdmin.deactivateUser(userId);
+			model = refresh(model);
+			return "admin";
+		} else {
+			session.removeAttribute("loggedInUser");
+			return "landing";
+		}
+	}
+	@RequestMapping(path = "activateUser.do", method = RequestMethod.POST)
+	public String activateUser(HttpSession session, Integer userId, Model model) {
+		if (checkIfAdmin(session) == true) {
+			User user = daoAdmin.activateUser(userId);
+			model = refresh(model);
+			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
 			return "landing";
@@ -75,11 +92,22 @@ public class AdminController {
 	}
 
 	@RequestMapping(path = "deactivateEvent.do", method = RequestMethod.POST)
-	public String deactivateEvent(HttpSession session, Event event, Model model) {
+	public String deactivateEvent(HttpSession session, Integer eventId, Model model) {
 		if (checkIfAdmin(session) == true) {
-			event = daoAdmin.deactivateEvent(event.getId());
-			model.addAttribute("event", event);
-			return null;
+			Event event = daoAdmin.deactivateEvent(eventId);
+			model = refresh(model);
+			return "admin";
+		} else {
+			session.removeAttribute("loggedInUser");
+			return "landing";
+		}
+	}
+	@RequestMapping(path = "activateEvent.do", method = RequestMethod.POST)
+	public String activateEvent(HttpSession session, Integer eventId, Model model) {
+		if (checkIfAdmin(session) == true) {
+			Event event = daoAdmin.activateEvent(eventId);
+			model = refresh(model);
+			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
 			return "landing";
@@ -87,11 +115,22 @@ public class AdminController {
 	}
 
 	@RequestMapping(path = "deactivateGroup.do", method = RequestMethod.POST)
-	public String deactivateGroup(HttpSession session, Group group, Model model) {
+	public String deactivateGroup(HttpSession session, Integer groupId, Model model) {
 		if (checkIfAdmin(session) == true) {
-			group = daoAdmin.deactivateGroup(group.getId());
-			model.addAttribute("group", group);
-			return null;
+			Group group = daoAdmin.deactivateGroup(groupId);
+			model = refresh(model);
+			return "admin";
+		} else {
+			session.removeAttribute("loggedInUser");
+			return "landing";
+		}
+	}
+	@RequestMapping(path = "activateGroup.do", method = RequestMethod.POST)
+	public String activateGroup(HttpSession session, Integer groupId, Model model) {
+		if (checkIfAdmin(session) == true) {
+			Group group = daoAdmin.activateGroup(groupId);
+			model = refresh(model);
+			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
 			return "landing";
@@ -107,7 +146,8 @@ public class AdminController {
 	public String deleteGroupComments(HttpSession session,GroupComment gComment, Model model) {
 		if (checkIfAdmin(session) == true) {
 			daoAdmin.deleteGroupComment(gComment.getId());
-			return null;
+			model = refresh(model);
+			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
 			return "landing";
@@ -117,7 +157,8 @@ public class AdminController {
 	public String deleteEventComments(HttpSession session,EventComment eComment, Model model) {
 		if (checkIfAdmin(session) == true) {
 			daoAdmin.deleteGroupComment(eComment.getId());
-			return null;
+			model = refresh(model);
+			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
 			return "landing";

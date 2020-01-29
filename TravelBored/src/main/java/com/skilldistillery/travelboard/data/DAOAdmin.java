@@ -21,6 +21,9 @@ public interface DAOAdmin {
 	public List<User> getActiveUsers();
 	public List<Group> getActiveGroups();
 	public List<Event> getActiveEvents();
+	public User activateUser(int eId);
+	public Event activateEvent(int eId);
+	public Group activateGroup(int eId);
 	
 
 }

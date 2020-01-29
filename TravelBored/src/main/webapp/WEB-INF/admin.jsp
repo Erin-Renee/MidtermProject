@@ -45,10 +45,17 @@
           <tbody>
 
             <c:forEach var="event" items="${activeEvents}">
+                
               <tr>
                 <td>${event.title}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <td>
+                	<form action="deactivateEvent.do" class="needs-validation" novalidate method="POST">
+                		<input id="eventId" type="hidden" name="eventId" value="${event.id}">
+               			<button >Deactivate</button>
+                	</form>
+                </td>
+                
               </tr>
             </c:forEach>
           </tbody>
@@ -67,11 +74,14 @@
           </thead>
           <tbody>
 
-            <c:forEach var="event" items="${deactivedEvents}">
+            <c:forEach var="event" items="${deactivatedEvents}">
               <tr>
                 <td>${event.title}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <td><form action="activateEvent.do" class="needs-validation" novalidate method="POST">
+                		<input id="eventId" type="hidden" name="eventId" value="${event.id}">
+               			<button >Activate</button>
+                	</form></td>
               </tr>
             </c:forEach>
           </tbody>
@@ -95,7 +105,10 @@
               <tr>
                 <td>${user.username}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${user.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <td><form action="deactivateUser.do" class="needs-validation" novalidate method="POST">
+                		<input id="userId" type="hidden" name="userId" value="${user.id}">
+               			<button >Deactivate</button>
+                	</form></td>
               </tr>
             </c:forEach>
           </tbody>
@@ -114,11 +127,14 @@
           </thead>
           <tbody>
 
-            <c:forEach var="user" items="${deactivedUsers}">
+            <c:forEach var="user" items="${deactivatedUsers}">
               <tr>
                 <td>${user.username}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${user.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <td><form action="activateUser.do" class="needs-validation" novalidate method="POST">
+                		<input id="userId" type="hidden" name="userId" value="${user.id}">
+               			<button >Activate</button>
+                	</form></td>
               </tr>
             </c:forEach>
           </tbody>
@@ -126,7 +142,7 @@
       </div>
       
       <div id="section5">
-      <h4><small>Active Groups</small></h4>
+      <h4><small>Activated Groups</small></h4>
                 <h2>Admin</h2>
         <table class="table table-hover eventTable">
           <thead>
@@ -142,7 +158,10 @@
               <tr>
                 <td>${group.title}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${group.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <td><form action="deactivateGroup.do" class="needs-validation" novalidate method="POST">
+                		<input id="groupId" type="hidden" name="groupId" value="${group.id}">
+               			<button >Deactivate</button>
+                	</form></td>
               </tr>
             </c:forEach>
           </tbody>
@@ -165,7 +184,10 @@
               <tr>
                 <td>${group.title}</td>
                 <td><span class="glyphicon glyphicon-time"></span> ${group.createDate }</td>
-                <td><button onclick="showOverlay()">Update</button></td>
+                <td><form action="activateGroup.do" class="needs-validation" novalidate method="POST">
+                		<input id="groupId" type="hidden" name="groupId" value="${group.id}">
+               			<button >Activate</button>
+                	</form></td>
               </tr>
             </c:forEach>
           </tbody>
