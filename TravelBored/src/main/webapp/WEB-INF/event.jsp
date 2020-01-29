@@ -6,6 +6,28 @@
   <head>
 	<jsp:include page="subPages/styleIncludes.jsp"></jsp:include>
 	<link rel="stylesheet" href="css/eventStyle.css">
+     <style>
+     .hero:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: red;
+  background: url(${event.imgUrl});
+      background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+  z-index: -1;
+  -webkit-transform: skewY(-2.2deg);
+          transform: skewY(-2.2deg);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-backface-visibility: hidden;
+}
+     </style>   
   </head>
 <body>
 <header>
@@ -39,24 +61,35 @@
 </div>
 
 
-<div class="event-img">
-<img src="${event.imgUrl }"  style="width: 450px; height: 300px;">
-</div>
-<br>
+<div class="movie-card">
+  
+  <div class="container">
+    
+    <div class="hero" >
+            
+      <div class="details">
+      
+        <div class="title1">${event.title }</div>
 
-
-
-<div class="description">
-<p class="hook">${event.hook}</p>
-<br>
-<br>
-<p>Description: ${event.description}</p>
-<br>
-<br>
-<br>
-<p>Create Date/Time: ${event.createDate}</p>
-
-</div>
+        <div class="title2">${event.hook }</div> 
+      
+        
+      </div> <!-- end details -->
+      
+    </div> <!-- end hero -->
+    
+    <div class="description">
+   
+      <div class="column2">
+        
+        <p>${event.description}</p>
+        
+      </div> <!-- end column2 -->
+    </div> <!-- end description -->
+    
+   
+  </div> <!-- end container -->
+</div> <!-- end movie-card -->
 
 
 
