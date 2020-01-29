@@ -32,6 +32,15 @@ public class DAOAdminIMPL implements DAOAdmin {
 		
 		return user;
 	}
+	@Override
+	public User activateUser(int uId) {
+		User user = em.find(User.class, uId);
+		user.setActive(true);
+		
+		em.flush();
+		
+		return user;
+	}
 
 	@Override
 	public Group deactivateGroup(int gId) {
@@ -42,11 +51,29 @@ public class DAOAdminIMPL implements DAOAdmin {
 		
 		return group;
 	}
+	@Override
+	public Group activateGroup(int gId) {
+		Group group = em.find(Group.class, gId);
+		group.setActive(true);
+		
+		em.flush();
+		
+		return group;
+	}
 
 	@Override
 	public Event deactivateEvent(int eId) {
 		Event event = em.find(Event.class, eId);
 		event.setActive(false);
+		
+		em.flush();
+		
+		return event;
+	}
+	@Override
+	public Event activateEvent(int eId) {
+		Event event = em.find(Event.class, eId);
+		event.setActive(true);
 		
 		em.flush();
 		
