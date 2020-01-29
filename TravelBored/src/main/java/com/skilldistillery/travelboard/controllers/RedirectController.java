@@ -44,7 +44,7 @@ public class RedirectController {
 			return "landing";
 		} else {
 			
-			return "home";
+			return "profileView";
 		}
 		
 	}

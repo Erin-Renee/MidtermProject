@@ -6,6 +6,7 @@
 
 <head>
 	<jsp:include page="subPages/styleIncludes.jsp"></jsp:include>
+	<link rel="stylesheet" href="css/eventStyle.css">
 	<link rel="stylesheet" href="css/profileStyle.css">
 	<script src="javascript/profileScript.js"></script>
 </head>
@@ -96,39 +97,36 @@
       <div class="col-sm-2 sidenav">
         <h4>${sessionScope.loggedInUser.username}</h4>
         <ul class="sidenav nav-pills nav-stacked">
-          <li class="active"><button onclick="showSection(1)">Home</button></li>
+          <li class="active"><button onclick="showSection(1)">Profile</button></li>
           <li><button onclick="showSection(2)">Profile Settings</button></li>
-          <li><button onclick="showSection(3)">Events</button></li>
-          <li><button onclick="showSection(4)">Groups</button></li>
-          <li><button onclick="showSection(5)">Photos</button></li>
+          <li><button onclick="showSection(3)">Your Events</button></li>
+          <li><button onclick="showSection(4)">Your Groups</button></li>
+          <li><button onclick="showSection(5)">Your Photos</button></li>
         </ul><br>
       </div>
     <div class="col-sm-10">
+    
       <div  id="section1">
-        <h4><small>RECENT EVENTS</small></h4>
-                <h2>Event Page</h2>
-        <table class="table table-hover eventTable">
-          <thead>
-            <tr>
-              <th>Event</th>
-              <th>Date</th>
-              <th>RSVP</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <c:forEach var="event" items="${eventList}">
-              <tr>
-                <td>${event.title}</td>
-                <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
-                <td >Button</td>
-              </tr>
-            </c:forEach>
-          </tbody>
-        </table>
-      </div>
-
-      <br><br>
+<div class="card-container">
+  <div class="card u-clearfix">
+    <div class="card-body">
+      <h2 class="card-title">${sessionScope.loggedInUser.username}</h2>
+      <div class="card-read">   </div>
+      <br>
+      <br>
+      <div class="upperContent">
+	<p>First Name: ${sessionScope.loggedInUser.firstName}</p>
+	<br>
+	<p>Last Name: ${sessionScope.loggedInUser.lastName}</p>
+	<br>
+	<p>E-mail: ${sessionScope.loggedInUser.email}</p>
+	<br>
+</div>
+    </div>
+ <%--    <img src="${sessionScope.loggedInUser.userDetails.userDetailUrl }" alt="" class="card-media" /> --%>
+  </div>
+  <div class="card-shadow"></div>
+</div>
       <div id="section2" class="w3-card-4">
         <div>
           <div class="w3-container w3-2019-eden">
