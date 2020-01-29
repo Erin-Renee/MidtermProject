@@ -1,24 +1,40 @@
 
-
-
-
-
-
-
-
-function showHome() {
+function showSection(sectionNumber){
 	  var home = document.getElementById("section1");
 	  var profileSettings = document.getElementById("section2");
 	  var events = document.getElementById("section3");
 	  var groups = document.getElementById("section4");
 	  var photos = document.getElementById("section5");
 	  
-	 home.style.display = "block";
-	 profileSettings.style.display = "none";
-	 events.style.display = "none";
-	 groups.style.display = "none";
-	 photos.style.display = "none";
-  }
+	  
+		 home.style.display = "none";
+		 profileSettings.style.display = "none";
+		 events.style.display = "none";
+		 groups.style.display = "none";
+		 photos.style.display = "none";
+	  
+	  
+	  if(sectionNumber == 1){
+		  home.style.display = "block";
+	  }
+	  if(sectionNumber == 2){
+		  profileSettings.style.display = "block";
+	  }
+	  if(sectionNumber == 3){
+		  events.style.display = "block";
+	  }
+	  if(sectionNumber == 4){
+		  groups.style.display = "block";
+	  }
+	  if(sectionNumber == 5){
+		  photos.style.display = "block";
+	  }
+
+	 
+}
+
+
+
 
 
 function showOverlay(id, title, hook, description, eventDate, eventTime, imgUrl, eventUrl, locationId, locationCity, locationZip) {
@@ -64,62 +80,6 @@ function hideOverlay() {
 }
 
 
-
-
-  function showSettings() {
-	  var home = document.getElementById("section1");
-	  var profileSettings = document.getElementById("section2");
-	  var events = document.getElementById("section3");
-	  var groups = document.getElementById("section4");
-	  var photos = document.getElementById("section5");
-	  
-	 home.style.display = "none";
-	 profileSettings.style.display = "block";
-	 events.style.display = "none";
-	 groups.style.display = "none";
-	 photos.style.display = "none";
-  }
-  function showEvents() {
-	  var home = document.getElementById("section1");
-	  var profileSettings = document.getElementById("section2");
-	  var events = document.getElementById("section3");
-	  var groups = document.getElementById("section4");
-	  var photos = document.getElementById("section5");
-	  
-	 home.style.display = "none";
-	 profileSettings.style.display = "none";
-	 events.style.display = "block";
-	 groups.style.display = "none";
-	 photos.style.display = "none";
-  }
-  function showGroups() {
-	  var home = document.getElementById("section1");
-	  var profileSettings = document.getElementById("section2");
-	  var events = document.getElementById("section3");
-	  var groups = document.getElementById("section4");
-	  var photos = document.getElementById("section5");
-	  
-	 home.style.display = "none";
-	 profileSettings.style.display = "none";
-	 events.style.display = "none";
-	 groups.style.display = "block";
-	 photos.style.display = "none";
-  }
-  function showPhotos() {
-	  var home = document.getElementById("section1");
-	  var profileSettings = document.getElementById("section2");
-	  var events = document.getElementById("section3");
-	  var groups = document.getElementById("section4");
-	  var photos = document.getElementById("section5");
-	  
-	 home.style.display = "none";
-	 profileSettings.style.display = "none";
-	 events.style.display = "none";
-	 groups.style.display = "none";
-	 photos.style.display = "block";
-  }
-  
-  
   
 //Disable form submissions if there are invalid fields
   (function() {
