@@ -22,11 +22,12 @@
       <div class="col-sm-2 sidenav">
         <h4>${sessionScope.loggedInUser.username}</h4>
         <ul class="sidenav nav-pills nav-stacked">
-          <li class="active"><button onclick="showHome()">Home</button></li>
-          <li><button onclick="showSettings()">Profile Settings</button></li>
+          <li class="active"><button onclick="showHome()">Activated Events</button></li>
+          <li><button onclick="showSettings()">Deactivated Events</button></li>
           <li><button onclick="showEvents()">Activated Users</button></li>
-          <li><button onclick="showGroups()">Groups</button></li>
-          <li><button onclick="showPhotos()">Photos</button></li>
+          <li><button onclick="showGroups()">Deactivated Users</button></li>
+          <li><button onclick="showPhotos()">Activated Groups</button></li>
+          <li><button onclick="showPhotos()">Deactivated Groups</button></li>
         </ul><br>
       </div>
       <div id="section1">
