@@ -13,7 +13,7 @@
   <jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
 
-<body>
+<body onload="showSection('${sectionNumber}')">
 
 <div id="overlay">
 
@@ -96,11 +96,11 @@
       <div class="col-sm-2 sidenav">
         <h4>${sessionScope.loggedInUser.username}</h4>
         <ul class="sidenav nav-pills nav-stacked">
-          <li class="active"><button onclick="showHome()">Home</button></li>
-          <li><button onclick="showSettings()">Profile Settings</button></li>
-          <li><button onclick="showEvents()">Events</button></li>
-          <li><button onclick="showGroups()">Groups</button></li>
-          <li><button onclick="showPhotos()">Photos</button></li>
+          <li class="active"><button onclick="showSection(1)">Home</button></li>
+          <li><button onclick="showSection(2)">Profile Settings</button></li>
+          <li><button onclick="showSection(3)">Events</button></li>
+          <li><button onclick="showSection(4)">Groups</button></li>
+          <li><button onclick="showSection(5)">Photos</button></li>
         </ul><br>
       </div>
     <div class="col-sm-10">
