@@ -6,6 +6,7 @@
   <head>	
   	<jsp:include page="subPages/styleIncludes.jsp"></jsp:include>
 	<link rel="stylesheet" href="css/resultsStyle.css">
+	 <meta http-equiv="X-UA-Compatible" content="ie=edge">
   </head>
 <body>
 <header>
@@ -17,12 +18,26 @@
 	
 	
 	<a class="event-item" href="gotoEvent.do?eventId=${event.id}">
-      <img class="event-img" src="${event.imgUrl}" alt="">
-      <h3 class="event-title">${event.title}</h3>
-      <p class="event-hook">${event.hook}</p>
+<div class="card">
+    <div class="poster"><img src = "${event.imgUrl}"></div>
+    <div class="details">
+      <h2>${event.title}<br></h2>
+
+     
+
+
+      <div class="info">
+        <p>${event.hook}</p>
+      </div>
+
+     
+    </div>
+  </div>
+      
 	</a>
 	
 </c:forEach>
 </div>
+
 </body>
 </html>
