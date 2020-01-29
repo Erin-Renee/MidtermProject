@@ -105,16 +105,22 @@ public class EventController {
 	}
 
 	@RequestMapping(path = "attend.do", method = RequestMethod.POST)
-	public String attentEvent(Event event, HttpSession session) {
+	public String attentEvent(Integer eventId, HttpSession session, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
+		user = daoUser.findUserById(user.getId());
+		Event event = daoSearch.findEventById(eventId);
 		daoEvent.createUserEvent(event, user);
+		model.addAttribute("event", event);
 		return "event";
 	}
 
 	@RequestMapping(path = "unattend.do", method = RequestMethod.POST)
-	public String unattentEvent(Event event, HttpSession session) {
+	public String unattentEvent(Integer eventId, HttpSession session, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
+		user = daoUser.findUserById(user.getId());
+		Event event = daoSearch.findEventById(eventId);
 		daoEvent.deleteUserEvent(event, user);
+		model.addAttribute("event", event);
 		return "event";
 	}
 	

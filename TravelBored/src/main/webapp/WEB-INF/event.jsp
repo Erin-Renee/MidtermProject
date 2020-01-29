@@ -33,12 +33,17 @@
 	<c:if test="${!empty sessionScope.loggedInUser }">
 	<h4>RSVP</h4>
 	<br>
-	<span>
-	<label class="switch">
-  <input type="checkbox">
-  <span class="slider round"></span>
-</label>
-</span>
+	
+	<form class="rsvpButton" action="attend.do" method="POST">
+	<button class="attend" type="submit">Attend</button>
+	<input type="hidden" value="${event.id}" name="eventId">
+	</form>
+	
+	<form class="rsvpButton" action="unattend.do" method="POST">
+	<button class="unattend" type="submit">unAttend</button>
+	<input type="hidden" value="${event.id}" name="eventId">
+	</form>
+	
 </c:if>
 </div>
     </div>
