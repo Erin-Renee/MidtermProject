@@ -72,7 +72,7 @@
       </div>
       <div class="col-sm-2 sidenav">
         <h4>${sessionScope.loggedInUser.username}</h4>
-        <ul class="nav nav-pills nav-stacked">
+        <ul class="sidenav nav-pills nav-stacked">
           <li class="active"><button onclick="showHome()">Home</button></li>
           <li><button onclick="showSettings()">Profile Settings</button></li>
           <li><button onclick="showEvents()">Events</button></li>
