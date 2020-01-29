@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 
@@ -30,14 +31,18 @@ public class SearchController {
 			System.out.println(user.getLocation()); 
 			List<User> userList = daoSearch.searchUsername(keyword);
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
+			List<Group> groupList = daoSearch.searchGroup(keyword);
+			model.addAttribute("groupList", groupList);
 			model.addAttribute("userList", userList);
 			model.addAttribute("eventList", eventList);
+			model.addAttribute("keyword", keyword);
 
 		} else if (location == null && user == null) {
 
 			int locId = 0;
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
 			model.addAttribute("eventList", eventList);
+			model.addAttribute("keyword", keyword);
 
 		} else if (location != null && user == null) {
 
@@ -45,6 +50,7 @@ public class SearchController {
 			int locId = loc.getId();
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
 			model.addAttribute("eventList", eventList);
+			model.addAttribute("keyword", keyword);
 
 		} else if (location != null && user != null) {
 
@@ -52,8 +58,11 @@ public class SearchController {
 			int locId = loc.getId();
 			List<Event> eventList = daoSearch.searchEvent(keyword, locId);
 			List<User> userList = daoSearch.searchUsername(keyword);
+			List<Group> groupList = daoSearch.searchGroup(keyword);
+			model.addAttribute("groupList", groupList);
 			model.addAttribute("eventList", eventList);
 			model.addAttribute("userList", userList);
+			model.addAttribute("keyword", keyword);
 
 		}
 
