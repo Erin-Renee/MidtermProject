@@ -26,6 +26,16 @@
 <br>
 <p>Time: ${event.eventTime}</p>
 <br>
+<c:if test="${!empty sessionScope.loggedInUser }">
+<h4>RSVP</h4>
+<br>
+<span>
+<label class="switch">
+  <input type="checkbox" checked>
+  <span class="slider round"></span>
+</label>
+</span>
+</c:if>
 </div>
 
 
@@ -33,6 +43,7 @@
 <img src="${event.imgUrl }"  style="width: 450px; height: 300px;">
 </div>
 <br>
+
 
 
 <div class="description">
@@ -44,6 +55,7 @@
 <br>
 <br>
 <p>Create Date/Time: ${event.createDate}</p>
+
 </div>
 
 
