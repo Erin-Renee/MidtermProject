@@ -1,5 +1,6 @@
 package com.skilldistillery.travelboard.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.travelboard.data.DAOEvent;
 import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
@@ -26,6 +28,36 @@ public class UserController {
 
 	@Autowired
 	private DAOSearch daoSearch;
+	
+	@Autowired
+	private DAOEvent daoEvent;
+	
+	
+	
+	public Model refresh(User user, Model model) {
+		List<Location> locations = daoSearch.findAllLocations();
+		
+		model.addAttribute("locations", locations);
+		List<Event> events = new ArrayList<>();
+		for (UserEvent uEvent: user.getUserEvents()) {
+			if(uEvent.getCreator() == false) {
+				events.add(uEvent.getEvent());	
+			}
+		}
+		
+		model.addAttribute("eventList", events);
+		
+		List<Event> creatorEvents = new ArrayList<>();
+		for (UserEvent uEvent: user.getUserEvents()) {
+			if(uEvent.getCreator() == true) {
+				creatorEvents.add(uEvent.getEvent());	
+			}
+		}
+		
+		model.addAttribute("creatorEvents", creatorEvents);
+		
+		return model;
+	}
 	
 	@RequestMapping(path = "login.do", method= RequestMethod.POST)
 	public String home( HttpSession session, String email, String password) {
@@ -51,26 +83,9 @@ public class UserController {
 		if (user == null) {
 			return "landing";
 		}else {
-			List<Location> locations = daoSearch.findAllLocations();
 			
-			model.addAttribute("locations", locations);
-			List<Event> events = new ArrayList<>();
-			for (UserEvent uEvent: user.getUserEvents()) {
-				if(uEvent.getCreator() == false) {
-					events.add(uEvent.getEvent());	
-				}
-			}
-			
-			model.addAttribute("eventList", events);
-			
-			List<Event> creatorEvents = new ArrayList<>();
-			for (UserEvent uEvent: user.getUserEvents()) {
-				if(uEvent.getCreator() == true) {
-					creatorEvents.add(uEvent.getEvent());	
-				}
-			}
-			
-			model.addAttribute("creatorEvents", creatorEvents);
+			refresh(user, model);
+			model.addAttribute("sectionNumber", 1);
 			return "profile";
 		}
 	}
@@ -108,16 +123,46 @@ public class UserController {
 	public String update(User user, HttpSession session,Model model, Integer locationId) {
 		User iduser = (User) session.getAttribute("loggedInUser");
 		
-		user.setId(iduser.getId());
-		user.setLocation(daoSearch.getLocation(locationId));
-	
+		iduser.setFirstName(user.getFirstName());
+		iduser.setLastName(user.getLastName());
+		iduser.setUsername(user.getUsername());
+		iduser.setPassword(user.getPassword());
+		iduser.setEmail(user.getEmail());
+		iduser.setLocation(user.getLocation());
+		iduser.setUserImgUrl(user.getUserImgUrl());
+		iduser.setLocation(daoSearch.getLocation(locationId));
 		
-
-		iduser = daoUser.updateBasicUserInfo(user, user.getId());
+		
+	
+		iduser = daoUser.updateBasicUserInfo(iduser, iduser.getId());
 		session.setAttribute("loggedInUser",iduser);
-		List<Location> locations = daoSearch.findAllLocations();
-		model.addAttribute("locations", locations);
+		model.addAttribute("sectionNumber", 2);
+		refresh(iduser, model);
 		return "profile";
 	}
+	
+	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
+	public String updateEvent(Event event, HttpSession session, Model model, Integer locationId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		user = daoUser.findUserById(user.getId());
+		List<UserEvent> userevents = user.getUserEvents();
+		String createDate = LocalDateTime.now().toString();
+		
+		for (UserEvent userEvent : userevents) {
+			if (userEvent.getEvent().getId().equals(event.getId())) {
+				if (userEvent.getCreator()) {
+					event.setActive(true);
+					event.setCreateDate(createDate);
+					event.setLocation(daoSearch.getLocation(locationId));
+					event = daoEvent.update(event, event.getId());
+					break;
+				}
+			}
+		}
+		refresh(user, model);
+		model.addAttribute("sectionNumber", 3);
+		return "profile";
+	}
+	
 }
 

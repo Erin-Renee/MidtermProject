@@ -73,29 +73,6 @@ public class EventController {
 		return "event";
 	}
 
-	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
-	public String updateEvent(Event event, HttpSession session, Model model, Integer locationId) {
-		User user = (User) session.getAttribute("loggedInUser");
-		user = daoUser.findUserById(user.getId());
-		List<UserEvent> userevents = user.getUserEvents();
-		Location location =user.getLocation();
-		String createDate = LocalDateTime.now().toString();
-		
-		for (UserEvent userEvent : userevents) {
-			if (userEvent.getEvent().getId().equals(event.getId())) {
-				if (userEvent.getCreator()) {
-					event.setActive(true);
-					event.setCreateDate(createDate);
-					event.setLocation(daoSearch.getLocation(locationId));
-					event = daoEvent.update(event, event.getId());
-					break;
-				}
-			}
-		}
-		model.addAttribute("event", event);
-		return "event";
-	}
-
 	@RequestMapping(path = "disableEvent.do", method = RequestMethod.POST)
 	public String disableEvent(Event event, HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
