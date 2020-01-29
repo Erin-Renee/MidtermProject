@@ -60,6 +60,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 1);
 			
 			return "admin";
 		} else {
@@ -73,6 +74,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			User user = daoAdmin.deactivateUser(userId);
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 3);
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
@@ -84,6 +86,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			User user = daoAdmin.activateUser(userId);
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 4);
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
@@ -96,6 +99,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			Event event = daoAdmin.deactivateEvent(eventId);
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 1);
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
@@ -107,6 +111,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			Event event = daoAdmin.activateEvent(eventId);
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 2);
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
@@ -119,6 +124,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			Group group = daoAdmin.deactivateGroup(groupId);
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 5);
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");
@@ -130,6 +136,7 @@ public class AdminController {
 		if (checkIfAdmin(session) == true) {
 			Group group = daoAdmin.activateGroup(groupId);
 			model = refresh(model);
+			model.addAttribute("sectionNumber", 6);
 			return "admin";
 		} else {
 			session.removeAttribute("loggedInUser");

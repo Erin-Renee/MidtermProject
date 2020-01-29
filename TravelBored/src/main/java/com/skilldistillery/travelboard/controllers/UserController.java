@@ -47,7 +47,6 @@ public class UserController {
 		User user =	(User) session.getAttribute("loggedInUser");
 		user = daoUser.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
-
 		if (user == null) {
 			return "landing";
 		}else {

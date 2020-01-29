@@ -12,7 +12,7 @@
 <header>
   <jsp:include page="subPages/header.jsp"></jsp:include>
 </header>
-<body>
+<body onload="showSection('${sectionNumber}')">
 
  <div class="container-fluid">
     <div class="row content">
@@ -22,12 +22,12 @@
       <div class="col-sm-2 sidenav">
         <h4>${sessionScope.loggedInUser.username}</h4>
         <ul class="sidenav nav-pills nav-stacked">
-          <li class="active"><button onclick="showAEvents()">Activated Events</button></li>
-          <li><button onclick="showDEvents()">Deactivated Events</button></li>
-          <li><button onclick="showAUsers()">Activated Users</button></li>
-          <li><button onclick="showDUsers()">Deactivated Users</button></li>
-          <li><button onclick="showAGroups()">Activated Groups</button></li>
-          <li><button onclick="showDGroups()">Deactivated Groups</button></li>
+          <li class="active"><button onclick="showSection(1)">Activated Events</button></li>
+          <li><button onclick="showSection(2)">Deactivated Events</button></li>
+          <li><button onclick="showSection(3)">Activated Users</button></li>
+          <li><button onclick="showSection(4)">Deactivated Users</button></li>
+          <li><button onclick="showSection(5)">Activated Groups</button></li>
+          <li><button onclick="showSection(6)">Deactivated Groups</button></li>
         </ul><br>
       </div>
 <div class="col-sm-10">

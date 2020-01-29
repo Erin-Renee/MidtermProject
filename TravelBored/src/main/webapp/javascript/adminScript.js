@@ -1,6 +1,4 @@
-
-
-function showAEvents() {
+function showSection(sectionNumber){
 	  var activeEvents = document.getElementById("section1");
 	  var unactiveEvents = document.getElementById("section2");
 	  var activeUsers = document.getElementById("section3");
@@ -8,90 +6,34 @@ function showAEvents() {
 	  var activeGroups = document.getElementById("section5");
 	  var unactiveGroups = document.getElementById("section6");
 	  
-	  activeEvents.style.display = "block";
+	  activeEvents.style.display = "none";
 	  unactiveEvents.style.display = "none";
 	  activeUsers.style.display = "none";
 	  unactiveUsers.style.display = "none";
 	  activeGroups.style.display = "none";
 	  unactiveGroups.style.display = "none";
-  }
-function showDEvents() {
-	var activeEvents = document.getElementById("section1");
-	var unactiveEvents = document.getElementById("section2");
-	var activeUsers = document.getElementById("section3");
-	var unactiveUsers = document.getElementById("section4");
-	var activeGroups = document.getElementById("section5");
-	var unactiveGroups = document.getElementById("section6");
-	
-	activeEvents.style.display = "none";
-	unactiveEvents.style.display = "block";
-	activeUsers.style.display = "none";
-	unactiveUsers.style.display = "none";
-	activeGroups.style.display = "none";
-	unactiveGroups.style.display = "none";
+	  
+	  
+	  if(sectionNumber == 1){
+		  activeEvents.style.display = "block";
+	  }
+	  if(sectionNumber == 2){
+		  unactiveEvents.style.display = "block";
+	  }
+	  if(sectionNumber == 3){
+		  activeUsers.style.display = "block";
+	  }
+	  if(sectionNumber == 4){
+		  unactiveUsers.style.display = "block";
+	  }
+	  if(sectionNumber == 5){
+		  activeGroups.style.display = "block";
+	  }
+	  if(sectionNumber == 6){
+		  unactiveGroups.style.display = "block";
+	  }
+	 
 }
-function showAUsers() {
-	var activeEvents = document.getElementById("section1");
-	var unactiveEvents = document.getElementById("section2");
-	var activeUsers = document.getElementById("section3");
-	var unactiveUsers = document.getElementById("section4");
-	var activeGroups = document.getElementById("section5");
-	var unactiveGroups = document.getElementById("section6");
-	
-	activeEvents.style.display = "none";
-	unactiveEvents.style.display = "none";
-	activeUsers.style.display = "block";
-	unactiveUsers.style.display = "none";
-	activeGroups.style.display = "none";
-	unactiveGroups.style.display = "none";
-}
-function showDUsers() {
-	var activeEvents = document.getElementById("section1");
-	var unactiveEvents = document.getElementById("section2");
-	var activeUsers = document.getElementById("section3");
-	var unactiveUsers = document.getElementById("section4");
-	var activeGroups = document.getElementById("section5");
-	var unactiveGroups = document.getElementById("section6");
-	
-	activeEvents.style.display = "none";
-	unactiveEvents.style.display = "none";
-	activeUsers.style.display = "none";
-	unactiveUsers.style.display = "block";
-	activeGroups.style.display = "none";
-	unactiveGroups.style.display = "none";
-}
-function showAGroups() {
-	console.log("show group");
-	var activeEvents = document.getElementById("section1");
-	var unactiveEvents = document.getElementById("section2");
-	var activeUsers = document.getElementById("section3");
-	var unactiveUsers = document.getElementById("section4");
-	var activeGroups = document.getElementById("section5");
-	var unactiveGroups = document.getElementById("section6");
-	
-	activeEvents.style.display = "none";
-	unactiveEvents.style.display = "none";
-	activeUsers.style.display = "none";
-	unactiveUsers.style.display = "none";
-	activeGroups.style.display = "block";
-	unactiveGroups.style.display = "none";
-}
-function showDGroups() {
-	var activeEvents = document.getElementById("section1");
-	var unactiveEvents = document.getElementById("section2");
-	var activeUsers = document.getElementById("section3");
-	var unactiveUsers = document.getElementById("section4");
-	var activeGroups = document.getElementById("section5");
-	var unactiveGroups = document.getElementById("section6");
-	
-	activeEvents.style.display = "none";
-	unactiveEvents.style.display = "none";
-	activeUsers.style.display = "none";
-	unactiveUsers.style.display = "none";
-	activeGroups.style.display = "none";
-	unactiveGroups.style.display = "block";
-}
-
 
   
   
