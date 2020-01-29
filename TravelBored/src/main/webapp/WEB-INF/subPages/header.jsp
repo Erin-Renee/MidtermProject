@@ -19,13 +19,11 @@
   <nav class="nav">
         <div class="container-nav">
             <div class="logo">
-                <a href="#">Travel Bored</a>
+                <a href="gotoProfile.do">${loggedInUser.username}</a>
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li><a href="gotoHome.do">Home</a></li>
                     <li><a href="gotoCrUpdateEvent.do">Create Event</a></li>
-                    <li><a href="gotoProfile.do">User Profile</a></li>
                     <li><a href="adminSettings.do">Admin Controls</a></li>
                     <li><a href="logout.do">logout</a></li>
                     <li><div class="search-bar">
@@ -53,13 +51,11 @@
      <nav class="nav">
         <div class="container-nav">
             <div class="logo">
-                <a href="#">Travel Bored</a>
+                <a href="gotoProfile.do">${loggedInUser.username}</a>
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li><a href="gotoHome.do">Home</a></li>
                     <li><a href="gotoCrUpdateEvent.do">Create Event</a></li>
-                    <li><a href="gotoProfile.do">User Profile</a></li>
                     <li><a href="logout.do">logout</a></li>
                     <li><div class="search-bar">
                     <form action="search.do" method="get">
@@ -90,11 +86,10 @@
   <nav class="nav">
         <div class="container-nav">
             <div class="logo">
-                <a href="#">Travel Bored</a>
+                <a href="gotoLanding.do">Travel Bored</a>
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li><a href="gotoLanding.do">Home</a></li>
                     <li><a href="gotoLanding.do">login</a></li>
                     <li>
                     <div class="search-bar">

@@ -70,7 +70,7 @@ public class UserController {
 		} else {
 			
 			session.setAttribute("loggedInUser", user);
-			return "home";
+			return "profileView";
 		}
 		
 	}
