@@ -1,0 +1,36 @@
+.form-box{
+	background-color: #00000088;
+	border-radius:10px;
+	display: block;
+	max-width:300px;
+  	margin: auto;
+  	margin-top: 15vh;
+  	text-align:center;
+}
+.form-box form{
+	display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+	
+}
+.form-box div{
+text-align:left;
+color:#fff;
+background-color: #00000088;
+padding:20px;
+padding-bottom:5px;
+border-radius:10px 10px 0px 0px;
+	
+}
+.form-box input{
+	margin-top:15px;
+	background-color: #00000088;
+	border: none;
+}
+.form-box button{
+	margin:5px;
+	background-color: #000000;
+	border: none;
+	color:#fff;
+}
