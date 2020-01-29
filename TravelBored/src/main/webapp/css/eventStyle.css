@@ -1,70 +1,194 @@
-.event-title {
-  background-color: #DDD;
-  position: auto;
-  left: -10px;
-  top: -20px;
-  right: 20px;
-  padding: 1px 7px 1px 7px;
-  text-align: center;
-  border-radius: 10px;
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+
+a {
   text-decoration: none;
-  color: black;	
-  box-shadow: 5px 5px 10px #000;
-  margin-left: 50px;
-  margin-right: 50px;
+  color: #5C7FB8;
 }
 
-.body {
-	max-width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: rgba(0, 0, 0, 0.3);
-	padding-bottom: 100px;
-	
+a:hover {
+  text-decoration: underline;
 }
 
-.event-img {
-  
-  /* height: 100%; */
-  box-shadow: 10px 10px 25px #000;
-  display: inline-block;
-  margin-left: 50px;
-  margin-right: auto;
-  border-radius: 25px;
-  margin-bottom: 75px;
-  
+.movie-card {
+  font: 14px/22px "Lato", Arial, sans-serif;
+  color: #A9A8A3;
+  padding: 40px 0;
+  size: 500px, 500px;
+}
    
+.container {
+  margin: 0 auto;
+  width: 1060px;
+  min-height: 850px;
+  background: #F0F0ED;
+  border-radius: 5px;
+  position: relative;
+  padding: 0;
 }
 
-.event-img img{
-	border-radius: 25px;
-	
+.hero {
+  height: 342px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* .hero:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: red;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg");
+  z-index: -1;
+  -webkit-transform: skewY(-2.2deg);
+          transform: skewY(-2.2deg);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-backface-visibility: hidden;
+} */
+
+.cover {
+  position: absolute;
+  top: 160px;
+  left: 40px;
+  z-index: 0;
+}
+
+.details {
+  padding: 190px 0 0 280px;
+}
+.details .title1 {
+  color: white;
+  font-size: 44px;
+  margin-bottom: 13px;
+  position: relative;
+}
+.details .title1 span {
+  position: absolute;
+  top: 3px;
+  margin-left: 12px;
+  background: #C4AF3D;
+  border-radius: 5px;
+  color: #544C21;
+  font-size: 14px;
+  padding: 0px 4px;
+}
+.details .title2 {
+  color: #C7C1BA;
+  font-size: 23px;
+  font-weight: 300;
+  margin-bottom: 15px;
 }
 
 
 .description {
-	color: white;
-	margin-left: 50px;
-	margin-right: 50px;
-	font-size: large;
-	font-family: arial;
-	background-color: rgba(208, 208, 208, 0.3);
-	border-radius: 10px;
-	padding-left: 10px;
+  bottom: 0px;
+  height: 200px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #B1B0AC;
 }
 
-.upperContent {
-	display: inline-block;
-	margin-left: 50px;
-	margin-right: 50px;
-	color: white;
-	font-size: large;
-	font: arial;
+
+.tag {
+  background: white;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin-right: 4px;
+  line-height: 35px;
+  cursor: pointer;
 }
 
-.hook {
-	font-style: italic;
+.tag:hover {
+  background: #ddd;
 }
+
+.column2 {
+  padding-left: 41px;
+  padding-top: 30px;
+  margin-left: 20px;
+  width: 480px;
+  float: left;
+}
+
+
+
+fieldset, label {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+a[data-tooltip] {
+  position: relative;
+}
+
+a[data-tooltip]::before,
+a[data-tooltip]::after {
+  position: absolute;
+  display: none;
+  opacity: 0.85;
+}
+
+a[data-tooltip]::before {
+  /*
+   * using data-tooltip instead of title so we 
+   * don't have the real tooltip overlapping
+   */
+  content: attr(data-tooltip);
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px;
+  /* we don't want the text to wrap */
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+a[data-tooltip]::after {
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  content: '';
+}
+
+a[data-tooltip]:hover::before,
+a[data-tooltip]:hover::after {
+  display: block;
+}
+
+/** positioning **/
+/* top tooltip */
+a[data-tooltip][data-placement="top"]::before {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 40px;
+}
+
+a[data-tooltip][data-placement="top"]::after {
+  border-top-color: #000;
+  border-bottom: none;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: 4px;
+}
+
 
 
 .switch {
