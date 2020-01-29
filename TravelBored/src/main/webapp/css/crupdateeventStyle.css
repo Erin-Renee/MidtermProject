@@ -1,0 +1,78 @@
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {
+      height: 1500px
+    }
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #0000;
+      height: 90vh;
+      position: fixed;
+      z-index: 2;
+      top: 10vh;
+      left: 0;
+    }
+    .sidenav button {
+      background-color: #fff;
+      display-type: block;
+      margin: 10px;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+
+      .row.content {
+        height: auto;
+      }
+    }
+    .w3-card-4 {
+      background-color: #ffffff77;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 250px;
+      margin-top: 0px;
+    }
+
+    .w3-input {
+      background-color: #ffffff88;
+      border: 0px;
+      border-radius: 0px;
+      border-bottom: 2px;
+      border-color: #888888;
+      border-style: solid;
+    }
+
+    .w3-container {
+      border-radius: 10px 10px 0px 0px;
+      padding: 5px;
+    }
+    .eventTable {
+      background-color: #ffffff77;
+      border-radius: 20px;
+      padding: 20px;
+      margin: auto;
+      margin-top: 0px;
+      table-layout: auto;
+      width: 90%;  
+    }
+    .eventTable tr:hover {
+      border-radius: 20px;
+    }
+    .eventTable thead tr th{
+    border: none;
+    }
+    .w3-2019-eden {
+    color: #fff;
+    background-color: #535d52c7;
+    }

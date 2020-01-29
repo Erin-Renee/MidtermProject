@@ -21,7 +21,7 @@ function showHome() {
   }
 
 
-function showOverlay(id, title, hook, description, eventDate, eventTime, imgUrl, eventUrl,locationId,locationCity,locationZip) {
+function showOverlay(id, title, hook, description, eventDate, eventTime, imgUrl, eventUrl, locationId, locationCity, locationZip) {
 	// Get the container element
 	console.log(id);
 	console.log(title);

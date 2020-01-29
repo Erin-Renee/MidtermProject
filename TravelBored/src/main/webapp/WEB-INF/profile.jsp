@@ -16,49 +16,72 @@
 <body>
 
 <div id="overlay">
-<button onclick="hideOverlay()">Update</button>
-<div>
-  <form action="updateEvent.do" method="post">
-    <input id="updateId" type="hidden" name="id" value="${event.id }"><br>
-    
-    <label for="title">Title:</label>
-    <input id="updateTitle" type="text" name="title" value="${event.title }"><br>
-    
-    <label for="hook">Hook:</label>
-    <input id="updateHook" type="text" name="hook" value="${event.hook }"><br>
-    
-    <label for="description">Description:</label>
-    <input id="updateDescription" type="text" name="description" value="${event.description }" ><br>
-    
-    <label for="eventDate">Event Date:</label>
-    <input id="updateDate" type="date" name="eventDate" value="${event.eventDate }"><br>
-    
-    <label for="eventTime">Time:</label>
-    <input id="updateTime" type="time" name="eventTime" value="${event.eventTime }"><br>
-    
-    <label for="imgUrl">Event Photo URL:</label>
-    <input id="updateImgUrl" type="url" name="imgUrl" value="${event.imgUrl }"><br>
-    
-    <label for="eventUrl">Event URL:</label>
-    <input id="updateEventUrl" type="url" name="eventUrl" value="${event.eventUrl }"><br>
-    
-    <label for="locationId">Location:</label>
-    <select name="locationId" >
-	<option id="locId" selected value="${sessionScope.loggedInUser.location.id}" ></option>
 
-	<c:forEach var="location" items="${locations}">
+<div class="update-event-class w3-card-4">
+        <div>
+          <div class="w3-container w3-2019-eden">
+            <h2>Update Event</h2>
+          </div>
+          <form action="updateEvent.do" class="needs-validation" novalidate method="POST">
+          <input id="updateId" type="hidden" name="id" value="${event.id }">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="w3-input form-control" id="updateTitle" placeholder="Enter title"   name="title" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="hook">Hook:</label>
+              <input type="text" class="w3-input form-control" id="updateHook" placeholder="Enter hook"  name="hook" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <input type="text" class="w3-input form-control" id="updateDescription" placeholder="Enter description"  name="description">
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="eventDate">Event Date:</label>
+              <input type="date" class="w3-input form-control" id="updateDate" placeholder="Enter event date" name="eventDate" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="time">Time:</label>
+              <input type="time" class="w3-input form-control" id="updateTime" placeholder="Enter time" name="eventTime" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="imgUrl">Photo URL:</label>
+              <input type="url" class="w3-input form-control" id="updateImgUrl" placeholder="Enter photo URL" name="imgUrl" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="eventUrl">Event URL:</label>
+              <input type="url" class="w3-input form-control" id="updateEventUrl" placeholder="Enter event URL" name="eventUrl">
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+            	<label for="location">Location:</label>
+           	 	<select name="locationId" >
+					<option id="locId" selected value="${sessionScope.loggedInUser.location.id}" ></option>
+						<c:forEach var="location" items="${locations}">
+							<option value="${location.id}" >${location.city} ${location.zipCode }</option>
+						</c:forEach>
+				</select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          <button onclick="hideOverlay()" id="close-button">X</button>
 
-	<option value="${location.id}" >${location.city} ${location.zipCode }</option>
+        </div>
+      </div>
 
-	
-</c:forEach>
-</select>
-    
-    
-    
-    <button type="submit" name="overlay">Update Event</button>
-  </form>
-</div>
 
 
 </div>

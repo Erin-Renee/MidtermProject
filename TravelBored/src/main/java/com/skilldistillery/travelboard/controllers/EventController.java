@@ -36,17 +36,16 @@ public class EventController {
 	private DAOSearch daoSearch;
 
 	@RequestMapping(path = "createEvent.do", method = RequestMethod.POST)
-	public String createEvent(Event event, String keyword, Model model, HttpSession session) {
+	public String createEvent(Event event, Integer locationId, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
 		user = daoUser.findUserById(user.getId());
 		
-		Location location =daoSearch.searchLocation(keyword);
 		
 		String createDate = LocalDateTime.now().toString();
 		
 		event.setActive(true);
 		event.setCreateDate(createDate);
-		event.setLocation(location);
+		event.setLocation(daoSearch.getLocation(locationId));
 		event = daoEvent.create(event);
 		
 		UserEventId uEId = new UserEventId(user.getId(), event.getId());	
