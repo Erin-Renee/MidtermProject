@@ -28,7 +28,10 @@ public class RedirectController {
 	private DAOSearch daoSearch;
 	
 	@RequestMapping(path = {"/", "gotoLanding.do"}, method= RequestMethod.GET)
-	private String landingPage() {
+	private String landingPage(HttpSession session) {
+		if (session.getAttribute("loggedInUser") != null) {
+			session.removeAttribute("loggedInUser");
+		}
 		return "landing";
 	}
 
@@ -47,11 +50,13 @@ public class RedirectController {
 	}
 	
 	@RequestMapping(path = "gotoRegister.do", method = RequestMethod.GET)
-	private String goToRegister(HttpSession session) {
+	private String goToRegister(HttpSession session, Model model) {
 		User user =	(User) session.getAttribute("loggedInUser");
 
 		
 		if (user == null) {
+			List<Location> locations = daoSearch.findAllLocations();
+			model.addAttribute("locations", locations);
 			return "register";
 		} else {
 			

@@ -32,7 +32,7 @@ public class DAOSearchIMPL implements DAOSearch {
 
 	@Override
 	public List<User> searchUsername(String keyword) {
-		String query = "SELECT user FROM User user WHERE user.username LIKE :uName";
+		String query = "SELECT user FROM User user WHERE user.username LIKE :uName AND user.active = 1";
 
 		List<User> users = em.createQuery(query, User.class).setParameter("uName", "%" + keyword + "%").getResultList();
 
@@ -49,13 +49,13 @@ public class DAOSearchIMPL implements DAOSearch {
 			System.out.println(location);
 			String cName = location.getCity();
 
-			String query = "SELECT event FROM Event event WHERE (event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc) ORDER BY CASE event.location.city WHEN :cName THEN 1 ELSE 2 END, zip_code";
+			String query = "SELECT event FROM Event event WHERE (event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc) AND event.active = 1 ORDER BY CASE event.location.city WHEN :cName THEN 1 ELSE 2 END, zip_code";
 
 			events = em.createQuery(query, Event.class).setParameter("eTitle", "%" + keyword + "%").setParameter("eHook", "%" + keyword + "%")
 					.setParameter("eDesc", "%" + keyword + "%").setParameter("cName", cName).getResultList();
 
 		} else {
-			String query = "SELECT event FROM Event event WHERE event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc ORDER BY event.location.city";
+			String query = "SELECT event FROM Event event WHERE event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc AND event.active = 1 ORDER BY event.location.city";
 
 			events = em.createQuery(query, Event.class).setParameter("eTitle", "%" + keyword + "%").setParameter("eHook", "%" + keyword + "%")
 					.setParameter("eDesc", "%" + keyword + "%").getResultList();
@@ -66,7 +66,7 @@ public class DAOSearchIMPL implements DAOSearch {
 
 	@Override
 	public Event findEventById(int eventid) {
-		Event event =em.find(Event.class, eventid);
+		Event event = em.find(Event.class, eventid);
 		return event;
 		
 		

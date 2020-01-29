@@ -73,7 +73,7 @@ public class DAOUserIMPL implements DAOUser {
 	
 	@Override
 	public User login(String userName, String password) {
-		String query = "SELECT user FROM User user WHERE user.email = :eName AND user.password = :pWord";
+		String query = "SELECT user FROM User user WHERE user.email = :eName AND user.password = :pWord AND user.active = 1";
 		
 		List<User> users = em.createQuery(query, User.class).setParameter("eName", userName).setParameter("pWord", password).getResultList();
 				

@@ -17,6 +17,7 @@ import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
+import com.skilldistillery.travelboard.entities.UserRole;
 
 @Controller
 public class UserController {
@@ -83,12 +84,16 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "register.do", method = RequestMethod.POST)
-	public String register(HttpSession session, User user) {
-		Location location = new Location();
-		location.setId(1);
-		user.setLocation(location);
+	public String register(HttpSession session, User user, Model model,  Integer locationId) {
+		
+		
+		user.setLocation(daoSearch.getLocation(locationId));
 		user = daoUser.create(user);
+		user.setActive(true);
+		user.setRole(UserRole.user);
 		session.setAttribute("loggedInUser", user);
+		List<Location> locations = daoSearch.findAllLocations();
+		model.addAttribute("locations", locations);
 		return "profile";
 	}
 
@@ -107,7 +112,6 @@ public class UserController {
 		user.setId(iduser.getId());
 		user.setLocation(daoSearch.getLocation(locationId));
 	
-		System.out.println(user);
 		
 
 		iduser = daoUser.updateBasicUserInfo(user, user.getId());
