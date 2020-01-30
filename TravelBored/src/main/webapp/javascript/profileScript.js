@@ -1,33 +1,33 @@
 
 function showSection(sectionNumber){
-	  var home = document.getElementById("section1");
+	  var profile = document.getElementById("section1");
 	  var profileSettings = document.getElementById("section2");
-	  var events = document.getElementById("section3");
-	  var groups = document.getElementById("section4");
-	  var photos = document.getElementById("section5");
+	  var yourEvents = document.getElementById("section3");
+	  var yourGroups = document.getElementById("section4");
+	  var yourPhotos = document.getElementById("section5");
 	  
 	  
-		 home.style.display = "none";
+	  profile.style.display = "none";
 		 profileSettings.style.display = "none";
-		 events.style.display = "none";
-		 groups.style.display = "none";
-		 photos.style.display = "none";
+		 yourEvents.style.display = "none";
+		 yourGroups.style.display = "none";
+		 yourPhotos.style.display = "none";
 	  
 	  
 	  if(sectionNumber == 1){
-		  home.style.display = "block";
+		  profile.style.display = "block";
 	  }
 	  if(sectionNumber == 2){
 		  profileSettings.style.display = "block";
 	  }
 	  if(sectionNumber == 3){
-		  events.style.display = "block";
+		  yourEvents.style.display = "block";
 	  }
 	  if(sectionNumber == 4){
-		  groups.style.display = "block";
+		  yourGroups.style.display = "block";
 	  }
 	  if(sectionNumber == 5){
-		  photos.style.display = "block";
+		  yourPhotos.style.display = "block";
 	  }
 
 	 
