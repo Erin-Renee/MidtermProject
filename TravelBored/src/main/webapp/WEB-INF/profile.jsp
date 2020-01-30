@@ -243,6 +243,12 @@
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
+              <label for="userImgUrl">Password:</label>
+              <input type="url" class="w3-input form-control" id="userImgUrl" placeholder="Your Photot Url here.." name="userImgUrl">
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
             	<label for="location">Location:</label>
            	 	<select name="locationId" required>
 					<option selected value="${sessionScope.loggedInUser.location.id}" >${sessionScope.loggedInUser.location.city} ${sessionScope.loggedInUser.location.zipCode }</option>
