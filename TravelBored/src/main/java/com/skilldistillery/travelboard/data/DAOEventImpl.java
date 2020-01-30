@@ -1,5 +1,7 @@
 package com.skilldistillery.travelboard.data;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -79,6 +81,9 @@ public class DAOEventImpl implements DAOEvent {
 		userevent.setId(usereventid);
 		userevent.setUser(user);
 		userevent.setEvent(event);
+		userevent.setActive(true);
+		userevent.setCreator(false);
+		userevent.setCreateDate(LocalDateTime.now().toString());
 		em.persist(userevent);
 		em.flush();
 		return userevent;
