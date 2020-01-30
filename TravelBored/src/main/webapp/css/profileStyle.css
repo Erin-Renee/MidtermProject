@@ -160,8 +160,19 @@ display: none; /* Hidden by default */
 .table td, .table th {
     font-size: 15px;
 }
-    
-    
-    
-    
-    
+
+
+
+/* PHOTO GALLERY */
+.carousel{
+background-size: contain;
+    /* position: relative; */
+    margin: auto;
+    max-width: 1200px;
+}
+
+.carousel img {
+    size: contain;
+    background-size: contain;
+    width: 100%;
+}
