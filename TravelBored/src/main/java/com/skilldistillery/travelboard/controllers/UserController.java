@@ -17,6 +17,7 @@ import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.Group;
+import com.skilldistillery.travelboard.entities.GroupComment;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
@@ -55,6 +56,9 @@ public class UserController {
 			}
 		}
 		
+		List<GroupComment> groupComments = user.getGroupComments();
+		model.addAttribute("groupComments", groupComments);
+		
 		model.addAttribute("creatorEvents", creatorEvents);
 		
 		List<Group> creatorGroups = daoSearch.searchGroupByUser(user.getId());
@@ -92,7 +96,26 @@ public class UserController {
 			
 			refresh(user, model);
 			model.addAttribute("sectionNumber", 1);
+		
+			
 			return "profile";
+		}
+	}
+	@RequestMapping(path = "gotoUser.do", method = RequestMethod.GET)
+	private String goToUser(HttpSession session, Model model, Integer userId) {
+		User user =	(User) session.getAttribute("loggedInUser");
+		user = daoUser.findUserById(user.getId());
+		session.setAttribute("loggedInUser", user);
+		if (user == null) {
+			return "landing";
+		}else {
+			user = daoUser.findUserById(userId);
+			model.addAttribute("user", user);
+			List<UserEvent> userEvents = user.getUserEvents();
+			model.addAttribute("userEvents", userEvents);
+			List<GroupComment> groupComments = user.getGroupComments();
+			model.addAttribute("groupComments", groupComments);
+			return "profileview";
 		}
 	}
 

@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.User;
 
 @Service

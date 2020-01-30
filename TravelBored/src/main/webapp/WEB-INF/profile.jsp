@@ -8,6 +8,7 @@
 	<jsp:include page="subPages/styleIncludes.jsp"></jsp:include>
 	<link rel="stylesheet" href="css/eventStyle.css">
 	<link rel="stylesheet" href="css/profileStyle.css">
+	<link rel="stylesheet" href="css/profileviewStyle.css">
 	<script src="javascript/profileScript.js"></script>
 </head>
 <header>
@@ -139,21 +140,67 @@
       <div  id="section1">
 <div class="card-container">
   <div class="card u-clearfix">
+<img src="${sessionScope.loggedInUser.userImgUrl }" alt="" class="card-media" />
     <div class="card-body">
       <h2 class="card-title">${sessionScope.loggedInUser.username}</h2>
       <div class="card-read">   </div>
-      <br>
-      <br>
-      <div class="upperContent">
-	<p>First Name: ${sessionScope.loggedInUser.firstName}</p>
-	<br>
-	<p>Last Name: ${sessionScope.loggedInUser.lastName}</p>
-	<br>
-	<p>E-mail: ${sessionScope.loggedInUser.email}</p>
-	<br>
-</div>
+      <div class="card-read:after">
+      <c:forEach var="detail" items="${sessionScope.loggedInUser.userDetails}">
+      <h3> <a href="${detail.userDetailUrl}">${detail.userDetailName}:</a></h3>
+      <p>${detail.userDetailDescription }</p>
+      </c:forEach>
+      </div>
     </div>
- <%--    <img src="${sessionScope.loggedInUser.userDetails.userDetailUrl }" alt="" class="card-media" /> --%>
+    <div>
+     <table class="table table-hover eventTable">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Hook</th>
+            </tr>
+          </thead>
+          <tbody id="event-update-table">
+
+            <c:forEach var="userEvent" items="${sessionScope.loggedInUser.userEvents}">
+              <tr class="event-row">
+                <td><a href="gotoEvent.do?eventId=${userEvent.event.id }">${userEvent.event.title}</a></td>
+                <td>${userEvent.event.hook }</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+    </div>
+   <div>
+   <br><br>
+     <table class="table table-hover eventTable">
+          <thead>
+            <tr>
+              <th>Group</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody id="event-update-table">
+          <c:set var = "groupId" value="0"/> 
+            <c:forEach var="comment" items="${groupComments}">
+            <c:choose>
+            <c:when test="${groupId != comment.group.id}">
+              <tr class="event-row">
+                <td><a href="gotoGroup.do?groupId=${comment.group.id }">${comment.group.title}</a></td>
+                <td>${comment.content}</td>
+              </tr>
+            </c:when>
+            <c:otherwise>
+            <tr class="event-row">
+                <td>&emsp; ^</td>
+                <td>${comment.content}</td>
+              </tr>
+            </c:otherwise>
+            </c:choose>
+              <c:set var = "groupId" value="${comment.group.id }"/> 
+            </c:forEach>
+          </tbody>
+        </table>
+    </div>
   </div>
   <div class="card-shadow"></div>
 </div>
