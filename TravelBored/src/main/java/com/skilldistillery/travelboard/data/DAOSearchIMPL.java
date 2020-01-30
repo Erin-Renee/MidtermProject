@@ -64,7 +64,7 @@ public class DAOSearchIMPL implements DAOSearch {
 					.setParameter("eDesc", "%" + keyword + "%").setParameter("cName", cName).getResultList();
 
 		} else {
-			String query = "SELECT event FROM Event event WHERE event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc AND event.active = 1 ORDER BY event.location.city";
+			String query = "SELECT event FROM Event event WHERE (event.title LIKE :eTitle OR event.hook LIKE :eHook OR event.description LIKE :eDesc) AND event.active = 1 ORDER BY event.location.city";
 
 			events = em.createQuery(query, Event.class).setParameter("eTitle", "%" + keyword + "%").setParameter("eHook", "%" + keyword + "%")
 					.setParameter("eDesc", "%" + keyword + "%").getResultList();
