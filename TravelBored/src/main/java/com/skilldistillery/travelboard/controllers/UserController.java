@@ -41,7 +41,7 @@ public class UserController {
 		List<Event> events = new ArrayList<>();
 		for (UserEvent uEvent: user.getUserEvents()) {
 			if(uEvent.getCreator() == false) {
-				events.add(uEvent.getEvent());	
+				events.add(uEvent.getEvent()); 
 			}
 		}
 		
@@ -63,7 +63,7 @@ public class UserController {
 	public String home( HttpSession session, String email, String password, Model model) {
 		
 		User user = daoUser.login(email, password);
-		
+		model = refresh(user, model);
 		
 		if (user == null) {
 			return "landing";

@@ -16,8 +16,8 @@
     .sidenav button {
       background-color: #0000;
       display: block;
-      margin: 10px;
-      width: 100%;
+      margin: 20px;
+      width: 100px;
       height: 60px;
       border-width: 1px;
       font-size: 15px;
@@ -47,7 +47,7 @@
       }
     }
     .w3-card-4 {
-      background-color: #ffffff77;
+      background-color: #ffffffcc;
       border-radius: 20px;
       padding: 20px;
       margin: 250px;
@@ -75,7 +75,7 @@
       padding: 5px;
     }
     .eventTable {
-      background-color: #ffffff77;
+      background-color: #ffffffcc;
       border-radius: 20px;
       padding: 20px;
       margin: auto;
@@ -132,7 +132,7 @@ display: none; /* Hidden by default */
 }
 
 .update-event-class {
-	margin-top: 150px;
+	margin-top: 75px;
 }
 #close-button {
 	position: fixed;

@@ -21,7 +21,6 @@
       
       </div>
       <div class="col-sm-2 sidenav">
-        <h4>Search</h4>
         <ul class="sidenav nav-pills nav-stacked">
           <li class="active"><button onclick="showSection(1)">Events</button></li>
           <li><button onclick="showSection(2)">Users</button></li>
