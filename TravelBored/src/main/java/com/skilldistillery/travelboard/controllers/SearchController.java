@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.travelboard.data.DAOEvent;
 import com.skilldistillery.travelboard.data.DAOSearch;
+import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.Location;
@@ -20,6 +22,11 @@ import com.skilldistillery.travelboard.entities.User;
 public class SearchController {
 	@Autowired
 	private DAOSearch daoSearch;
+	
+	@Autowired
+	private DAOUser daoUser;
+	@Autowired
+	private DAOEvent daoEvent;
 
 	@RequestMapping(path = "search.do", method = RequestMethod.GET)
 	public String search(Model model, String keyword, String location, HttpSession session) {
@@ -71,10 +78,22 @@ public class SearchController {
 	}
 
 	@RequestMapping(path = "gotoEvent.do", method = RequestMethod.GET)
-	private String goToEvent(Integer eventId, Model model) {
+	private String goToEvent(Integer eventId, Model model, HttpSession session) {
 
 		Event event = daoSearch.findEventById(eventId);
 		model.addAttribute("event", event);
+		
+		User user =	(User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			
+			return "event";
+		}
+		user = daoUser.findUserById(user.getId());
+		session.setAttribute("loggedInUser", user);
+		
+		
+		
+		model.addAttribute("notAttending", daoEvent.findUserEvent(eventId, user.getId()));
 		return "event";
 	}
 	
