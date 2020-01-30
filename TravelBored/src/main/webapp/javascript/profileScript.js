@@ -114,3 +114,12 @@ function hideGroupOverlay() {
       });
     }, false);
   })();
+  
+  
+  
+  
+  
+  
+  //PHOTO GALLERY
+  
+  
