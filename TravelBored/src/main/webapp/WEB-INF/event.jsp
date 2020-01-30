@@ -74,7 +74,7 @@
     <img src="${comment.user.userImgUrl}" class="img-circle" height="65" width="65" alt="Avatar">
   </div>
   <div class="col-sm-10">
-    <h4>${comment.user.username} <small>${comment.createDate}</small></h4>
+    <h4><a href="gotoUser.do?userId=${comment.user.id}">${comment.user.username}</a> <small>${comment.createDate}</small></h4>
     <p>${comment.content}</p>
     <br>
   </div>
