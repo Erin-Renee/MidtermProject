@@ -269,6 +269,14 @@ INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (1, 'Denver',
 INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (2, 'Greenwood Village', 1, '80111');
 INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (3, 'Denver', 1, '80204');
 INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (4, 'Denver', 1, '80205');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (5, 'Colorado Springs', 1, '80910');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (6, 'Colorado Springs', 1, '80904');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (7, 'Denver', 1, '80222');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (8, 'Colorado Springs', 1, '80905');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (9, 'Englewood', 1, '80112');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (10, 'Denver', 1, '80203');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (11, 'Morrison', 1, '80465');
+INSERT INTO `location` (`id`, `city`, `active`, `zip_code`) VALUES (12, 'Breckenridge', 1, '80424');
 
 COMMIT;
 
@@ -278,9 +286,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (2, 'testuser', 'testuser', 1, 'user', 'Test', 'User', 'testuser@test.com', 2, '2020-01-24', 'https://skilldistillery.com/wp-content/uploads/2017/01/RobRPicSDWEB-250x250.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (1, 'admin', 'admin', 1, 'admin', 'admin first', 'admin last', 'admin@travelbored.com', 1, '2020-01-24', 'https://images.app.goo.gl/9GB2u5SozoJ1RX1A6');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (3, 'moderator', 'moderator', 1, 'moderator', 'mod first', 'mod last', 'moderator@travelbored.com', 1, '2020-1-24', 'https://images.app.goo.gl/mwdtfRsxBKcT6rM76');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (2, 'LoneTraveler', 'lonetraveler', 1, 'user', 'Jack', 'Ryan', 'jackryan@gmail.com', 2, '2020-01-24', 'https://skilldistillery.com/wp-content/uploads/2017/01/RobRPicSDWEB-250x250.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `location_id`, `create_date`, `user_img_url`) VALUES (1, 'TravisR', 'admin', 1, 'admin', 'Travis', 'Roberts', 'travis.c.roberts35@gmail.com', 1, '2020-01-30', 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/1503400_2558642324082_138437503_n.jpg?_nc_cat=101&_nc_ohc=MnurFJGlohAAX8TVbjx&_nc_ht=scontent.fapa1-1.fna&oh=98565d423eaa629d981abc845567815a&oe=5EC7675F');
 
 COMMIT;
 
@@ -290,12 +297,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (1, 'Skill Distillery', 'Skill Distillery is an intensive, 16-week Java bootcamp in Denver, Colorado. The course is arranged into three units – Java Programming, Server-side Java, and Front-end Development.', 'The curriculum focuses on the fundamentals of programming, Java (and its libraries), unit testing, Spring, Spring MVC, and using a source code repository. Students will also gain experience deploying web content to a web server and navigating the server file system from the command line. Skill Distillery graduates will be prepared to take the Oracle Certified Associate – Java Programmer exam and will be on track for a career as a web interface designer or a full stack application developer.', '08:30', '2020-01-25', 'https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/4216/s300/sd-logo.jpg', 'https://skilldistillery.com/', 1, 2, '2020-01-24');
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (2, 'BOURBON & BACON FEST DENVER 2020', 'Taste your way through a dizzying array of specialty bourbons and unique whiskies from distilleries both large and artisanal, while you munch on a bevy of smoky, porky treats.', 'The event will host samples from the area’s best restaurants. Imagine tasting sweet-savory bacon from local and regional producers paired with premium whiskeys such as Buffalo Trace Bourbon, Fireball and 1792 in a lively and intimate setting.\n\nThe Bourbon & Bacon Fest is presented by Buffalo Trace Bourbon and sponsored by Argonaut Wine & Liquor and the Colorado Pork Producers Council. A portion of the proceeds will support the Colorado Restaurant Association Education Foundation.', '14:00', '2020-01-25', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/B-B_CoDenver_posting_4556c6ee-9a31-c3aa-9e3959e3b670539d.jpg', 'https://eventsplus.radio.com/denver/kqmt/e/bourbon-bacon-denver-2020/tickets', 1, 1, '2020-01-24');
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (3, 'WINTER BREW FEST', 'Warm up this winter with unlimited tastings of some of the best brews available – souvenir glass included!', 'description', '19:00', '2020-01-25', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/WBF0_01ae5a5a-a977-1229-b92ba9ffdd1c49fd.jpg', 'https://www.denver.org/event/winter-brew-fest/70781/', 1, 3, '2020-01-24');
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (4, 'Space Tours Live', 'Blast off from your Planetarium seat into the depths of space as you learn about your place in the cosmos.', 'A live host will accompany you on your journey as together you determine your path and navigate a three-dimensional atlas of the known universe. You will return home with a new appreciation for the immensity, complexity, and beauty of our solar system and beyond.', '11:15', '2020-01-27', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/spacetourslive-745x4950_66e1d020-975a-5b47-dc5e46273711a348.jpg', 'https://secure1.dmns.org/space-tours-live-requires-museum-admission', 1, 4, '2020-01-24');
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (5, 'Rockies Fest', 'Rockies Fest is back at Coors Field on Saturday, Jan. 25, 2020! ', 'It will feature activities for all ages, autograph sessions and behind-the-scenes fan experiences with all proceeds benefitting the Colorado Rockies Foundation.', '09:00', '2020-01-25', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/cut0_4ae935af-f0cc-babd-921941e044606f87.png', 'https://www.mlb.com/rockies/fans/rockies-fest', 1, 1, '2020-01-24');
-INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (6, 'Denver Nuggets vs. Utah Jazz', 'Utah Jazz vs Denver Nuggets at Pepsi Center', 'Nuggets Night Out w/ Purchase of Promotional Offer', '20:30', '2020-01-30', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/nuggets032_3c971ac5-c0a3-0027-b300165cb80ab818.jpg', 'https://www.altitudetickets.com/events/detail/utah-jazz-at-pepsi-center-jan-30', 1, 3, '2020-01-24');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (1, 'Skill Distillery SuperBowl LIV Party', 'Join us for the first Skill Distillery SuperBowl Party hosted right here at Skill Distillery', 'Super Bowl LIV, the 54th Super Bowl and the 50th modern-era National Football League championship game, will decide the champion for the NFL‘s 2019 and 100th season. The National Football Conference champion San Francisco 49ers will play against the American Football Conference champion Kansas City Chiefs.', '16:30', '2020-02-02', 'https://metrovoicenews.com/wp-content/uploads/2019/02/mahomes-points-up.jpg', 'https://www.nfl.com/super-bowl', 1, 2, '2020-01-30');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (2, 'Beer & Food Tour of the Rino Arts District', 'On this three-hour food and beer adventure, taste some of the best bites and brews Denver has to offer and explore the RiNo Arts District.', 'We’ll start and end inside the beautiful Denver Central Market, a hub for gourmet vendors and a popular hang-out spot for Denver locals. Along the way, we’ll walk to five restaurants and try delicious local dishes with optional beer pairings. You’ll taste authentic wood-fired pizza, fresh sushi-grade poke with salmon, Mexican tacos from one of Denver’s top chefs, and the best selling ice cream from one of Food and Wine Magazine’s top ice creameries in the country.', '14:00', '2020-01-31', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/DeliciousDenver_238148EA-D3FE-4D3D-9149BC895E64007D_62ca1b5f-a934-4198-8da780e781d2eba6.jpg', 'https://www.deliciousdenverfoodtours.com/foodandbeertour/', 1, 4, '2020-01-30');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (3, 'Beer Here! Brewing the New West', 'A river of beer flows through Colorado‘s past.', ' Come explore our brewing past, present, and future. See beer-brewing equipment from then to now, a massive bottle-breaker from Prohibition days, the nation‘s first aluminum beer cans, and a wealth of other artifacts from our state‘s hoppy history.', '10:00', '2020-01-31', 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/HC_beerHere_sm-010_4bd3234c-a11f-e1f8-475436eef17c3eff.png', 'https://www.historycolorado.org/exhibit/beer-here', 1, 10, '2020-01-30');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (4, 'Icelantics Winter on the Rocks', 'AEG Presents is thrilled to announce ICELANTIC‘S WINTER ON THE ROCKS FT. ZHU live at Red Rocks Amphitheatre on Friday, January 31st, 2020.', 'Tickets to this show are available at the Denver Coliseum box office from 11 a.m. – 3 p.m. every Saturday. All tickets sold at the Coliseum box office require a Flash Seats account along with a valid ID matching the account profile.  Download the Red Rocks App before your visit. From purchasing and managing your tickets, to park and venue maps, tips, weather alerts and special offers, the official Red Rocks app has everything you need for an unforgettable concert experience.', '18:45', '2020-01-31', 'https://assets.simpleviewinc.com/simpleview/image/fetch/q_75/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/icelantic-s-winter-on-the-rocks-ft-zhu-tickets_01-31-20_18_5dc9f81acb4730_2dda1573-fb8f-a3db-a02d226ce425f498.jpg', 'https://www.redrocksonline.com/events/detail/icelantics-winter-on-the-rocks-ft-zhu', 1, 11, '2020-01-30');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (5, 'Breckenridge Mardis Gras', 'Each year, New Orleans visitors and Mardi Gras lovers take over Breckenridge with a parade, street party, masks, boas, music, and revelry to commemorate the carnival season. ', 'This year, we are thrilled to be bringing in some of the most seasoned and highly respected musicians from New Orleans to feature a truly authentic New Orleans Mardi Gras Celebration!', '17:30', '2020-02-25', 'https://1ln40d4elc1oqb3b4do821oz-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/dog-in-costume-during-breckenridge-mardi-gras-214x300.jpg', 'https://www.gobreck.com/event/mardi-gras/', 1, 12, '2020-01-30');
+INSERT INTO `event` (`id`, `title`, `hook`, `description`, `event_time`, `event_date`, `img_url`, `event_url`, `active`, `location_id`, `create_date`) VALUES (6, 'Bighorn Sheep Day Festival', 'Kids of all ages can see our state mammal in its natural habitat, learn fascinating animal facts and make crafts.', 'Join us for the 15th Annual Bighorn Sheep Day. Look for bighorns in their natural habitat through our high-power telescopes. Bighorn presentations and door prizes. Guided nature walks. Children‘s activities and crafts. Live Zoo animals. No-charge - all activities are FREE! Don‘t forget your binoculars. It‘s a full day of free family fun!', '10:00', '2020-02-15', 'https://cdn.britannica.com/93/6493-004-9A40A729/Bighorn-sheep.jpg', 'https://www.visitcos.com/events-calendar/annual/bighorn-sheep-day/', 1, 6, '2020-01-30');
 
 COMMIT;
 
@@ -313,24 +320,12 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `event_comment`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `travelboreddb`;
-INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (1, 'Best coding school in the country!', '2020-01-24', 1, 1);
-INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (2, 'Best burbon and bacon ever', '2020-01-25', 1, 2);
-INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (3, 'Best winter brew event I\'ve been to', '2020-01-24', 1, 3);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `community`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `community` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (1, 'SD Group', 'test hook', 1, '2020-01-24', 1);
-INSERT INTO `community` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (2, 'SD group test 2', 'test 2 hook', 1, '2020-01-24', 1);
+INSERT INTO `community` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (1, 'SD24 Group', 'New slack!!!!', 1, '2020-01-30', 1);
+INSERT INTO `community` (`id`, `title`, `hook`, `user_id`, `create_date`, `active`) VALUES (2, 'Beer', 'Talk about your favorite beer(s)!', 1, '2020-01-30', 1);
 
 COMMIT;
 
@@ -340,8 +335,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelboreddb`;
-INSERT INTO `group_comment` (`id`, `content`, `create_date`, `group_id`, `user_id`) VALUES (1, 'content test', '2020-01-24', 1, 1);
-INSERT INTO `group_comment` (`id`, `content`, `create_date`, `group_id`, `user_id`) VALUES (2, 'content 2 test', '2020-01-24', 2, 1);
+INSERT INTO `group_comment` (`id`, `content`, `create_date`, `group_id`, `user_id`) VALUES (1, 'First post!!!!!', '2020-01-30', 1, 1);
+INSERT INTO `group_comment` (`id`, `content`, `create_date`, `group_id`, `user_id`) VALUES (2, 'My favorite beer is Boulevard...how about you guys?', '2020-01-30', 2, 1);
 
 COMMIT;
 
@@ -352,11 +347,8 @@ COMMIT;
 START TRANSACTION;
 USE `travelboreddb`;
 INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 1, 1, 1, '2020-01-24');
-INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 2, 1, 1, '2020-01-24');
-INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 3, 1, 1, '2020-01-24');
-INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 4, 1, 1, '2020-01-24');
-INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 5, 1, 1, '2020-01-24');
-INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 6, 1, 1, '2020-01-24');
+INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 2, 1, 1, '2020-01-30');
+INSERT INTO `user_event` (`user_id`, `event_id`, `creator`, `active`, `create_date`) VALUES (1, 3, 1, 1, '2020-01-30');
 
 COMMIT;
 
@@ -367,21 +359,6 @@ COMMIT;
 START TRANSACTION;
 USE `travelboreddb`;
 INSERT INTO `user_detail` (`id`, `user_detail_name`, `user_detail_description`, `user_detail_url`, `user_id`) VALUES (1, 'middle name', 'sd test middle', NULL, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `event_img`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `travelboreddb`;
-INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (1, 'https://images.app.goo.gl/TMzENCuQf9DNJBxPA', 'skill distillery pic', 1, '2020-01-24');
-INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (2, 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/B-B_CoDenver_posting_4556c6ee-9a31-c3aa-9e3959e3b670539d.jpg', 'burbon and bacon', 2, '2020-01-24');
-INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (3, 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/WBF0_01ae5a5a-a977-1229-b92ba9ffdd1c49fd.jpg', 'winter brew', 3, '2020-01-24');
-INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (4, 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/spacetourslive-745x4950_66e1d020-975a-5b47-dc5e46273711a348.jpg', 'space tours', 4, '2020-01-24');
-INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (5, 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/cut0_4ae935af-f0cc-babd-921941e044606f87.png', 'rockies fest', 5, '2020-01-24');
-INSERT INTO `event_img` (`id`, `event_img_url`, `event_img_name`, `event_id`, `create_date`) VALUES (6, 'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_465,q_50,w_698/https://assets.simpleviewinc.com/simpleview/image/upload/crm/denver/nuggets032_3c971ac5-c0a3-0027-b300165cb80ab818.jpg', 'nuggets vs jazz', 6, '2020-01-24');
 
 COMMIT;
 

@@ -42,6 +42,9 @@ public class UserController {
 		
 		model.addAttribute("locations", locations);
 		List<Event> events = new ArrayList<>();
+		if (user.getUserEvents() == null) {
+			user.setUserEvents(new ArrayList<>());
+		}
 		for (UserEvent uEvent: user.getUserEvents()) {
 			if(uEvent.getCreator() == false) {
 				events.add(uEvent.getEvent()); 
@@ -132,9 +135,9 @@ public class UserController {
 		
 		
 		user.setLocation(daoSearch.getLocation(locationId));
-		user = daoUser.create(user);
 		user.setActive(true);
 		user.setRole(UserRole.user);
+		user = daoUser.create(user);
 		session.setAttribute("loggedInUser", user);
 		List<Location> locations = daoSearch.findAllLocations();
 		model.addAttribute("locations", locations);
@@ -194,14 +197,15 @@ public class UserController {
 		iduser.setUsername(user.getUsername());
 		iduser.setPassword(user.getPassword());
 		iduser.setEmail(user.getEmail());
-		iduser.setLocation(user.getLocation());
-		iduser.setUserImgUrl(user.getUserImgUrl());
 		iduser.setLocation(daoSearch.getLocation(locationId));
+		iduser.setUserImgUrl(user.getUserImgUrl());
 		
 		
 	
 		iduser = daoUser.updateBasicUserInfo(iduser, iduser.getId());
 		session.setAttribute("loggedInUser",iduser);
+		System.out.println("****************************************************");
+		System.out.println(iduser);
 		model.addAttribute("sectionNumber", 2);
 		refresh(iduser, model);
 		return "profile";
