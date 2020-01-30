@@ -1,5 +1,7 @@
 package com.skilldistillery.travelboard.data;
 
+import java.util.List;
+
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.EventComment;
 import com.skilldistillery.travelboard.entities.User;
@@ -24,5 +26,7 @@ public interface DAOEvent {
 	public EventComment submitComment(EventComment eComment);
 	
 	public boolean deleteComment(int eId);
+	
+	public List<EventComment> getEventCommentsByEventId(int eId);
 
 }

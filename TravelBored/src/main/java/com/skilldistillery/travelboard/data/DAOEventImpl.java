@@ -1,6 +1,7 @@
 package com.skilldistillery.travelboard.data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.EventComment;
+import com.skilldistillery.travelboard.entities.GroupComment;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
 import com.skilldistillery.travelboard.entities.UserEventId;
@@ -132,6 +134,14 @@ public class DAOEventImpl implements DAOEvent {
 		return false;
 		
 		
+	}
+	@Override
+	public List<EventComment> getEventCommentsByEventId(int eId) {
+		String query = "SELECT eComment FROM EventComment eComment WHERE eComment.event.id = :eId";
+		
+		List <EventComment> eComments = em.createQuery(query, EventComment.class).setParameter("eId", eId).getResultList();
+		
+		return eComments;
 	}
 	
 

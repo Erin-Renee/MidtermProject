@@ -110,21 +110,37 @@ public class GroupController {
 	}
 	
 	@RequestMapping(path = "createGroupComment.do", method = RequestMethod.POST)
-	public String createGroupComment (Group group, String comment, HttpSession session, Model model) {
+	public String createGroupComment (Integer groupId, String comment, HttpSession session, Model model) {
 		GroupComment gComment = new GroupComment();
 		gComment.setContent(comment);
 		gComment.setCreateDate(LocalDateTime.now().toString());
 		gComment.setUser((User) session.getAttribute("loggedInUser"));
-		gComment.setGroup(group);
+		gComment.setGroup(daoGroup.getGroupById(groupId));
 		
 		gComment = daoGroup.submitComment(gComment);
+		
+		List<GroupComment> commentList = daoGroup.getGroupCommentsByGroupId(groupId);
+		
 		model.addAttribute("comment", gComment);
+		model.addAttribute("group", daoGroup.getGroupById(groupId));
+		model.addAttribute("commentList", commentList);
 		return "group";
 	}
 	
 	@RequestMapping(path = "deleteGroupComment.do", method = RequestMethod.POST)
 	public String deleteGroupComment (GroupComment gComment, HttpSession session, Model model) {
 		daoGroup.deleteComment(gComment.getId());
+		
+		return "group";
+	}
+	@RequestMapping(path = "gotoGroup.do", method = RequestMethod.GET)
+	public String gotoGroup(Integer groupId, HttpSession session, Model model) {
+		Group group = daoGroup.getGroupById(groupId);
+		
+		model.addAttribute("group", group);
+		
+		List<GroupComment> commentList = daoGroup.getGroupCommentsByGroupId(group.getId());
+		model.addAttribute("commentList", commentList);
 		
 		return "group";
 	}

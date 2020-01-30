@@ -14,6 +14,7 @@ import com.skilldistillery.travelboard.data.DAOEvent;
 import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.EventComment;
 import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
@@ -91,7 +92,10 @@ public class SearchController {
 		user = daoUser.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
 		
+        List<EventComment> commentList = daoEvent.getEventCommentsByEventId(eventId);
 		
+		model.addAttribute("event", daoSearch.findEventById(eventId));
+		model.addAttribute("commentList", commentList);
 		
 		model.addAttribute("notAttending", daoEvent.findUserEvent(eventId, user.getId()));
 		return "event";
