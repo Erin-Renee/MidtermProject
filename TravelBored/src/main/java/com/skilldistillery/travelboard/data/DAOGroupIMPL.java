@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skilldistillery.travelboard.entities.EventComment;
 import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.GroupComment;
 
@@ -82,6 +81,14 @@ public class DAOGroupIMPL implements DAOGroup {
 	public Group getGroupById(int gId) {
 		
 		return em.find(Group.class, gId);
+	}
+	@Override
+	public List<GroupComment> getGroupCommentsByGroupId(int gId) {
+		String query = "SELECT gComment FROM GroupComment gComment WHERE gComment.group.id = :gId";
+		
+		List <GroupComment> gComments = em.createQuery(query, GroupComment.class).setParameter("gId", gId).getResultList();
+		
+		return gComments;
 	}
 
 }
