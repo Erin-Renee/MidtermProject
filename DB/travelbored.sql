@@ -320,18 +320,6 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `event_comment`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `travelboreddb`;
-INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (1, 'Best coding school in the country!', '2020-01-24', 1, 1);
-INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (2, 'Best burbon and bacon ever', '2020-01-25', 1, 2);
-INSERT INTO `event_comment` (`id`, `content`, `create_date`, `user_id`, `event_id`) VALUES (3, 'Best winter brew event I\'ve been to', '2020-01-24', 1, 3);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `community`
 -- -----------------------------------------------------
 START TRANSACTION;
