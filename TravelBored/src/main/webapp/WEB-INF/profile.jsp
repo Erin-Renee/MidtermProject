@@ -321,7 +321,7 @@
                 <td><a href="gotoEvent.do?eventId=${event.id }">${event.title}</a></td>
                 <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
                 <%-- <input type="hidden" value="${event }" name = "event"> --%>
-                <td><button onclick="showOverlay('${event.id}','${event.title }', '${event.hook }', '${event.description}', '${event.eventDate}', '${event.eventTime}', '${event.imgUrl}', '${event.eventUrl}', '${event.location.id}', '${event.location.city}', '${event.location.zipCode}')">Update</button></td>
+                <td><button onclick="showOverlay('${event.id}','<c:out value="${event.title }"/>', '<c:out value="${event.hook }"/>', '<c:out value="${event.description}"/>', '${event.eventDate}', '${event.eventTime}', '${event.imgUrl}', '${event.eventUrl}', '${event.location.id}', '${event.location.city}', '${event.location.zipCode}')">Update</button></td>
               </tr>
             </c:forEach>
           </tbody>
