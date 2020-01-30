@@ -12,5 +12,6 @@ public interface DAOGroup {
 	public Group update(Group group, int groupId);
 	public GroupComment submitComment(GroupComment gComment);
 	public boolean deleteComment(int gId);
+	public Group getGroupById(int gId);
 
 }
