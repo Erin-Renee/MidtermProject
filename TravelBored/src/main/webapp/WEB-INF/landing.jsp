@@ -20,13 +20,13 @@
           <form action="login.do" class="needs-validation" novalidate method="POST">
           <input id="updateId" type="hidden" name="id" value="${event.id }">
             <div class="form-group">
-              <label for="title">Title:</label>
+              <label for="title">E-mail:</label>
               <input type="email" class="w3-input form-control" id="email" placeholder="Email"   name="email" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-              <label for="hook">Hook:</label>
+              <label for="hook">Password:</label>
               <input type="password" class="w3-input form-control" id="password" placeholder="Password"  name="password" required>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
