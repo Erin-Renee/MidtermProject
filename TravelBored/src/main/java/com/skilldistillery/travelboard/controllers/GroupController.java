@@ -68,6 +68,7 @@ public class GroupController {
 		User user = (User) session.getAttribute("loggedInUser");
 		user = daoUser.findUserById(user.getId());
 		
+		
 		group.setActive(true);
 		group.setCreateDate(LocalDateTime.now().toString());
 		group.setUser(user);
