@@ -33,16 +33,20 @@
 	<c:if test="${!empty sessionScope.loggedInUser }">
 	<h4>RSVP</h4>
 	<br>
-	
+	<c:choose>
+	<c:when test="${notAttending == null}">
 	<form class="rsvpButton" action="attend.do" method="POST">
-	<button class="attend" type="submit">Attend</button>
+	<button class="attend w3-green" type="submit">Attend</button>
 	<input type="hidden" value="${event.id}" name="eventId">
 	</form>
-	
+	</c:when>
+	<c:otherwise>
 	<form class="rsvpButton" action="unattend.do" method="POST">
-	<button class="unattend" type="submit">unAttend</button>
+	<button class="unattend w3-red" type="submit">Unattend</button>
 	<input type="hidden" value="${event.id}" name="eventId">
 	</form>
+	</c:otherwise>
+	</c:choose>
 	
 </c:if>
 </div>

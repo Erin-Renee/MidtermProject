@@ -86,8 +86,10 @@ public class EventController {
 		User user = (User) session.getAttribute("loggedInUser");
 		user = daoUser.findUserById(user.getId());
 		Event event = daoSearch.findEventById(eventId);
-		daoEvent.createUserEvent(event, user);
+		UserEvent userEvent =daoEvent.createUserEvent(event, user);
 		model.addAttribute("event", event);
+		model.addAttribute("userEvent", userEvent);
+		model.addAttribute("notAttending", daoEvent.findUserEvent(eventId, user.getId()));
 		return "event";
 	}
 
@@ -98,6 +100,7 @@ public class EventController {
 		Event event = daoSearch.findEventById(eventId);
 		daoEvent.deleteUserEvent(event, user);
 		model.addAttribute("event", event);
+		model.addAttribute("notAttending", daoEvent.findUserEvent(eventId, user.getId()));
 		return "event";
 	}
 	
