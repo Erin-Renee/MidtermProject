@@ -1,20 +1,9 @@
-<!--   <div class="logged-out-nav w3-bar w3-blue">
-      <form action="gotoLanding.do" method="get">
-      <button class="w3-bar-item w3-button"type="submit">Home</button>
-      </form>
-      <form action="search.do" method="get">
-        <input class="w3-bar-item w3-input" type="text" placeholder="search...">
-      <button class="w3-bar-item w3-button"type="submit">search</button>
-      </form>
-      <form action="gotoLanding.do" method="get">
-      <button class="w3-bar-item w3-button w3-right"type="submit">login</button>
-      </form> 
-  </div> -->
+
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   
   
+      <!--  logged in ADMIN -->
  <c:if test="${!empty loggedInUser}">
-      <!--  logged in nav -->
        <c:if test="${loggedInUser.role == 'admin'}">
   <nav class="nav">
         <div class="container-nav">
@@ -36,8 +25,6 @@
      				 </form>
      				 </div>
      				 </li>
-     				 <%-- <li>  <div class="w3-bar-item w3-right">${sessionScope.loggedInUser.username}</div>
-     				 </li> --%>
                 </ul>
             </div>
             <span class="navTrigger">
@@ -48,6 +35,8 @@
         </div>
     </nav>
     </c:if>
+    
+    <!-- logged in USER -->
          <c:if test="${loggedInUser.role != 'admin'}">
      <nav class="nav">
         <div class="container-nav">
@@ -56,6 +45,7 @@
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
+               <li> <a>Travel Bored</a></li>
                     <li><a href="gotoCreateGroup.do">Create Group</a></li>
                     <li><a href="gotoCrUpdateEvent.do">Create Event</a></li>
                     <li><a href="logout.do">logout</a></li>
@@ -68,8 +58,6 @@
      				 </form>
      				 </div>
      				 </li>
-     				 <%-- <li>  <div class="w3-bar-item w3-right">${sessionScope.loggedInUser.username}</div>
-     				 </li> --%>
                 </ul>
             </div>
             <span class="navTrigger">
@@ -83,7 +71,7 @@
     </c:if>
       </c:if>
     
-  <!--  logged out nav -->
+  <!--  NOT LOGGED IN nav -->
      <c:if test="${empty loggedInUser}">
   <nav class="nav">
         <div class="container-nav">
@@ -114,33 +102,6 @@
     </nav>
     </c:if>
   
-<%-- <!-- user -->
-  <div class="logged-in-nav w3-bar w3-red">
-      <form action="gotoHome.do" method="get">
-      <button class="w3-bar-item w3-button"type="submit">Home</button>
-      </form>
-      <form action="gotoCrUpdateEvent.do" method="get">
-      <button class="w3-bar-item w3-button"type="submit">Create Event</button>
-      </form>
-      <form action="search.do" method="get">
-        <input class="w3-bar-item w3-input" type="text" name="keyword" placeholder="search...">
-      <button class="w3-bar-item w3-button"type="submit">search</button>
-      </form>
-      <form action="gotoProfile.do" method="get">
-      <button class="w3-bar-item w3-button w3-right"type="submit">User Profile</button>
-      </form>
-      <form action="logout.do" method="get">
-      <button class="w3-bar-item w3-button w3-right"type="submit">logout</button>
-      </form>
-      <div class="w3-bar-item w3-right">${sessionScope.loggedInUser.username}</div>
-  </div> --%>
-
-<!-- 
-    <section class="home">
-    </section> -->
-<!--     <div style="height: 1000px">
-        just to make scrolling effect possible
-    </div> -->
 
 <!-- Jquery needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
