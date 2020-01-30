@@ -83,6 +83,19 @@ public class RedirectController {
 		}
 		
 	}
+	@RequestMapping(path = "gotoCreateGroup.do", method = RequestMethod.GET)
+	private String goToCreateGroup(HttpSession session, Model model) {
+		User user =	(User) session.getAttribute("loggedInUser");
+		
+		if (user == null) {
+			return "group";
+		}else {
+			List<Location> locations = daoSearch.findAllLocations();
+			model.addAttribute("locations", locations);
+			return "creategroup";
+		}
+		
+	}
 	
 	
 	
