@@ -86,6 +86,37 @@
 
 
 </div>
+<div id="group-overlay">
+
+<div class="update-event-class w3-card-4">
+        <div>
+          <div class="w3-container w3-2019-eden">
+            <h2>Update Group</h2>
+          </div>
+          <form action="updateGroup.do" class="needs-validation" novalidate method="POST">
+          <input id="updateGroupId" type="hidden" name="id" value="${group.id }">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="w3-input form-control" id="updateGroupTitle" placeholder="Enter title"   name="title" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="hook">Hook:</label>
+              <input type="text" class="w3-input form-control" id="updateGroupHook" placeholder="Enter hook"  name="hook" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          <button onclick="hideGroupOverlay()" id="close-button">X</button>
+
+        </div>
+      </div>
+
+
+
+</div>
 
 
 
@@ -202,7 +233,26 @@
         </table>
       </div>
       <div id="section4">
-        <p>hello</p>
+        <table class="table table-hover eventTable">
+          <thead>
+            <tr>
+              <th>Group</th>
+              <th>Date</th>
+              <th>Update</th>
+            </tr>
+          </thead>
+          <tbody id="group-update-table">
+
+            <c:forEach var="group" items="${creatorGroups}">
+              <tr class="event-row">
+                <td>${group.title}</td>
+                <td><span class="glyphicon glyphicon-time"></span> ${group.createDate }</td>
+                <%-- <input type="hidden" value="${event }" name = "event"> --%>
+                <td><button onclick="showOverlayGroups('${group.id}','${group.title }', '${group.hook }')">Update</button></td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
       </div>
       <div id="section5">
         <p>hello</p>

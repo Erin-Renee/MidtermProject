@@ -1,6 +1,7 @@
 package com.skilldistillery.travelboard.controllers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.travelboard.data.DAOGroup;
+import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
+import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.GroupComment;
+import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
+import com.skilldistillery.travelboard.entities.UserEvent;
 
 @Controller
 public class GroupController {
@@ -25,6 +30,38 @@ public class GroupController {
 	
 	@Autowired
 	private DAOUser daoUser;
+	
+	@Autowired
+	private DAOSearch daoSearch;
+	
+	public Model refresh(User user, Model model) {
+		List<Location> locations = daoSearch.findAllLocations();
+		
+		model.addAttribute("locations", locations);
+		List<Event> events = new ArrayList<>();
+		for (UserEvent uEvent: user.getUserEvents()) {
+			if(uEvent.getCreator() == false) {
+				events.add(uEvent.getEvent()); 
+			}
+		}
+		
+		model.addAttribute("eventList", events);
+		
+		List<Event> creatorEvents = new ArrayList<>();
+		for (UserEvent uEvent: user.getUserEvents()) {
+			if(uEvent.getCreator() == true) {
+				creatorEvents.add(uEvent.getEvent());	
+			}
+		}
+		
+		model.addAttribute("creatorEvents", creatorEvents);
+		
+		List<Group> creatorGroups = daoSearch.searchGroupByUser(user.getId());
+		
+		model.addAttribute("creatorGroups", creatorGroups);
+		
+		return model;
+	}
 	
 	@RequestMapping(path = "createGroup.do", method = RequestMethod.POST)
 	public String createGroup(Group group, Model model, HttpSession session) {
@@ -49,17 +86,18 @@ public class GroupController {
 	@RequestMapping(path = "updateGroup.do", method = RequestMethod.POST)
 	public String updateGroup(Group group, HttpSession session, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
-		List<Group> groups = user.getGroups();
-		for (Group group2 : groups) {
-			if (group2.getUser().getId().equals(user.getId())) {
-				daoGroup.update(group, group.getId());
-				break;
-			}
-		}
 		
-		model.addAttribute("group", group);
+		Group oldGroup = daoGroup.getGroupById(group.getId());
 		
-		return "group";
+		oldGroup.setTitle(group.getTitle());
+		oldGroup.setHook(group.getHook());
+		
+		daoGroup.update(oldGroup, group.getId());
+		
+		model = refresh(user, model);
+		model.addAttribute("sectionNumber", 4);
+		
+		return "profile";
 	}
 	
 	@RequestMapping(path = "disableGroup.do", method = RequestMethod.POST)

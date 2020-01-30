@@ -22,5 +22,7 @@ public interface DAOSearch {
 	
 	public Event findEventById(int eventid);
 	
+	public List<Group> searchGroupByUser(int userId);
+	
 	
 }

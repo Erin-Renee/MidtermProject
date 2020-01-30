@@ -47,6 +47,15 @@ public class DAOSearchIMPL implements DAOSearch {
 		
 		return groups;
 	}
+	
+	@Override
+	public List<Group> searchGroupByUser(int userId) {
+		String query = "SELECT group FROM Group group WHERE group.user.id = :uId AND group.active = 1";
+		
+		List<Group> groups = em.createQuery(query, Group.class).setParameter("uId", userId).getResultList();
+		
+		return groups;
+	}
 
 	@Override
 	public List<Event> searchEvent(String keyword, int locationId) {

@@ -16,6 +16,7 @@ import com.skilldistillery.travelboard.data.DAOEvent;
 import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
+import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
@@ -55,6 +56,10 @@ public class UserController {
 		}
 		
 		model.addAttribute("creatorEvents", creatorEvents);
+		
+		List<Group> creatorGroups = daoSearch.searchGroupByUser(user.getId());
+		
+		model.addAttribute("creatorGroups", creatorGroups);
 		
 		return model;
 	}

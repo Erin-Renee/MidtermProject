@@ -69,14 +69,29 @@ function showOverlay(id, title, hook, description, eventDate, eventTime, imgUrl,
 	
 	  var Overlay = document.getElementById("overlay");
 	 Overlay.style.display = "block";
-	console.log(document.getElementsByClassName("active"));
-	console.log(document.getElementById("updateTitle"));
+	
+}
+function showOverlayGroups(id, title, hook) {
+	// Get the container element
+	document.getElementById('updateGroupId').value = id;
+	document.getElementById('updateGroupTitle').value = title;
+	document.getElementById('updateGroupHook').value = hook;
+
+	
+	
+	
+	var Overlay = document.getElementById("group-overlay");
+	Overlay.style.display = "block";
 	
 }
 
 function hideOverlay() {
 	  var hideOverlay = document.getElementById("overlay");
 	 hideOverlay.style.display = "none";
+}
+function hideGroupOverlay() {
+	var hideOverlay = document.getElementById("group-overlay");
+	hideOverlay.style.display = "none";
 }
 
 

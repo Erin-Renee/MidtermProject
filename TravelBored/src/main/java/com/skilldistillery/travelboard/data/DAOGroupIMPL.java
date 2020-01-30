@@ -78,5 +78,10 @@ public class DAOGroupIMPL implements DAOGroup {
 
 		return false;
 	}
+	@Override
+	public Group getGroupById(int gId) {
+		
+		return em.find(Group.class, gId);
+	}
 
 }
