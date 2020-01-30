@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/eventStyle.css">
 	<link rel="stylesheet" href="css/profileStyle.css">
 	<script src="javascript/profileScript.js"></script>
+	
 </head>
 <header>
   <jsp:include page="subPages/header.jsp"></jsp:include>
@@ -254,12 +255,60 @@
           </tbody>
         </table>
       </div>
+      
+      
+      
+      
       <div id="section5">
-        <p>hello</p>
+      
+ <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+    <li data-target="#demo" data-slide-to="4"></li>
+    <li data-target="#demo" data-slide-to="5"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://i.ibb.co/3rymx2F/cover2.jpg" alt="Los Angeles">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.ibb.co/CbJFtnM/stock1.jpg" alt="Chicago">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.ibb.co/3kQ2G6L/Isla-Mujeres.jpg" alt="New York">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.ibb.co/HBv2y8S/switzerland.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.ibb.co/y6dhsgt/water.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.ibb.co/ZhKwmRf/420-marijuana-Denver-2017-rj-26379.jpg">
+    </div>
+  </div>
+
+
+</div>
+      
+ 
+      
+      
+      
+        
       </div>
+      
+      
     </div>
    </div>
-  </div>
+  
 
 
 
