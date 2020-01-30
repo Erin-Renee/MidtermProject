@@ -60,7 +60,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "login.do", method= RequestMethod.POST)
-	public String home( HttpSession session, String email, String password) {
+	public String home( HttpSession session, String email, String password, Model model) {
 		
 		User user = daoUser.login(email, password);
 		
@@ -70,7 +70,8 @@ public class UserController {
 		} else {
 			
 			session.setAttribute("loggedInUser", user);
-			return "profileView";
+			model.addAttribute("sectionNumber", 1);
+			return "profile";
 		}
 		
 	}
