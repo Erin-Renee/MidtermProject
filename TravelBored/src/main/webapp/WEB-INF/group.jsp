@@ -5,7 +5,7 @@
 <html lang="en" dir="ltr">
   <head>
 	<jsp:include page="subPages/styleIncludes.jsp"></jsp:include>
-	<link rel="stylesheet" href="css/eventStyle.css">
+	<link rel="stylesheet" href="css/groupStyle.css">
   </head>
 <body>
 <header>
@@ -17,50 +17,26 @@
 <div class="card-container">
   <div class="card u-clearfix">
     <div class="card-body">
-      <h2 class="card-title">${event.title}</h2>
-      <span class="card-description subtle">${event.hook}</span>
+      <h2 class="card-title">${group.title}</h2>
       <div class="card-read">   </div>
-      <div class="card-read:after">${event.description }</div>
       <br>
       <br>
       <div class="upperContent">
-	<p>City: ${event.location.city}</p>
-	<br>
-	<p>Date: ${event.eventDate}</p>
-	<br>
-	<p>Time: ${event.eventTime}</p>
-	<br>
-	<c:if test="${!empty sessionScope.loggedInUser }">
-	<h4>RSVP</h4>
-	<br>
-	<c:choose>
-	<c:when test="${notAttending == null}">
-	<form class="rsvpButton" action="attend.do" method="POST">
-	<button class="attend w3-green" type="submit">Attend</button>
-	<input type="hidden" value="${event.id}" name="eventId">
-	</form>
-	</c:when>
-	<c:otherwise>
-	<form class="rsvpButton" action="unattend.do" method="POST">
-	<button class="unattend w3-red" type="submit">Unattend</button>
-	<input type="hidden" value="${event.id}" name="eventId">
-	</form>
-	</c:otherwise>
-	</c:choose>
-	
-</c:if>
 </div>
     </div>
-    <img src="${event.imgUrl }" alt="" class="card-media" />
-    
-    <c:if test="${!empty sessionScope.loggedInUser }">
-    <br><br><br>
-  <h4>Let's Discuss:</h4>
-<form role="form" action="createEventComment.do" method="POST">
+    <h4><small>RECENT POSTS</small></h4>
+<hr>
+<h2>${group.title }</h2>
+<h5><span class="glyphicon glyphicon-time"></span> ${group.user.username}</h5>
+<p>${group.hook}</p>
+<hr>
+
+<h4>Let's Discuss:</h4>
+<form role="form" action="createGroupComment.do" method="POST">
   <div class="form-group">
     <textarea class="form-control" rows="3" name="comment" required></textarea>
   </div>
-  <input type="hidden" value="${event.id}" name="eventId">
+  <input type="hidden" value="${group.id}" name="groupId">
   <button type="submit" class="btn btn-success">Submit</button>
 </form>
 <br><br>
@@ -79,9 +55,9 @@
     <br>
   </div>
   </c:forEach>
-  </div>
-  </c:if>
   
+  
+  </div>
   </div>
   <div class="card-shadow"></div>
 </div>

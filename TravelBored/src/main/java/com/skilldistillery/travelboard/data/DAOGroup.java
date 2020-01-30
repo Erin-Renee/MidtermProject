@@ -13,5 +13,6 @@ public interface DAOGroup {
 	public GroupComment submitComment(GroupComment gComment);
 	public boolean deleteComment(int gId);
 	public Group getGroupById(int gId);
+	public List<GroupComment> getGroupCommentsByGroupId(int gId);
 
 }

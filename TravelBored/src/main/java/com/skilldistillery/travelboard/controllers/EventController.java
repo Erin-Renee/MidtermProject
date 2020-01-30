@@ -18,6 +18,7 @@ import com.skilldistillery.travelboard.data.DAOSearch;
 import com.skilldistillery.travelboard.data.DAOUser;
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.EventComment;
+import com.skilldistillery.travelboard.entities.GroupComment;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
 import com.skilldistillery.travelboard.entities.UserEvent;
@@ -105,16 +106,20 @@ public class EventController {
 	}
 	
 	@RequestMapping(path = "createEventComment.do", method = RequestMethod.POST)
-	public String createEventComment(Event event, String comment, HttpSession session, Model model) {
+	public String createEventComment (Integer eventId, String comment, HttpSession session, Model model) {
 		EventComment eComment = new EventComment();
 		eComment.setContent(comment);
 		eComment.setCreateDate(LocalDateTime.now().toString());
-		eComment.setEvent(event);
 		eComment.setUser((User) session.getAttribute("loggedInUser"));
+		eComment.setEvent(daoSearch.findEventById(eventId));
 		
 		eComment = daoEvent.submitComment(eComment);
-		model.addAttribute("comment", eComment);
 		
+		List<EventComment> commentList = daoEvent.getEventCommentsByEventId(eventId);
+		
+		model.addAttribute("event", daoSearch.findEventById(eventId));
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("notAttending", daoEvent.findUserEvent(eventId, ((User) session.getAttribute("loggedInUser")).getId()));
 		return "event";
 	}
 	@RequestMapping(path = "deleteEventComment.do", method = RequestMethod.POST)
