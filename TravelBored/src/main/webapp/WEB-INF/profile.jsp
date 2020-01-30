@@ -285,7 +285,7 @@
             </div>
             <div class="form-group">
               <label for="userImgUrl">Profile Photo:</label>
-              <input type="url" class="w3-input form-control" id="userImgUrl" placeholder="Your Photo Url here.." name="userImgUrl">
+              <input type="url" class="w3-input form-control" id="userImgUrl" placeholder="Your Photo Url here.." value="${sessionScope.loggedInUser.userImgUrl }"name="userImgUrl">
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
