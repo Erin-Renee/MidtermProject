@@ -22,7 +22,12 @@
       <div class="card-read">   </div>
       <div class="card-read:after">
       <c:forEach var="detail" items="${user.userDetails}">
+      <c:if test="${empty detail.userDetailUrl}">
+      <h3>${detail.userDetailName}:</h3>
+      </c:if>
+      <c:if test="${! empty detail.userDetailUrl}">
       <h3> <a href="${detail.userDetailUrl}">${detail.userDetailName}:</a></h3>
+      </c:if>
       <p>${detail.userDetailDescription }</p>
       </c:forEach>
       </div>

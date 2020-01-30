@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.travelboard.entities.Event;
 import com.skilldistillery.travelboard.entities.User;
+import com.skilldistillery.travelboard.entities.UserDetail;
 
 @Service
 @Transactional
@@ -24,12 +25,19 @@ public class DAOUserIMPL implements DAOUser {
 
 	@Override
 	public User create(User user) {
-		System.out.println(em);
 		em.persist(user);
 		em.flush();
 		
 		
 		return user;
+	}
+	@Override
+	public UserDetail createUserDetail(UserDetail userDetail) {
+		em.persist(userDetail);
+		em.flush();
+		
+		
+		return userDetail;
 	}
 
 	@Override
@@ -39,6 +47,19 @@ public class DAOUserIMPL implements DAOUser {
 		em.flush();
 		
 		if (user == null) {
+			return true;
+		} 
+		
+		
+		return false;
+	}
+	@Override
+	public boolean deleteUserDetail(int detailId) {
+		UserDetail userDetail = em.find(UserDetail.class, detailId);
+		em.remove(userDetail);
+		em.flush();
+		
+		if (userDetail == null) {
 			return true;
 		} 
 		

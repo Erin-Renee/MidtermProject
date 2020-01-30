@@ -20,6 +20,7 @@ import com.skilldistillery.travelboard.entities.Group;
 import com.skilldistillery.travelboard.entities.GroupComment;
 import com.skilldistillery.travelboard.entities.Location;
 import com.skilldistillery.travelboard.entities.User;
+import com.skilldistillery.travelboard.entities.UserDetail;
 import com.skilldistillery.travelboard.entities.UserEvent;
 import com.skilldistillery.travelboard.entities.UserRole;
 
@@ -146,6 +147,42 @@ public class UserController {
 		user.setActive(false);
 		return "adminsettings";
 
+	}
+	@RequestMapping(path = "createUserDetail.do", method = RequestMethod.POST)
+	public String createUserDetail(UserDetail userDetail, HttpSession session, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		
+		user = daoUser.findUserById(user.getId());
+		
+		userDetail.setUser(user);
+		
+		userDetail = daoUser.createUserDetail(userDetail);
+		
+		user.addUserDetail(userDetail);
+		
+		
+		session.setAttribute("loggedInUser", user);
+		refresh(user, model);
+		model.addAttribute("sectionNumber", 1);
+		
+		return "profile";
+		
+	}
+	@RequestMapping(path = "deleteUserDetail.do", method = RequestMethod.POST)
+	public String deleteUserDetail(Integer detailId, HttpSession session, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		
+		
+		daoUser.deleteUserDetail(detailId);
+		
+		user = daoUser.findUserById(user.getId());
+		
+		session.setAttribute("loggedInUser", user);
+		refresh(user, model);
+		model.addAttribute("sectionNumber", 1);
+		
+		return "profile";
+		
 	}
 
 	@RequestMapping(path = "updateProfile.do", method = RequestMethod.POST)

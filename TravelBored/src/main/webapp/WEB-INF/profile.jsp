@@ -146,10 +146,51 @@
       <h2 class="card-title">${sessionScope.loggedInUser.username}</h2>
       <div class="card-read">   </div>
       <div class="card-read:after">
+      <table>
       <c:forEach var="detail" items="${sessionScope.loggedInUser.userDetails}">
+      <tr>
+      <td>
+      <c:if test="${empty detail.userDetailUrl}">
+      <h3>${detail.userDetailName}:</h3>
+      </c:if>
+      <c:if test="${! empty detail.userDetailUrl}">
       <h3> <a href="${detail.userDetailUrl}">${detail.userDetailName}:</a></h3>
+      </c:if>
       <p>${detail.userDetailDescription }</p>
+      </td>
+      <td>
+      <form action="deleteUserDetail.do" method="post">
+      <input type="hidden" value="${detail.id }" name="detailId">
+      <button type="submit">Delete</button>
+      </form>
+      </td>
+      </tr>
       </c:forEach>
+      </table>
+      <div class="w3-container w3-2019-eden">
+            <h2>Add User Detail:</h2>
+          </div>
+          <form action="createUserDetail.do" class="needs-validation" novalidate method="POST">
+            <div class="form-group">
+              <label for="name">Detail Name:</label>
+              <input type="text" class="w3-input form-control" id="username" placeholder="Enter name"  name="userDetailName" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="firstName">Description:</label>
+              <input type="text" class="w3-input form-control" id="firstName" placeholder="Enter description" name="userDetailDescription" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="url">Detail URL:</label>
+              <input type="url" class="w3-input form-control" id="lastName" placeholder="Link your detail" name="userDetailUrl" >
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
       </div>
     </div>
     <div>
@@ -243,8 +284,8 @@
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-              <label for="userImgUrl">Password:</label>
-              <input type="url" class="w3-input form-control" id="userImgUrl" placeholder="Your Photot Url here.." name="userImgUrl">
+              <label for="userImgUrl">Profile Photo:</label>
+              <input type="url" class="w3-input form-control" id="userImgUrl" placeholder="Your Photo Url here.." name="userImgUrl">
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
@@ -277,7 +318,7 @@
 
             <c:forEach var="event" items="${creatorEvents}">
               <tr class="event-row">
-                <td>${event.title}</td>
+                <td><a href="gotoEvent.do?eventId=${event.id }">${event.title}</a></td>
                 <td><span class="glyphicon glyphicon-time"></span> ${event.createDate }</td>
                 <%-- <input type="hidden" value="${event }" name = "event"> --%>
                 <td><button onclick="showOverlay('${event.id}','${event.title }', '${event.hook }', '${event.description}', '${event.eventDate}', '${event.eventTime}', '${event.imgUrl}', '${event.eventUrl}', '${event.location.id}', '${event.location.city}', '${event.location.zipCode}')">Update</button></td>
@@ -292,17 +333,17 @@
             <tr>
               <th>Group</th>
               <th>Date</th>
-              <th>Update</th>
+              <th>Active</th>
             </tr>
           </thead>
           <tbody id="group-update-table">
 
             <c:forEach var="group" items="${creatorGroups}">
               <tr class="event-row">
-                <td>${group.title}</td>
+                <td><a href="gotoGroup.do?groupId=${group.id }">${group.title}</a></td>
                 <td><span class="glyphicon glyphicon-time"></span> ${group.createDate }</td>
                 <%-- <input type="hidden" value="${event }" name = "event"> --%>
-                <td><button onclick="showOverlayGroups('${group.id}','${group.title }', '${group.hook }')">Update</button></td>
+                <td>${group.active }</td>
               </tr>
             </c:forEach>
           </tbody>
