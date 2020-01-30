@@ -20,7 +20,6 @@
       
       </div>
       <div class="col-sm-2 sidenav">
-        <h4>${sessionScope.loggedInUser.username}</h4>
         <ul class="sidenav nav-pills nav-stacked">
           <li class="active"><button onclick="showSection(1)">Activated Events</button></li>
           <li><button onclick="showSection(2)">Deactivated Events</button></li>
@@ -32,8 +31,7 @@
       </div>
 <div class="col-sm-10">
       <div id="section1">
-       <h4><small>Activated Events</small></h4>
-                <h2>Admin</h2>
+       
         <table class="table table-hover eventTable">
           <thead>
             <tr>
@@ -62,8 +60,7 @@
         </table>
       </div>
       <div id="section2">
-       <h4><small>Deactivated Events</small></h4>
-                <h2>Admin</h2>
+     
         <table class="table table-hover eventTable">
           <thead>
             <tr>
@@ -89,8 +86,7 @@
       </div>
       
  <div id="section3">
-       <h4><small>Activated Users</small></h4>
-                <h2>Admin</h2>
+       
         <table class="table table-hover eventTable">
           <thead>
             <tr>
@@ -115,8 +111,7 @@
         </table>
       </div>
       <div id="section4">
-       <h4><small>Deactivated Users</small></h4>
-                <h2>Admin</h2>
+       
         <table class="table table-hover eventTable">
           <thead>
             <tr>
@@ -142,8 +137,7 @@
       </div>
       
       <div id="section5">
-      <h4><small>Activated Groups</small></h4>
-                <h2>Admin</h2>
+     
         <table class="table table-hover eventTable">
           <thead>
             <tr>
@@ -168,8 +162,7 @@
         </table>
       </div>
       <div id="section6">
-      <h4><small>Deactived Groups</small></h4>
-                <h2>Admin</h2>
+     
         <table class="table table-hover eventTable">
           <thead>
             <tr>

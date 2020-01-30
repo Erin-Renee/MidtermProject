@@ -95,7 +95,6 @@
       
       </div>
       <div class="col-sm-2 sidenav">
-        <h4>${sessionScope.loggedInUser.username}</h4>
         <ul class="sidenav nav-pills nav-stacked">
           <li class="active"><button onclick="showSection(1)">Profile</button></li>
           <li><button onclick="showSection(2)">Profile Settings</button></li>
@@ -153,17 +152,6 @@
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-            	<label for="location">Location:</label>
-           	 	<select name="locationId" required>
-					<option selected value="${sessionScope.loggedInUser.location.id}" >${sessionScope.loggedInUser.location.city} ${sessionScope.loggedInUser.location.zipCode }</option>
-					<c:forEach var="location" items="${locations}">
-						<c:if test="${location.id !=  sessionScope.loggedInUser.location.id}">
-							<option value="${location.id}" >${location.city} ${location.zipCode }</option>
-						</c:if>
-					</c:forEach>
-				</select>
-            </div>
-            <div class="form-group">
               <label for="email">Email:</label>
               <input type="text" class="w3-input form-control" id="email" placeholder="Enter email" value="${sessionScope.loggedInUser.email }" name="email" required>
               <div class="valid-feedback">Valid.</div>
@@ -175,14 +163,23 @@
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
+            <div class="form-group">
+            	<label for="location">Location:</label>
+           	 	<select name="locationId" required>
+					<option selected value="${sessionScope.loggedInUser.location.id}" >${sessionScope.loggedInUser.location.city} ${sessionScope.loggedInUser.location.zipCode }</option>
+					<c:forEach var="location" items="${locations}">
+						<c:if test="${location.id !=  sessionScope.loggedInUser.location.id}">
+							<option value="${location.id}" >${location.city} ${location.zipCode }</option>
+						</c:if>
+					</c:forEach>
+				</select>
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>
 
         </div>
       </div>
       <div id="section3">
-       <h4><small>MY EVENTS</small></h4>
-                <h2>Creator</h2>
         <table class="table table-hover eventTable">
           <thead>
             <tr>
