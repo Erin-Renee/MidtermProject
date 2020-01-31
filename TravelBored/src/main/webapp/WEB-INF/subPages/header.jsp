@@ -45,7 +45,6 @@
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-               <li> <a>Travel Bored</a></li>
                     <li><a href="gotoCreateGroup.do">Create Group</a></li>
                     <li><a href="gotoCrUpdateEvent.do">Create Event</a></li>
                     <li><a href="logout.do">logout</a></li>

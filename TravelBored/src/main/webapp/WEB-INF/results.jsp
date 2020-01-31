@@ -73,7 +73,7 @@
 		<div class="card">
     		<div class="poster"><img src = "imgs/switzerland.JPG"></div>
     		<div class="details">
-      		<h2>${gruop.title}<br></h2>
+      		<h2>${group.title}<br></h2>
       			<div class="info">
        				 <p>${group.hook}</p>
       			</div>

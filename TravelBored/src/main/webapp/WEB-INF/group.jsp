@@ -19,15 +19,12 @@
     <div class="card-body">
       <h2 class="card-title">${group.title}</h2>
       <div class="card-read">   </div>
-      <br>
-      <br>
       <div class="upperContent">
 </div>
     </div>
-    <h4><small>RECENT POSTS</small></h4>
-<hr>
+
 <h2>${group.title }</h2>
-<h5><span class="glyphicon glyphicon-time"></span> ${group.user.username}</h5>
+<h5><span >Owner: </span> ${group.user.username}</h5>
 <p>${group.hook}</p>
 <hr>
 
