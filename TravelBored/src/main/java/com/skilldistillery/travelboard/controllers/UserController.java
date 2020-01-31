@@ -204,8 +204,6 @@ public class UserController {
 	
 		iduser = daoUser.updateBasicUserInfo(iduser, iduser.getId());
 		session.setAttribute("loggedInUser",iduser);
-		System.out.println("****************************************************");
-		System.out.println(iduser);
 		model.addAttribute("sectionNumber", 2);
 		refresh(iduser, model);
 		return "profile";
