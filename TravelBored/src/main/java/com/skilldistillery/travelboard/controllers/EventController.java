@@ -69,7 +69,8 @@ public class EventController {
 		session.setAttribute("loggedInUser", user);
 		
 		model.addAttribute("event", event);
-		
+		model.addAttribute("notAttending", daoEvent.findUserEvent(event.getId(), user.getId()));
+
 		
 		return "event";
 	}

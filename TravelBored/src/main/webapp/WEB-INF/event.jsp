@@ -30,7 +30,7 @@
 	<br>
 	<p>Time: ${event.eventTime}</p>
 	<br>
-	<c:if test="${!empty sessionScope.loggedInUser }">
+	<c:if test="${!empty sessionScope.loggedInUser}">
 	<h4>RSVP</h4>
 	<br>
 	<c:choose>
@@ -41,10 +41,12 @@
 	</form>
 	</c:when>
 	<c:otherwise>
+	<c:if test="${notAttending.creator == false}">
 	<form class="rsvpButton" action="unattend.do" method="POST">
 	<button class="unattend w3-red" type="submit">Unattend</button>
 	<input type="hidden" value="${event.id}" name="eventId">
 	</form>
+	</c:if>
 	</c:otherwise>
 	</c:choose>
 	
