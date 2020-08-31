@@ -1,19 +1,19 @@
 ## Travel Bored
 For our midterm projects we were tasked with building a full stack app in a group. We were able to implement the skills we have learned this month using SpringMVC, JPA, as well as Java.  
 
-###Team Members
+### Team Members
 Luke Leonard
 Travis Roberts
 Caleb Whitford
 Erin Eustice
 ![Team](https://i.ibb.co/6JLRpxv/Image-from-i-OS.jpg "Primodial Syndicate")
 
-####Overview
+#### Overview
 
  Caleb was Scrum master, he lead the standup meetings at the beginning of each day, and ensured we were all on track to meet our deadlines. Travis was the DBA. He was in charge of creating and  managing the database. Luke was in charge of solving any problems members got stuck on. Erin was the repository owner. She ensured that branches were merged, and there were not any merging conflicts.  
 
 
-####Why We Chose Travel Bored
+#### Why We Chose Travel Bored
 Have you ever found yourself in a new city or place, and you don't know what to do?
 Don't know where to look to find events are going on, or people to go with?
 Travel bored brings the travel community as well as locals together!
@@ -25,7 +25,7 @@ Whether you are trying to find out others opinions about restaurants in the area
 If a member posts something inappropriate, the admin can remove that member, the event, or the comment.
 
 
-####Requirements
+#### Requirements
 -A fully developed database schema
 -The database must be connected to your Java code using JPA
 -C.R.U.D
@@ -35,7 +35,7 @@ If a member posts something inappropriate, the admin can remove that member, the
 -A correct implementation of a session object
 -A way to track an individual user's previous experiences on the site
 
-####Plan
+#### Plan
 Date	Requirement	In Progress	Complete
 Day 0: Brainstorm Ideas		
 Day 1: PM	Pitch Idea, create Trello board, wireframe		
@@ -47,7 +47,7 @@ Day 5:	front end, stretch goals
 Day 6:	front end, bugs, deploy to AWS		
 Day 7: Practice run, Present Project
 
-####Technologies Used
+#### Technologies Used
 -Spring MVC
 -JPA
 -HTML/CSS
@@ -56,7 +56,7 @@ Day 7: Practice run, Present Project
 -AWS
 -Bootstrap
 
-####Lessons Learned
+#### Lessons Learned
 -There are many ways to do things.
 -COMMUNICATION… COMMUNICATION…
 -Always push your commits! Github never forgets....
@@ -65,10 +65,10 @@ Day 7: Practice run, Present Project
 -working together, in the same location, helped us stay on the same page and not have merge conflicts.
 
 
-####schema
+#### schema
 ![Schema](https://i.ibb.co/G0cbVyw/schemaclean.jpg)
 
-####Stretch goals
+#### Stretch goals
 We were able to reach all of our stretch goals!
 These included:
 -Comments section
@@ -80,7 +80,7 @@ These included:
 -Embedded ID- Composite Primary Key
 
 
-####Ice Box goals
+#### Ice Box goals
 -Instant Messaging
 -Direct Messaging
 -Image Uploads
@@ -92,6 +92,6 @@ These included:
 -JS Escape Character- Text Inputs
 
 
-#####Links
+##### Links
 [Github](.../Erin-Renee/MidtermProject/)
 [Trello](https://trello.com/b/HMIPaHmm/travel-bored)
